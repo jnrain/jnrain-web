@@ -1,0 +1,28 @@
+{
+  "name": "jnrain-web",
+  "version": "0.1.0",
+  "description": "Web frontend for JNRain",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "~0.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jnrainerds/jnrain-web.git"
+  },
+  "keywords": [
+    "forum",
+    "BBS",
+    "community"
+  ],
+  "author": "Wang Xuerui",
+  "license": "GPLv3+",
+  "bugs": {
+    "url": "https://github.com/jnrainerds/jnrain-web/issues"
+  },
+  "homepage": "https://github.com/jnrainerds/jnrain-web"
+}
