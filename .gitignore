@@ -25,3 +25,6 @@ build
 .grunt
 
 node_modules
+
+# generated assets
+static/css/*.css

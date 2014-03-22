@@ -1,0 +1,45 @@
+$PAGE_BGCOLOR: #fffbf0;
+$PAGE_CONTENT_WIDTH: 1000px;
+$LOGO_WIDTH: 250px;
+$LOGO_HEIGHT: 90px;
+
+
+html {
+  background-color: $PAGE_BGCOLOR;
+  background-image: url("/img/page-background-noise.png");
+}
+
+.wrap__main {
+  width: 75%;
+  min-width: $PAGE_CONTENT_WIDTH;
+  margin: 0 auto;
+}
+
+.jnrain-logo {
+  background: url("/img/logo-250x90.png") top left no-repeat;
+  width: $LOGO_WIDTH;
+  height: $LOGO_HEIGHT;
+}
+
+.pagehdr__logo {
+  float: left;
+}
+
+.pagehdr__nav-container {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+       -o-box-sizing: border-box;
+          box-sizing: border-box;
+
+  width: 100%;
+
+  padding: 0 0 0 ($LOGO_WIDTH + 5px);  /* = 5px margin-left */
+}
+
+.pagehdr__nav {
+  border-bottom: 1px solid #111;
+  width: 100%;
+  height: 63px;
+  margin: 0 0 27px;
+}
