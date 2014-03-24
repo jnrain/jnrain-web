@@ -6,7 +6,7 @@ $LOGO_HEIGHT: 90px;
 
 html {
   background-color: $PAGE_BGCOLOR;
-  background-image: url("/img/page-background-noise.png");
+  background-image: url("/static/img/page-background-noise.png");
 }
 
 .wrap__main {
@@ -16,7 +16,7 @@ html {
 }
 
 .jnrain-logo {
-  background: url("/img/logo-250x90.png") top left no-repeat;
+  background: url("/static/img/logo-250x90.png") top left no-repeat;
   width: $LOGO_WIDTH;
   height: $LOGO_HEIGHT;
 }
