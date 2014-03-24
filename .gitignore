@@ -28,3 +28,4 @@ node_modules
 
 # generated assets
 static/css/*.css
+static/js/*.js
