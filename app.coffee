@@ -7,8 +7,8 @@ app = express()
 app.set 'views', path.join(__dirname, 'templates')
 app.set 'view engine', 'jade'
 
-app.use express.static('static')
 app.use express.logger()
+app.use '/static', express.static('static')
 
 app.get '/', (req, res) ->
   res.render 'skel'
