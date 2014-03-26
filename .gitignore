@@ -25,6 +25,7 @@ build
 .grunt
 
 node_modules
+bower_components
 
 # generated assets
 static/css/*.css
