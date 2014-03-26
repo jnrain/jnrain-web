@@ -4,6 +4,8 @@ GRUNT_CONFIG =
     dist:
       files:
         'static/css/skel.css': 'sass/skel.scss'
+      options:
+        includePaths: ['bower_components/bower-bourbon']
 
   coffee:
     compile:
