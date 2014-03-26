@@ -12,13 +12,15 @@
     "grunt-sass": "^0.11.0",
     "grunt-contrib-requirejs": "^0.4.3",
     "grunt-contrib-coffee": "^0.10.1",
+    "grunt-cli": "^0.1.13",
     "almond": "^0.2.9"
   },
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/.bin/grunt"
   },
   "repository": {
     "type": "git",
