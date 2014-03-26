@@ -6,6 +6,7 @@ GRUNT_CONFIG =
         'static/css/skel.css': 'sass/skel.scss'
       options:
         includePaths: ['bower_components/bower-bourbon']
+        outputStyle: 'compressed'
 
   coffee:
     compile:
