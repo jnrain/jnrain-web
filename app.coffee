@@ -11,7 +11,10 @@ app.use express.logger()
 app.use '/static', express.static('static')
 
 app.get '/', (req, res) ->
-  res.render 'skel'
+  res.render 'home'
+
+app.get '/register', (req, res) ->
+  res.render 'register'
 
 app.listen port
 

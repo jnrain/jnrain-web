@@ -1,7 +1,9 @@
 requirejs.config({
   paths: {
     'jquery': '../../../common-assets/js/jquery',
-    'angular': '../../../common-assets/js/angular',
+    'angular': '../../bower_components/angular/angular',
+    'restangular': '../../bower_components/restangular/dist/restangular',
+    'lodash': '../../bower_components/lodash/dist/lodash',
     'select2': '../../../common-assets/standalone/select2/select2'
   },
   shim: {
@@ -36,8 +38,14 @@ requirejs.config({
     'angular-scrollevents': ['angular'],
     'stellar.directives': ['angular', 'jquery.stellar'],
     'ui.jq': ['jquery', 'angular'],
+    'restangular': ['angular', 'lodash'],
 
     // other libraries
+    'lodash': {
+      deps: [],
+      exports: '_'
+    },
+
     'd3.v3': {
       deps: [],
       exports: 'd3'

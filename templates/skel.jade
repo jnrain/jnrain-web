@@ -1,9 +1,11 @@
 doctype html
 html(lang='cmn')
+  block vars
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title Skeleton page
+    title #{pageTitle} - 江南听雨网
+
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0')
     meta(name='apple-mobile-web-app-capable', content='yes')
@@ -11,18 +13,23 @@ html(lang='cmn')
 
     link(rel='stylesheet', href='/static/css/skel.css')
 
-  body
+  body#appmount
     div.wrap
       div.wrap__main
         header
           div.pagehdr__logo.jnrain-logo
           div.pagehdr__nav-container
             nav.pagehdr__nav
-              span#hehe
-      footer.wrap__footer
+              block nav-header
+        div.main-container
+          block content
+    footer.wrap__footer
+      block footer
 
     script(src='/static/js/bundle.js')
-    script(src='//localhost:35729/livereload.js')
+
+    if DEBUG_LIVERELOAD
+      script(src='//localhost:35729/livereload.js')
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -25,10 +25,10 @@ GRUNT_CONFIG =
         mainConfigFile: 'require.config.js'
 
         name: '../../node_modules/almond/almond'
-        include: ['foo']
+        include: ['entry']
 
         out: 'static/js/bundle.js'
-        optimize: 'uglify2'
+        optimize: 'none'
         wrap: true
 
   watch:
