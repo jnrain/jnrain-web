@@ -4,14 +4,13 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/univ'], (angular, _) ->
       $scope.foo = 'hello from AngularJS'
 
       updateDormInfo = (info) ->
-        console.log info
         $scope.dormInfo = info
 
         # 按组团分组
         dormByGroup = _.transform info, (result, v, k) ->
           group = v.group
 
-          if group in result
+          if group of result
             result[group].push k
           else
             result[group] = [k]
@@ -21,6 +20,8 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/univ'], (angular, _) ->
 
       univInfo.getDormsInfo (info) ->
         updateDormInfo info
+
+      console.log $scope
     ]
 
 

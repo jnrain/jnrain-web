@@ -9,8 +9,12 @@ block content
   .register-form(data-ng-controller='Foo')
     form
       select(data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
-        option(value='')
+        option(value='-1')
         option(data-ng-repeat='groupName in dormGroups', value='{{$index}}') {{groupName}}
+
+      select(data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
+        option(value='-1')
+        option(data-ng-repeat='bldgNum in dormByGroup[dormGroups[dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
