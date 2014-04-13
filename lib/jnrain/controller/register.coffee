@@ -1,8 +1,6 @@
 define ['angular', 'lodash', 'ui.select2', 'jnrain/univ'], (angular, _) ->
   (app) ->
-    app.controller 'Foo', ['$scope', 'univInfo', ($scope, univInfo) ->
-      $scope.foo = 'hello from AngularJS'
-
+    app.controller 'Register', ['$scope', 'univInfo', ($scope, univInfo) ->
       updateDormInfo = (info) ->
         $scope.dormInfo = info
 

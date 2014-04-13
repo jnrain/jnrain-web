@@ -1,4 +1,4 @@
-extends skel
+extends ../skel
 
 
 block vars
@@ -6,7 +6,7 @@ block vars
 
 
 block content
-  form.register-form(data-ng-controller='Foo')
+  form.register-form(data-ng-controller='Register')
     select.dorms-group(data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
       option(value='')
       option(data-ng-repeat='groupName in dormGroups', value='{{$index}}') {{groupName}}

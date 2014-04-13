@@ -1,7 +1,7 @@
-define ['angular', 'jnrain/controller/foo'], (angular, foo) ->
+define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
   boot: () ->
     mod = angular.module 'jnrain/main', ['ui.select2']
-    foo mod
+    controllers.registerWith mod
 
     angular.bootstrap angular.element('#appmount'), ['jnrain/main', 'jnrain/univ']
 

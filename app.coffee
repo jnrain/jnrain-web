@@ -14,7 +14,7 @@ app.get '/', (req, res) ->
   res.render 'home'
 
 app.get '/register', (req, res) ->
-  res.render 'register'
+  res.render 'controller/register'
 
 app.listen port
 
