@@ -30,3 +30,4 @@ bower_components
 # generated assets
 static/css/*.css
 static/js/*.js
+static/vendored/

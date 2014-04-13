@@ -1,9 +1,10 @@
-BUILD_PHASES = ['sass', 'coffee', 'requirejs']
+BUILD_PHASES = ['sass', 'coffee', 'requirejs', 'copy']
 GRUNT_CONFIG =
   sass:
     dist:
       files:
-        'static/css/skel.css': 'sass/skel.scss'
+        'static/css/app.css': 'sass/app.scss'
+        'static/vendored/vendored.css': 'sass/vendored.scss'
       options:
         includePaths: ['bower_components/bower-bourbon']
         outputStyle: 'compressed'
@@ -38,6 +39,15 @@ GRUNT_CONFIG =
       options:
         livereload: true
 
+  copy:
+    main:
+      files: [
+        expand: true
+        src: ['bower_components/select2/*.png', 'bower_components/select2/*.gif']
+        dest: 'static/vendored/'
+        flatten: true
+      ]
+
 
 module.exports = (grunt) ->
   grunt.initConfig GRUNT_CONFIG
@@ -46,6 +56,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
 
   grunt.registerTask 'default', BUILD_PHASES
 
