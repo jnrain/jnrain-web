@@ -6,11 +6,11 @@ block vars
 
 
 block content
-  .register-form(data-ng-controller="Foo")
-    p
-      | hehe
-      | haha
-      | {{foo}}
+  .register-form(data-ng-controller='Foo')
+    form
+      select(data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
+        option(value='')
+        option(data-ng-repeat='groupName in dormGroups', value='{{$index}}') {{groupName}}
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
