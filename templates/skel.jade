@@ -15,8 +15,8 @@ html(lang='cmn')
     link(rel='stylesheet', href='/static/vendored/vendored.css')
 
   body#appmount
-    div.wrap
-      div.wrap__main
+    div#wrap
+      div#wrap__main
         header
           div.pagehdr__logo.jnrain-logo
           div.pagehdr__nav-container
@@ -24,7 +24,7 @@ html(lang='cmn')
               block nav-header
         div.main-container
           block content
-    footer.wrap__footer
+    footer#wrap__footer
       block footer
 
     script(src='/static/js/bundle.js')

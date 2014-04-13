@@ -1,0 +1,39 @@
+@import 'config';
+
+
+html, body {
+  height: 100%;
+}
+
+@mixin stickyfooter-wrap {
+  min-height: 100%;
+}
+
+@mixin stickyfooter-main {
+  overflow: auto;
+  padding-bottom: $FOOTER_HEIGHT;
+}
+
+@mixin stickyfooter-footer {
+  position: relative;
+  margin-top: -$FOOTER_HEIGHT;
+  height: $FOOTER_HEIGHT;
+  clear: both;
+}
+
+
+/* Opera Fix
+ * obsolete, so commented out
+ */
+/*
+body:before {  /* thanks to Maleika (Kohoutec) * /
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;  /* thank you Erik J - negate effect of float * /
+}
+*/
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
