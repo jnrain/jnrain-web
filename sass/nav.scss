@@ -1,0 +1,22 @@
+@import 'bourbon';
+@import 'config';
+
+
+// 顶部导航
+.pagehdr__nav-container {
+  @include box-sizing(border-box);
+
+  width: 100%;
+
+  padding: 0 0 0 ($LOGO_WIDTH + 5px);  /* = 5px margin-left */
+}
+
+.pagehdr__nav {
+  border-bottom: 1px solid #111;
+  width: 100%;
+  height: ($NAV_HEIGHT - $NAV_BOTTOM_MARGIN);
+  margin: 0 0 $NAV_BOTTOM_MARGIN;
+}
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
