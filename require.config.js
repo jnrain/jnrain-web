@@ -4,7 +4,8 @@ requirejs.config({
     'angular': '../../bower_components/angular/angular',
     'restangular': '../../bower_components/restangular/dist/restangular',
     'lodash': '../../bower_components/lodash/dist/lodash',
-    'select2': '../../../common-assets/standalone/select2/select2'
+    'select2': '../../bower_components/select2/select2',
+    'ui.select2': '../../bower_components/angular-ui-select2/src/select2'
   },
   shim: {
     // jQuery plugins
@@ -31,7 +32,7 @@ requirejs.config({
       deps: ['jquery.ui', 'angular'],
       exports: 'jqyoui'
     },
-    'angular-ui-select2': ['select2', 'angular'],
+    'ui.select2': ['select2', 'angular'],
     'angular-smoothscroll': ['jquery', 'angular'],
     // Socket.IO.js is AMD-compatible
     'angular-socketio': ['socket.io', 'angular'],
