@@ -1,6 +1,6 @@
 requirejs.config({
   paths: {
-    'jquery': '../../../common-assets/js/jquery',
+    'jquery': '../../bower_components/jquery/dist/jquery',
     'angular': '../../bower_components/angular/angular',
     'restangular': '../../bower_components/restangular/dist/restangular',
     'lodash': '../../bower_components/lodash/dist/lodash',
