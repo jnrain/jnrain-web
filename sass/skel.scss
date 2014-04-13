@@ -6,6 +6,7 @@
 @import 'stickyfooter';
 
 @import 'nav';
+@import 'footer';
 
 
 html {
@@ -33,12 +34,6 @@ html {
 
 .pagehdr__logo {
   float: left;
-}
-
-
-/* footer */
-#wrap__footer {
-  @include stickyfooter-footer;
 }
 
 
