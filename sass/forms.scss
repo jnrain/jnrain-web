@@ -1,0 +1,17 @@
+@import 'bourbon';
+
+@import 'config';
+
+
+.form-field {
+  margin: 20px 20px 20px 0;
+}
+
+@mixin select2-box-short {
+  @extend .form-field;
+
+  width: 150px;
+}
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

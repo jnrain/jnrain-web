@@ -2,11 +2,7 @@
 @import 'reset';
 @import 'normalize';
 
-
-$PAGE_BGCOLOR: /*#ffe6f6;*/ #fffbf0;
-$PAGE_CONTENT_WIDTH: 1000px;
-$LOGO_WIDTH: 250px;
-$LOGO_HEIGHT: 90px;
+@import 'config';
 
 
 html {
