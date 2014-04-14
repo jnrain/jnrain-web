@@ -5,6 +5,8 @@ define ['angular', 'jnrain/config', 'restangular'], (angular) ->
     Restangular.withConfig (RestangularConfigurer) ->
       RestangularConfigurer.setBaseUrl apiDomain + '/v1'
       RestangularConfigurer.setRequestSuffix '/'
+      RestangularConfigurer.setDefaultHttpFields
+        withCredentials: true
   ]
 
 
