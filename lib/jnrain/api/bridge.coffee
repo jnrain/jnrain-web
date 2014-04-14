@@ -1,7 +1,7 @@
 define ['angular', 'jnrain/config', 'restangular'], (angular) ->
   mod = angular.module 'jnrain/api/bridge', ['restangular', 'jnrain/config']
 
-  mod.factory 'APIv1Restangular', ['Restangular', 'apiDomain', (Restangular, apiDomain) ->
+  mod.factory 'APIv1', ['Restangular', 'apiDomain', (Restangular, apiDomain) ->
     Restangular.withConfig (RestangularConfigurer) ->
       RestangularConfigurer.setBaseUrl apiDomain + '/v1'
       RestangularConfigurer.setRequestSuffix '/'

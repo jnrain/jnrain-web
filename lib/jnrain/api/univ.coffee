@@ -1,9 +1,9 @@
 define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
   mod = angular.module 'jnrain/api/univ', ['jnrain/api/bridge']
 
-  mod.factory 'univInfo', ['APIv1Restangular', (APIv1Restangular) ->
+  mod.factory 'univInfo', ['APIv1', (APIv1) ->
     getBasicInfo: (callback) ->
-      APIv1Restangular.one('univ').one('basic').get().then (data) ->
+      APIv1.one('univ').one('basic').get().then (data) ->
         info =
           name: data.n
           aliases: data.a
@@ -13,7 +13,7 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
         callback info
 
     getDormsInfo: (callback) ->
-      APIv1Restangular.one('univ').one('dorms').get().then (data) ->
+      APIv1.one('univ').one('dorms').get().then (data) ->
         buildings = _.mapValues data.d, (v, k) ->
           campus: v.c
           group: v.p
