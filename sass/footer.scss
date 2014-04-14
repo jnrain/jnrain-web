@@ -4,7 +4,57 @@
 
 
 #wrap__footer {
+  @include box-sizing(border-box);
   @include stickyfooter-footer;
+
+  color: $FOOTER_FGCOLOR;
+  background-color: $FOOTER_BGCOLOR;
+
+  font-size: $FOOTER_FONT_SIZE;
+  line-height: $FOOTER_LINE_HEIGHT;
+  text-shadow: 0 1px #111;
+
+  padding: 20px;
+}
+
+.footer__content {
+  // TODO: 重构成 dimen 组件
+  width: $PAGE_CONTENT_WIDTH_PERC;
+  min-width: $PAGE_CONTENT_WIDTH_MIN;
+  margin: 0 auto;
+}
+
+.footer__minor {
+  color: $FOOTER_FGCOLOR_MINOR;
+}
+
+
+// 组件版本显示
+.footer__versions {
+  @extend .footer__minor;
+  @include clearfix;
+}
+
+.footer__versions__item {
+  float: left;
+
+  &:after {
+    content: '|';
+    margin: 0 10px;
+    color: darken($FOOTER_FGCOLOR_MINOR, 10);
+  }
+
+  &:last-child:after {
+    display: none;
+  }
+}
+
+.footer__versions__item__rev {
+  @include monospace;
+
+  &:before {
+    content: ' ';
+  }
 }
 
 

@@ -4,11 +4,13 @@
 
 
 .register-form {
-  > .dorms-group {
+  @extend .page-form;
+
+  .dorms__group {
     @include select2-box-short;
   }
 
-  > .dorms-building {
+  .dorms__building {
     @include select2-box-short;
   }
 }

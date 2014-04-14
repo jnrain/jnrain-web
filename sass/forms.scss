@@ -3,12 +3,45 @@
 @import 'config';
 
 
-.form-field {
+.page-form {
+  background-color: $FORM_BGCOLOR;
+  box-shadow: 0 0 12px #333;
+  border-radius: $FORM_BORDER_RADIUS;
+
+  width: $FORM_WIDTH;
+  min-width: $FORM_WIDTH_MIN;
+
+  margin: 100px auto;
+  padding: $FORM_BORDER_RADIUS / 1.414213562;
+}
+
+.form__section {
+  border-bottom: 1px solid rgba(#000, 0.25);
+  padding: 30px 0;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.form__title {
+  font-size: $FORM_FONT_SIZE_H1;
+  margin: 0;
+}
+
+.form__section__title {
+  font-size: $FORM_FONT_SIZE_H2;
+  color: $FORM_FGCOLOR_MINOR;
+  margin: 0 0 20px 0;
+}
+
+.form__field {
   margin: 20px 20px 20px 0;
 }
 
 @mixin select2-box-short {
-  @extend .form-field;
+  @extend .form__field;
 
   width: 150px;
 }

@@ -1,6 +1,4 @@
 @import 'bourbon';
-@import 'reset';
-@import 'normalize';
 
 @import 'config';
 @import 'stickyfooter';
@@ -18,8 +16,8 @@ html {
 #wrap__main {
   @include stickyfooter-main;
 
-  width: 75%;
-  min-width: $PAGE_CONTENT_WIDTH;
+  width: $PAGE_CONTENT_WIDTH_PERC;
+  min-width: $PAGE_CONTENT_WIDTH_MIN;
   margin: 0 auto;
 }
 
