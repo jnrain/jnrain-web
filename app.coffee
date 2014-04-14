@@ -1,6 +1,7 @@
 express = require 'express'
 minimist = require 'minimist'
 path = require 'path'
+gitRev = require 'git-rev'
 port = 8000
 
 # 处理 argv
@@ -16,10 +17,14 @@ app.set 'view engine', 'jade'
 
 # 公共参数
 app.locals.DEBUG_LIVERELOAD = !isInProduction
+gitRev.short (short) ->
+  app.locals.VER_GIT = short
+
 
 # 中间件
 app.use express.logger()
 app.use '/static', express.static('static')
+
 
 # 视图
 app.get '/', (req, res) ->
@@ -28,6 +33,8 @@ app.get '/', (req, res) ->
 app.get '/register', (req, res) ->
   res.render 'controller/register'
 
+
+# Fire up JNRain!
 app.listen port
 
 

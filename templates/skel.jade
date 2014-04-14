@@ -27,6 +27,16 @@ html(lang='cmn')
     footer#wrap__footer
       block footer
 
+      .footer__content
+        p &copy; 2014 江南听雨网.
+        ul.footer__versions
+          li.footer__versions__item weiyu
+            span.footer__versions__item__rev xxxxyyyy
+          li.footer__versions__item luohua
+            span.footer__versions__item__rev zzzzwwww
+          li.footer__versions__item jnrain-web
+            span.footer__versions__item__rev #{VER_GIT}
+
     script(src='/static/js/bundle.js')
 
     if DEBUG_LIVERELOAD
