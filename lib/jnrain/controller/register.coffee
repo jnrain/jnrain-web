@@ -22,38 +22,38 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
         $scope.dormByGroup = dormByGroup
         $scope.dormGroups = _.keys dormByGroup
 
-        # 身份信息验证逻辑
-        $scope.identInfo = null
-        $scope.identCheckMsg = ''
-        maybeCheckIdent = () ->
-          number = $scope.number
-          idnumber = $scope.idnumber
-          if number? and idnumber?
-            doCheckIdent number, idnumber
+      # 身份信息验证逻辑
+      $scope.identInfo = null
+      $scope.identCheckMsg = ''
+      maybeCheckIdent = () ->
+        number = $scope.number
+        idnumber = $scope.idnumber
+        if number? and idnumber?
+          doCheckIdent number, idnumber
+        else
+          $scope.identInfo = null
+          if number?
+            $scope.identCheckMsg = '请正确填写身份证后六位号码。'
+          else
+            if idnumber?
+              $scope.identCheckMsg = '请正确填写学号。'
+            else
+              $scope.identCheckMsg = '请填写身份信息。'
+
+      doCheckIdent = (number, idnumber) ->
+        identAPI.queryIdent number, 0, idnumber.toUpperCase(), (retcode, data) ->
+          console.log 'queryIdent returned:', retcode, data
+          if retcode == 0
+            $scope.identInfo = data
           else
             $scope.identInfo = null
-            if number?
-              $scope.identCheckMsg = '请正确填写身份证后六位号码。'
-            else
-              if idnumber?
-                $scope.identCheckMsg = '请正确填写学号。'
-              else
-                $scope.identCheckMsg = '请填写身份信息。'
+            $scope.identCheckMsg = '' + retcode
 
-        doCheckIdent = (number, idnumber) ->
-          identAPI.queryIdent number, 0, idnumber.toUpperCase(), (retcode, data) ->
-            console.log 'queryIdent returned:', retcode, data
-            if retcode == 0
-              $scope.identInfo = data
-            else
-              $scope.identInfo = null
-              $scope.identCheckMsg = '' + retcode
+      attrWatcher = (to, from) ->
+        maybeCheckIdent()
 
-        attrWatcher = (to, from) ->
-          maybeCheckIdent()
-
-        $scope.$watch 'number', attrWatcher
-        $scope.$watch 'idnumber', attrWatcher
+      $scope.$watch 'number', attrWatcher
+      $scope.$watch 'idnumber', attrWatcher
 
       univInfo.getMajorsInfo (info) ->
         updateMajorsInfo info
