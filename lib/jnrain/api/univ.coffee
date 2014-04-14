@@ -12,6 +12,13 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
           homepage: data.h
         callback info
 
+    getMajorsInfo: (callback) ->
+      APIv1.one('univ').one('majors').get().then (data) ->
+        majors = _.mapValues data.d, (v, k) ->
+          name: v.n
+          school: v.s
+        callback majors
+
     getDormsInfo: (callback) ->
       APIv1.one('univ').one('dorms').get().then (data) ->
         buildings = _.mapValues data.d, (v, k) ->
