@@ -14,17 +14,25 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
       updateDormInfo = (info) ->
         $scope.dormInfo = info
 
-        # 按组团分组
-        dormByGroup = _.transform info, (result, v, k) ->
+        # 按性别 (主要) 与组团 (次要) 分组
+        dormByGender = _.transform info, (result, v, k) ->
           group = v.group
+          gender = v.gender
 
-          if group of result
-            result[group].push k
+          if gender of result
+            groupDict = result[gender]
           else
-            result[group] = [k]
+            result[gender] = {}
+            groupDict = result[gender]
 
-        $scope.dormByGroup = dormByGroup
-        $scope.dormGroups = _.keys dormByGroup
+          if group of groupDict
+            groupDict[group].push k
+          else
+            groupDict[group] = [k]
+
+        $scope.dormByGender = dormByGender
+        $scope.dormGroups = _.mapValues dormByGender, (v, k) ->
+          _.keys v
 
       # 身份信息验证逻辑
       $scope.identInfo = null

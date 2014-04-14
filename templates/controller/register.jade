@@ -49,13 +49,19 @@ block content
     section.form__section
       h2.form__section__title 住宿信息
 
-      select.dorms__group(data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
-        option(value='')
-        option(data-ng-repeat='groupName in dormGroups', value='{{$index}}') {{groupName}}
+      .dorm-info-container(data-ng-switch='!!identInfo')
+        .dorm-info(data-ng-switch-when='true')
+          select.dorms__group(data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
+            option(value='')
+            option(data-ng-repeat='groupName in dormGroups[identInfo.gender]', value='{{$index}}') {{groupName}}
 
-      select.dorms__building(data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
-        option(value='')
-        option(data-ng-repeat='bldgNum in dormByGroup[dormGroups[dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
+          select.dorms__building(data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
+            option(value='')
+            option(data-ng-repeat='bldgNum in dormByGender[identInfo.gender][dormGroups[identInfo.gender][dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
+
+        .dorm-info-hidden(data-ng-switch-when='false')
+          // TODO: 公共的成功/失败信息提示框组件
+          p 请在通过身份验证之后设置住宿信息。
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
