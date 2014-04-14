@@ -1,5 +1,5 @@
-define ['angular', 'lodash', 'jnrain/bridge'], (angular, _) ->
-  mod = angular.module 'jnrain/univ', ['jnrain/bridge']
+define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
+  mod = angular.module 'jnrain/api/univ', ['jnrain/api/bridge']
 
   mod.factory 'univInfo', ['APIv1Restangular', (APIv1Restangular) ->
     getBasicInfo: (callback) ->

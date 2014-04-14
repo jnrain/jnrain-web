@@ -1,4 +1,4 @@
-define ['angular', 'lodash', 'ui.select2', 'jnrain/univ'], (angular, _) ->
+define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ'], (angular, _) ->
   (app) ->
     app.controller 'Register', ['$scope', 'univInfo', ($scope, univInfo) ->
       updateDormInfo = (info) ->

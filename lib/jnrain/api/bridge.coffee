@@ -1,5 +1,5 @@
 define ['angular', 'jnrain/config', 'restangular'], (angular) ->
-  mod = angular.module 'jnrain/bridge', ['restangular', 'jnrain/config']
+  mod = angular.module 'jnrain/api/bridge', ['restangular', 'jnrain/config']
 
   mod.factory 'APIv1Restangular', ['Restangular', 'apiDomain', (Restangular, apiDomain) ->
     Restangular.withConfig (RestangularConfigurer) ->
