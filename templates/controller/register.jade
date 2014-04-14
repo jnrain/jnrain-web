@@ -41,11 +41,10 @@ block content
           span.ident__name {{identInfo.name}}
           span.ident__school {{identInfo.school}}
           span.ident__major {{majorsInfo[identInfo.major].name}}
-          span.ident__klass {{identInfo.klass}}
-          span.ident__year {{identInfo.year}}
+          span.ident__klass {{identInfo.year % 100}}{{zeropad(identInfo.klass)}}班
 
         .ident-check-fail(data-ng-switch-when='false')
-          span.retcode {{identCheckMsg}}
+          span.ident__retcode {{identCheckMsg}}
 
     section.form__section
       h2.form__section__title 住宿信息

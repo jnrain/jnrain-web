@@ -15,5 +15,55 @@
   }
 }
 
+// 身份验证结果
+.ident-check-result-box {
+  font-size: 24px;
+
+  border-radius: 10px;
+  margin: 20px 0 0;
+  padding: 16px;
+}
+
+.ident-check-passed {
+  @extend .ident-check-result-box;
+
+  background-color: rgba(#5bbc1b, 0.1);
+}
+
+.ident-check-fail {
+  @extend .ident-check-result-box;
+
+  background-color: rgba(#f00, 0.1);
+}
+
+// 身份信息
+// 提示框标题
+.ident-result-title {
+  color: #333;
+  font-size: 20px;
+}
+
+// 身份信息
+// 学院
+.ident__school {
+  color: #666;
+
+  &:before {
+    content: '(';
+  }
+
+  &:after {
+    content: ')';
+  }
+}
+
+// 专业
+.ident__major {
+  &:before {
+    content: '-';
+    margin: 0 20px;
+  }
+}
+
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

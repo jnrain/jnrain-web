@@ -2,6 +2,10 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
   (app) ->
     # 注册表单 (在读本科生)
     app.controller 'Register', ['$scope', 'univInfo', 'identAPI', ($scope, univInfo, identAPI) ->
+      # 最无聊的东西...
+      $scope.zeropad = (x) ->
+        (if x < 10 then '0' else '') + x
+
       # 专业信息
       updateMajorsInfo = (majors) ->
         $scope.majorsInfo = majors
@@ -47,7 +51,7 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
             $scope.identInfo = data
           else
             $scope.identInfo = null
-            $scope.identCheckMsg = '' + retcode
+            $scope.identCheckMsg = identAPI.errorcode[retcode]
 
       attrWatcher = (to, from) ->
         maybeCheckIdent()
