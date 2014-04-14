@@ -6,7 +6,11 @@ block vars
 
 
 block content
-  form.register-form(data-ng-controller='Register', novalidate='novalidate')
+  form.register-form(
+    name='registerForm'
+    novalidate='novalidate'
+    data-ng-controller='Register'
+    )
     h1.form__title 注册一个江南听雨网帐号
 
     section.form__section
@@ -29,6 +33,19 @@ block content
         data-ng-model='idnumber'
         data-ng-pattern='/^[0-9Xx]{6}$/'
         )
+
+      .ident-check-result(
+        data-ng-switch='!!identInfo'
+        )
+        .ident-check-passed(data-ng-switch-when='true')
+          span.ident__name {{identInfo.name}}
+          span.ident__school {{identInfo.school}}
+          span.ident__major {{majorsInfo[identInfo.major].name}}
+          span.ident__klass {{identInfo.klass}}
+          span.ident__year {{identInfo.year}}
+
+        .ident-check-fail(data-ng-switch-when='false')
+          span.retcode {{identCheckMsg}}
 
     section.form__section
       h2.form__section__title 住宿信息
