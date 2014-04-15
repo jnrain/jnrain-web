@@ -3,7 +3,10 @@ html(lang='cmn')
   block vars
   head
     meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+
+    // 既然 oldIE 全都被中间件封杀了, 这一条声明就没有受众了, 还会让文档过不了 HTML5 校验...
+    // meta(http-equiv='X-UA-Compatible', content='IE=edge')
+
     title #{pageTitle} - 江南听雨网
 
     meta(name='description', content='')
