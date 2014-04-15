@@ -16,7 +16,7 @@ block content
     section.form__section
       h2.form__section__title 身份验证
 
-      input(
+      input.form__input(
         type='text'
         name='number'
         required='required'
@@ -25,7 +25,7 @@ block content
         data-ng-pattern='/^[0-9]{10}$/'
         )
 
-      input(
+      input.form__input(
         type='text'
         name='idnumber'
         required='required'
@@ -51,14 +51,14 @@ block content
 
       .basic-info-container(data-ng-switch='!!identInfo')
         .basic-info(data-ng-switch-when='true')
-          input(
+          input.form__input(
             type='email'
             name='email'
             required='required'
             placeholder='邮箱地址'
             data-ng-model='email'
             )
-          input(
+          input.form__input(
             type='text'
             name='mobile'
             required='required'
@@ -66,7 +66,7 @@ block content
             data-ng-model='mobile'
             data-ng-pattern='/^[0-9]{11}$/'
             )
-          input(
+          input.form__input(
             type='text'
             name='displayName'
             required='required'
@@ -74,7 +74,7 @@ block content
             data-ng-model='displayName'
             data-ng-maxlength='16'
             )
-          input(
+          input.form__input(
             type='password'
             name='psw'
             required='required'
