@@ -7,7 +7,7 @@ GRUNT_CONFIG =
         'static/vendored/vendored.css': 'sass/vendored.scss'
       options:
         includePaths: ['bower_components/bower-bourbon', './bower_components/font-awesome/scss']
-        outputStyle: 'compressed'
+        outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
 
   coffee:
     compile:
