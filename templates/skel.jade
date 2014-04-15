@@ -19,6 +19,8 @@ html#appmount(lang='cmn')
     link(rel='stylesheet', href='/static/css/app.css')
     link(rel='stylesheet', href='/static/vendored/vendored.css')
 
+    script(src='/static/js/bundle.js')
+
   body
     div#wrap
       div#wrap__main
@@ -41,8 +43,6 @@ html#appmount(lang='cmn')
             span.footer__versions__item__rev zzzzwwww
           li.footer__versions__item jnrain-web
             span.footer__versions__item__rev #{VER_GIT}
-
-    script(src='/static/js/bundle.js')
 
     if DEBUG_LIVERELOAD
       script(src='//localhost:35729/livereload.js')
