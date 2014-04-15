@@ -1,0 +1,182 @@
+doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"
+html
+  head
+    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+    title 浏览器兼容提示 - 江南听雨网
+
+    style(type="text/css").
+      /* reset without HTML5 tags */
+      html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,
+      abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,
+      strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+      table,caption,tbody,tfoot,thead,tr,th,td
+      {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+      table{border-collapse:collapse;border-spacing:0}
+      a,ins{text-decoration:none}
+      del{text-decoration:line-through}
+      ol,ul{list-style:none}
+      caption,th{text-align:left}
+      h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+      blockquote,q{quotes:none}
+      blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+      abbr,acronym{font-variant:normal}
+      legend{color:#000}
+      a{color:inherit}
+
+      html {
+        background-color: #ddd;
+        color: #222;
+
+        /*
+         * IE6/7 和 IE8 兼容模式下即使页面内容高度不够也会出现垂直滚动条, 比较烦人
+         * 多次尝试没能让它不需要的时候自动隐藏, 只好强制它出现了
+         */
+        overflow-y: scroll;
+      }
+
+      .header-text-container {
+        position: absolute;
+        top: 4px;
+        left: 158px;
+        width: 792px;
+        height: 150px;
+      }
+
+      .header-text-div {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        color: #111;
+      }
+
+      p, .recommended-browsers {
+        font-size: 24px;
+        font-family: "Ubuntu Light", "Palatino Linotype", SimSun, serif;
+        line-height: 1.5;
+        margin: 0 0 1em 0;
+      }
+
+      .recommended-browsers {
+        table-layout: fixed;
+        width: 100%;
+        line-height: normal;
+        text-align: center;
+      }
+
+      .recommended-browsers td {
+        padding: 10px;
+      }
+
+      .bwsr {
+        display: block;
+        padding: 10px;
+
+        color: #ccc;
+        background-color: #666;
+      }
+
+      .bwsr:hover {
+        color: #eee;
+        background-color: #222;
+      }
+
+      .bwsr__name {
+        display: inline-block;
+        font-size: 36px;
+
+        /* IE8 兼容模式的 span 默认鼠标是文本选择状 */
+        cursor: pointer;
+      }
+
+      .bwsr:hover .bwsr__name {
+        border-bottom: 1px solid #eee;
+        margin: 0 0 -1px 0;
+      }
+
+    // 这么写好像会有链接欺骗的可能性，先放着
+      <script language="javascript">
+        // 从 query string 里解出跳转前的页面 URL
+        // thanks to this SO answer: http://stackoverflow.com/a/2880929/596531
+        var urlParams;
+        (window.onpopstate = function () {
+            var match,
+                pl     = /\+/g,  // Regex for replacing addition symbol with a space
+                search = /([^&=]+)=?([^&]*)/g,
+                decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                query  = window.location.search.substring(1);
+
+            urlParams = {};
+            while (match = search.exec(query))
+               urlParams[decode(match[1])] = decode(match[2]);
+        })();
+      </script>
+
+  body.
+    <!-- 这个页面存在的唯一意义是让 oldIE 用户能知道自己下一步该怎么做, 那么看招! 表格布局! -->
+    <table align="center" width="950" bgcolor="#eeeeee" style="margin: 0 auto; position: relative; min-height: 100%;">
+      <tbody>
+      <tr height="4">
+        <!-- 这是 margin-top -->
+        <td width="950" colspan="2" style="background-color: #2672ec;">
+        </td>
+      </tr>
+      <tr class="header-row">
+        <td width="150">
+          <!-- IE 图标 -->
+          <!-- 这里也需要强制高度... -->
+          <div style="height: 150px;">
+            <div style="width: 150px; height: 150px; background: url('/static/img/ie-tile.png') no-repeat; display: inline-block;">
+            </div>
+          </div>
+        </td>
+        <td>
+          <!-- 图标右侧 -->
+          <!--
+          不用绝对定位强制指定正确位置的话也必须使用一层 div 包装,
+          否则横向布局会崩坏, 详情可自行试验.
+          -->
+          <div class="header-text-container">
+            <div class="header-text-div">
+              <span style="font-family: 'Palatino Linotype', SimSun, sans-serif; font-size: 45px;">您在使用不受支持的IE版本浏览本站。</span>
+              <span style="font-family: 'Ubuntu Light', Ubuntu, 'DejaVu Sans Light', 'DejaVu Sans', 'Segoe UI Light', 'Segoe UI', 'Palatino Linotype', sans-serif; font-weight: 100; font-size: 24px;">You're browsing this site with an unsupported version of IE.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr height="40">
+        <!-- 这其实是个 margin-top -->
+      </tr>
+      <tr>
+        <td colspan="2" style="padding: 0 50px;">
+          <p>江南听雨网的开发采用了许多高级技术。低版本的 IE 浏览器<!-- 支持条件注释的 IE 都算 -->不支持这些技术，使江南听雨网无法在其中正常显示和工作。由于开发人员的精力有限，不能考虑为低版本 IE 提供支持。</p>
+
+          <!-- TODO: 用 navigator.userAgent 智能判断国内常见双核浏览器, 动态展示对应的操作 -->
+          <p>如您使用的浏览器支持极速模式（或高速模式等类似名称），请切换到相应的模式重新进入本站。</p>
+
+          <p>否则请考虑使用以下浏览器：</p>
+          <table class="recommended-browsers">
+            <tr>
+              <td>
+                <a href="http://www.firefox.com.cn/" class="bwsr">
+                  <h2 class="bwsr__name">Firefox</h2>
+                </a>
+              </td>
+              <td>
+                <a href="https://www.google.com/intl/zh-CN/chrome/browser/" class="bwsr">
+                  <h2 class="bwsr__name">Chrome</h2>
+                </a>
+              </td>
+            </tr>
+          </table>
+
+          <p>如因条件限制必须使用 IE 浏览，请升级到 IE 11 或更高的版本。</p>
+
+          <p>感谢您对江南听雨网的支持！</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

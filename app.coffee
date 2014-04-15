@@ -2,6 +2,7 @@ express = require 'express'
 minimist = require 'minimist'
 path = require 'path'
 gitRev = require 'git-rev'
+connectUAParser = require 'connect-ua-parser'
 port = 8000
 
 # 处理 argv
@@ -24,6 +25,16 @@ gitRev.short (short) ->
 # 中间件
 app.use express.logger()
 app.use '/static', express.static('static')
+
+
+# 干掉 oldIE
+isOldIE = (uaObj) ->
+  uaObj.ua.family == 'IE' and parseInt(uaObj.ua.major) < 11
+
+
+app.use connectUAParser()
+app.use (req, res, next) ->
+  if isOldIE req.useragent then res.render 'misc/no-ie' else next()
 
 
 # 视图
