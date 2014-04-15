@@ -29,5 +29,6 @@ bower_components
 
 # generated assets
 static/css/*.css
+static/img/
 static/js/*.js
 static/vendored/

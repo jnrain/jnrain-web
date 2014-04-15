@@ -40,11 +40,18 @@ GRUNT_CONFIG =
         livereload: true
 
   copy:
-    main:
+    'vendored-select2':
       files: [
         expand: true
         src: ['bower_components/select2/*.png', 'bower_components/select2/*.gif']
         dest: 'static/vendored/'
+        flatten: true
+      ]
+    images:
+      files: [
+        expand: true
+        src: ['images/ready/**/*']
+        dest: 'static/img/'
         flatten: true
       ]
 
