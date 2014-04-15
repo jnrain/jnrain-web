@@ -6,7 +6,7 @@ GRUNT_CONFIG =
         'static/css/app.css': 'sass/app.scss'
         'static/vendored/vendored.css': 'sass/vendored.scss'
       options:
-        includePaths: ['bower_components/bower-bourbon']
+        includePaths: ['bower_components/bower-bourbon', './bower_components/font-awesome/scss']
         outputStyle: 'compressed'
 
   coffee:
@@ -45,6 +45,13 @@ GRUNT_CONFIG =
         expand: true
         src: ['bower_components/select2/*.png', 'bower_components/select2/*.gif']
         dest: 'static/vendored/'
+        flatten: true
+      ]
+    'vendored-fa':
+      files: [
+        expand: true
+        src: ['bower_components/font-awesome/fonts/*']
+        dest: 'static/fonts/'
         flatten: true
       ]
     images:
