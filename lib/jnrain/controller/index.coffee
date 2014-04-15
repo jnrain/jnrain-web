@@ -1,5 +1,10 @@
-define ['jnrain/controller/register'], (register) ->
+define [
+  'jnrain/controller/debug/index',
+  'jnrain/controller/register'
+], (debugModules, register) ->
   registerWith: (app) ->
+    debugModules.registerWith app
+
     register app
 
 
