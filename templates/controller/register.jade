@@ -38,6 +38,7 @@ block content
         data-ng-switch='!!identInfo'
         )
         .ident-check-passed(data-ng-switch-when='true')
+          i.ident__icon.fa.fa-check
           span.ident__name {{identInfo.name}}
           span.ident__school {{identInfo.school}}
           span.ident__major {{majorsInfo[identInfo.major].name}}

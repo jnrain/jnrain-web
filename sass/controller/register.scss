@@ -43,6 +43,15 @@
   font-size: 20px;
 }
 
+// 图标
+.ident__icon {
+  margin: 0 16px 0 0;
+
+  .ident-check-passed > & {
+    color: #5bbc1b;
+  }
+}
+
 // 身份信息
 // 学院
 .ident__school {
