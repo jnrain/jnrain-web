@@ -38,12 +38,32 @@
 
 .form__field {
   margin: 0 20px 20px 0;
+
+  width: 30%;
+  min-width: 150px;
+}
+
+// 文本框
+.form__input {
+  @extend .form__field;
+  @include box-sizing(border-box);
+
+  border-radius: 4px;
+  border: 1px solid #999;
+  padding: 4px;
+
+  &.ng-dirty {
+    &.ng-valid {
+      border-color: #5bbc1b;
+    }
+    &.ng-invalid {
+      border-color: #bc1b5b;
+    }
+  }
 }
 
 @mixin select2-box-short {
   @extend .form__field;
-
-  width: 150px;
 }
 
 
