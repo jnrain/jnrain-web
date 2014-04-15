@@ -1,4 +1,4 @@
-define ['angular', 'jnrain/config', 'restangular'], (angular) ->
+define ['angular', 'restangular', 'angular-socket-io', 'jnrain/config'], (angular) ->
   mod = angular.module 'jnrain/api/bridge', ['restangular', 'jnrain/config']
 
   mod.factory 'APIv1', ['Restangular', 'apiDomain', (Restangular, apiDomain) ->
@@ -7,6 +7,12 @@ define ['angular', 'jnrain/config', 'restangular'], (angular) ->
       RestangularConfigurer.setRequestSuffix '/'
       RestangularConfigurer.setDefaultHttpFields
         withCredentials: true
+  ]
+
+  mod.factory 'rtSocket', ['socketFactory', 'rtDomain', (socketFactory, rtDomain) ->
+    # io 貌似必须从 window 对象 (全局命名空间) 得到...
+    socketFactory
+      ioSocket: io.connect rtDomain
   ]
 
 

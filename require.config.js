@@ -5,7 +5,9 @@ requirejs.config({
     'restangular': '../../bower_components/restangular/dist/restangular',
     'lodash': '../../bower_components/lodash/dist/lodash',
     'select2': '../../bower_components/select2/select2',
-    'ui.select2': '../../bower_components/angular-ui-select2/src/select2'
+    'ui.select2': '../../bower_components/angular-ui-select2/src/select2',
+    'angular-socket-io': '../../bower_components/angular-socket-io/socket',
+    'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io'
   },
   shim: {
     // jQuery plugins
@@ -34,12 +36,12 @@ requirejs.config({
     },
     'ui.select2': ['select2', 'angular'],
     'angular-smoothscroll': ['jquery', 'angular'],
-    // Socket.IO.js is AMD-compatible
-    'angular-socketio': ['socket.io', 'angular'],
     'angular-scrollevents': ['angular'],
     'stellar.directives': ['angular', 'jquery.stellar'],
     'ui.jq': ['jquery', 'angular'],
     'restangular': ['angular', 'lodash'],
+    // seems socket.io-client must be loaded in a separate <script>...
+    'angular-socket-io': ['angular'],  // socket.io-client
 
     // other libraries
     'lodash': {
