@@ -54,6 +54,12 @@ GRUNT_CONFIG =
         dest: 'static/fonts/'
         flatten: true
       ]
+    'vendored-socket.io':
+      files: [
+        src: ['./bower_components/socket.io-client/dist/socket.io<%= grunt.option("production") ? ".min" : "" %>.js']
+        dest: 'static/vendored/socket.io.js'
+        flatten: true
+      ]
     images:
       files: [
         expand: true
