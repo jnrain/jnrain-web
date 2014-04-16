@@ -3,11 +3,13 @@ minimist = require 'minimist'
 path = require 'path'
 gitRev = require 'git-rev'
 connectUAParser = require 'connect-ua-parser'
-port = 8000
+
 
 # 处理 argv
 argv = minimist process.argv.slice(2)
 isInProduction = argv.production ? false
+port = if argv.p? then argv.p else 8000
+console.log 'Listening on port ' + port + '.'
 
 
 # 初始化应用
@@ -15,6 +17,7 @@ app = express()
 
 app.set 'views', path.join(__dirname, 'templates')
 app.set 'view engine', 'jade'
+
 
 # 公共参数
 app.locals.DEBUG_LIVERELOAD = !isInProduction
