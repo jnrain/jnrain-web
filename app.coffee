@@ -3,6 +3,7 @@ minimist = require 'minimist'
 path = require 'path'
 gitRev = require 'git-rev'
 connectUAParser = require 'connect-ua-parser'
+connectSlashes = require 'connect-slashes'
 
 
 # 处理 argv
@@ -28,6 +29,7 @@ gitRev.short (short) ->
 # 中间件
 app.use express.logger()
 app.use '/static', express.static('static')
+app.use connectSlashes(false)  # 标准化 URL, 去掉末尾的 /
 
 
 # 干掉 oldIE

@@ -18,7 +18,8 @@
     "almond": "^0.2.9",
     "minimist": "0.0.8",
     "git-rev": "^0.2.1",
-    "connect-ua-parser": "^0.1.0"
+    "connect-ua-parser": "^0.1.0",
+    "connect-slashes": "^1.2.0"
   },
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1"
