@@ -77,6 +77,24 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
       $scope.$watch 'number', attrWatcher
       $scope.$watch 'idnumber', attrWatcher
 
+      # 表单提交
+      $scope.doRegister = (sendHTMLMail) ->
+        registerPayload =
+          name: $scope.displayName
+          pass: $scope.psw
+          email: $scope.email
+          mobile: $scope.mobile
+          itype: 0
+          inum: $scope.number
+          idtype: 0
+          idnum: $scope.idnumber
+          iinfo:
+            dorm_bldg: parseInt($scope.dormBuilding)
+            dorm_room: $scope.dormRoom
+          htmlmail: !!sendHTMLMail
+
+        console.log '[registerForm] payload: ', registerPayload
+
       univInfo.getMajorsInfo (info) ->
         updateMajorsInfo info
 
