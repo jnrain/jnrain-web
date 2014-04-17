@@ -77,8 +77,15 @@
 }
 
 // Select2 选择控件
-@mixin select2-box-short {
+.form__select2 {
   @extend .form__field;
+
+  // margin 会被 .select2-container 强制覆盖...
+  margin: 0 20px 20px 0 !important;
+
+  // 不加上这一条的话, 跟 Select2 控件并列的 input 垂直方向会错位,
+  // 原因不明 :-(
+  vertical-align: bottom !important;
 
   &.ng-dirty {
     &.ng-valid {

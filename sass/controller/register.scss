@@ -1,20 +1,3 @@
-@import 'bourbon';
-
-@import '../forms';
-
-
-.register-form {
-  @extend .page-form;
-
-  .dorms__group {
-    @include select2-box-short;
-  }
-
-  .dorms__building {
-    @include select2-box-short;
-  }
-}
-
 // 身份验证结果
 .ident-check-result-box {
   font-size: 24px;
