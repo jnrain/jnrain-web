@@ -98,6 +98,10 @@
     // NOTE: 关于 "右"... 我觉得一段时间内还是不用考虑 RTL 文字的 :-P
     margin: 0 10px 0 0;
   }
+
+  &[disabled] {
+    background-color: $FORM_COLOR_DISABLED;
+  }
 }
 
 .form__submit {
@@ -110,18 +114,25 @@
 }
 
 .form__submit--minor {
+  @extend .form__widget;
+
   display: inline-block;
   float: right;
-  color: $FORM_FGCOLOR_MINOR;
-  border: none;
-  background: none;
   margin: 10px 0;
   padding: 0;
+  border: none;
+
+  color: $FORM_FGCOLOR_MINOR;
+  background: none;
 
   font-size: $FORM_FONT_SIZE_MINOR;
   line-height: normal;
   height: $FORM_LINE_HEIGHT;
   text-decoration: underline;
+
+  &[disabled] {
+    color: $FORM_COLOR_DISABLED;
+  }
 }
 
 
