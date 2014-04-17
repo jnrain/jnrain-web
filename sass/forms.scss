@@ -13,6 +13,9 @@
 
   margin: 100px auto;
   padding: $FORM_BORDER_RADIUS / 1.414213562;
+
+  font-size: $FORM_FONT_SIZE;
+  line-height: $FORM_LINE_HEIGHT;
 }
 
 .form__section {
@@ -36,11 +39,20 @@
   margin: 0 0 20px 0;
 }
 
-.form__field {
+.form__widget {
   margin: 0 20px 20px 0;
+}
+
+.form__field {
+  @extend .form__widget;
 
   width: 30%;
   min-width: 150px;
+}
+
+// 解释性文字
+.form__explanation {
+  color: $FORM_FGCOLOR_MINOR;
 }
 
 // 文本框
@@ -62,8 +74,53 @@
   }
 }
 
+// Select2 选择控件
 @mixin select2-box-short {
   @extend .form__field;
+}
+
+// 按钮
+.form__button {
+  @extend .form__widget;
+  @include box-sizing(border-box);
+
+  border-style: none;
+  border-radius: 4px;
+  margin-bottom: 0;
+  padding: 10px;
+
+  color: #fff;
+  background-color: #5bbc1b;
+
+  > .fa {
+    // 因为可能有图标, 所以如果有的话这里就会给图标加上右边距
+    // NOTE: 关于 "右"... 我觉得一段时间内还是不用考虑 RTL 文字的 :-P
+    margin: 0 10px 0 0;
+  }
+}
+
+.form__submit {
+  @extend .form__button;
+
+  // XXX: Sass 继承为何不能自动从前面一条自动生成这一条?
+  > .fa {
+    margin: 0 10px 0 0;
+  }
+}
+
+.form__submit--minor {
+  display: inline-block;
+  float: right;
+  color: $FORM_FGCOLOR_MINOR;
+  border: none;
+  background: none;
+  margin: 10px 0;
+  padding: 0;
+
+  font-size: $FORM_FONT_SIZE_MINOR;
+  line-height: normal;
+  height: $FORM_LINE_HEIGHT;
+  text-decoration: underline;
 }
 
 
