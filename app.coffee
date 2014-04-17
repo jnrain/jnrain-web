@@ -28,7 +28,7 @@ gitRev.short (short) ->
 
 # 中间件
 app.use express.logger()
-app.use '/static', express.static('static')
+app.use '/static', express.static('static') unless isInProduction
 app.use connectSlashes(false)  # 标准化 URL, 去掉末尾的 /
 
 
