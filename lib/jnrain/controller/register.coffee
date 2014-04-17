@@ -52,14 +52,21 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
             else
               $scope.identCheckMsg = '请填写身份信息。'
 
+      setIdentCheckValidity = (isValid) ->
+        # 强制刷新控件验证结果
+        $scope.registerForm.number.$setValidity 'identCheck', isValid
+        $scope.registerForm.idnumber.$setValidity 'identCheck', isValid
+
       doCheckIdent = (number, idnumber) ->
         identAPI.queryIdent number, 0, idnumber.toUpperCase(), (retcode, data) ->
           console.log 'queryIdent returned:', retcode, data
           if retcode == 0
             $scope.identInfo = data
+            setIdentCheckValidity true
           else
             $scope.identInfo = null
             $scope.identCheckMsg = identAPI.errorcode[retcode]
+            setIdentCheckValidity false
 
       attrWatcher = (to, from) ->
         maybeCheckIdent()
