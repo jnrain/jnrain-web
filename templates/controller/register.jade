@@ -6,7 +6,7 @@ block vars
 
 
 block content
-  form.register-form(
+  form.page-form(
     name='registerForm'
     novalidate='novalidate'
     data-ng-controller='Register'
@@ -93,11 +93,11 @@ block content
 
       .dorm-info-container(data-ng-switch='!!identInfo')
         .dorm-info(data-ng-switch-when='true')
-          select.dorms__group(required='required', data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
+          select.form__select2(required='required', data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
             option(value='')
             option(data-ng-repeat='groupName in dormGroups[identInfo.gender]', value='{{$index}}') {{groupName}}
 
-          select.dorms__building(required='required', data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
+          select.form__select2(required='required', data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
             option(value='')
             option(data-ng-repeat='bldgNum in dormByGender[identInfo.gender][dormGroups[identInfo.gender][dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
 
