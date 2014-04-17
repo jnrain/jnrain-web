@@ -9,7 +9,7 @@ connectSlashes = require 'connect-slashes'
 # 处理 argv
 argv = minimist process.argv.slice(2)
 isInProduction = argv.production ? false
-port = if argv.p? then argv.p else 8000
+port = argv.p ? 8000
 console.log 'Listening on port ' + port + '.'
 
 
