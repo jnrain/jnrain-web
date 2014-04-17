@@ -1,7 +1,15 @@
-define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'], (angular, _) ->
+define [
+  'angular',
+  'lodash',
+  'ui.select2',
+
+  'jnrain/api/univ',
+  'jnrain/api/account',
+  'jnrain/api/ident'
+], (angular, _) ->
   (app) ->
     # 注册表单 (在读本科生)
-    app.controller 'Register', ['$scope', 'univInfo', 'identAPI', ($scope, univInfo, identAPI) ->
+    app.controller 'Register', ['$scope', 'univInfo', 'accountAPI', 'identAPI', ($scope, univInfo, accountAPI, identAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -79,6 +87,8 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
 
       # 表单提交
       $scope.doRegister = (sendHTMLMail) ->
+        $scope.submitInProgress = true
+
         registerPayload =
           name: $scope.displayName
           pass: $scope.psw
@@ -94,6 +104,14 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
           htmlmail: !!sendHTMLMail
 
         console.log '[registerForm] payload: ', registerPayload
+        accountAPI.createAccount registerPayload, (retcode, err) ->
+          $scope.submitInProgress = false
+
+          if retcode == 0
+            console.log '[registerForm] submit: OK'
+          else
+            console.log '[registerForm] submit: retcode = ', retcode
+            console.log '[registerForm] submit: err = ', err
 
       univInfo.getMajorsInfo (info) ->
         updateMajorsInfo info

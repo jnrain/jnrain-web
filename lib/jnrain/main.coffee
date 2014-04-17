@@ -6,6 +6,7 @@ define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
     angular.bootstrap angular.element('#appmount'), [
       'jnrain/main',
       'jnrain/api/univ',
+      'jnrain/api/account',
       'jnrain/api/ident',
 
       'btford.socket-io'
