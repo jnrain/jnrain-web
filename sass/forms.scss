@@ -19,6 +19,8 @@
 }
 
 .form__section {
+  @include clearfix;
+
   border-bottom: 1px solid rgba(#000, 0.25);
   padding: 30px 0;
 
