@@ -79,6 +79,21 @@
 // Select2 选择控件
 @mixin select2-box-short {
   @extend .form__field;
+
+  &.ng-dirty {
+    &.ng-valid {
+      & > .select2-choice,
+      & > .select2-choice > .select2-arrow {
+        border-color: #5bbc1b;
+      }
+    }
+    &.ng-invalid {
+      & > .select2-choice,
+      & > .select2-choice > .select2-arrow {
+        border-color: #bc1b5b;
+      }
+    }
+  }
 }
 
 // 按钮
