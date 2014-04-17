@@ -40,6 +40,8 @@
 }
 
 .form__widget {
+  @include box-sizing(border-box);
+
   margin: 0 20px 20px 0;
 }
 
@@ -82,7 +84,6 @@
 // 按钮
 .form__button {
   @extend .form__widget;
-  @include box-sizing(border-box);
 
   border-style: none;
   border-radius: 4px;
