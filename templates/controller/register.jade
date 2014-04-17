@@ -115,11 +115,11 @@ block content
           p 请在通过身份验证之后设置住宿信息。
 
     section.form__section
-      button.form__submit(type='submit', data-ng-disabled='registerForm.$invalid')
+      button.form__submit(type='submit', data-ng-disabled='registerForm.$invalid || submitInProgress')
         i.fa(data-ng-class='{"fa-check-square-o": registerForm.$valid, "fa-minus-square-o": registerForm.$invalid}')
         提交注册
       span.form__explanation 这会向您填写的邮箱发送一封验证邮件。
-      button.form__submit--minor(type='submit', data-ng-disabled='registerForm.$invalid') 请发送纯文本邮件
+      button.form__submit--minor(type='submit', data-ng-disabled='registerForm.$invalid || submitInProgress') 请发送纯文本邮件
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

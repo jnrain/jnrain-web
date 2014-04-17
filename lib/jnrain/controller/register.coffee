@@ -6,6 +6,9 @@ define ['angular', 'lodash', 'ui.select2', 'jnrain/api/univ', 'jnrain/api/ident'
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
 
+      # 防止重复提交
+      $scope.submitInProgress = false
+
       # 专业信息
       updateMajorsInfo = (majors) ->
         $scope.majorsInfo = majors
