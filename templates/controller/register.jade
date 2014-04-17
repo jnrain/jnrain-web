@@ -39,6 +39,7 @@ block content
         )
         .ident-check-passed(data-ng-switch-when='true')
           i.ident__icon.fa.fa-check
+          i.ident__gender.fa(data-ng-class='{"fa-female": identInfo.gender == 1, "fa-male": identInfo.gender == 2}')
           span.ident__name {{identInfo.name}}
           span.ident__school {{identInfo.school}}
           span.ident__major {{majorsInfo[identInfo.major].name}}
