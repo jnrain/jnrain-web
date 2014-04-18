@@ -49,6 +49,10 @@ app.get '/', (req, res) ->
 app.get '/register', (req, res) ->
   res.render 'controller/register'
 
+app.get /^\/verifymail\/([0-9A-Za-z_-]{32})$/, (req, res) ->
+  res.render 'controller/verifymail',
+    activationKey: req.params[0]
+
 
 # Fire up JNRain!
 app.listen port
