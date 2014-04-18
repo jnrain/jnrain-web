@@ -2,6 +2,7 @@ express = require 'express'
 minimist = require 'minimist'
 path = require 'path'
 gitRev = require 'git-rev'
+morgan = require 'morgan'  # formerly express.logger
 connectUAParser = require 'connect-ua-parser'
 connectSlashes = require 'connect-slashes'
 
@@ -27,7 +28,7 @@ gitRev.short (short) ->
 
 
 # 中间件
-app.use express.logger()
+app.use morgan()
 app.use '/static', express.static('static') unless isInProduction
 app.use connectSlashes(false)  # 标准化 URL, 去掉末尾的 /
 
