@@ -15,7 +15,6 @@
   padding: $FORM_BORDER_RADIUS / 1.414213562;
 
   font-size: $FORM_FONT_SIZE;
-  line-height: $FORM_LINE_HEIGHT;
 }
 
 .form__section {
@@ -45,6 +44,7 @@
   @include box-sizing(border-box);
 
   margin: 0 20px 20px 0;
+  line-height: $FORM_LINE_HEIGHT;
 }
 
 .form__field {
@@ -150,7 +150,6 @@
   background: none;
 
   font-size: $FORM_FONT_SIZE_MINOR;
-  line-height: normal;
   height: $FORM_LINE_HEIGHT;
   text-decoration: underline;
 
