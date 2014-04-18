@@ -48,8 +48,7 @@ html#appmount(lang='cmn')
         .debug-box(data-ng-controller='DebugFooter')
           .debug__rt
             .debug__rt__status {{rtStatus}}
-            .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"')
-              {{rtConnectionRetries}}
+            .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
 
     if DEBUG_LIVERELOAD
       script(src='//localhost:35729/livereload.js')
