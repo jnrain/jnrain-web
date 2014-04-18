@@ -9,9 +9,12 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
     257: '身份信息格式不正确。'  # 同上
 
   mod.factory 'identAPI', ['APIv1', (APIv1) ->
+    basePath = () ->
+      APIv1.one('account').one('ident')
+
     errorcode: ERROR_CODE_MAP
     queryIdent: (number, idType, idNum, callback) ->
-      APIv1.one('account').one('ident').one('query').customPOST(
+      basePath().one('query').customPOST(
         number: number
         idtype: idType
         idnum: idNum
@@ -31,6 +34,13 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
             year: data.sy
 
           callback 0, result
+
+    verifyMail: (activationKey, callback) ->
+      basePath().one('activate').customPOST(
+        activation_key: activationKey
+      ).then (data) ->
+        retcode = data.r
+        callback retcode
   ]
 
 
