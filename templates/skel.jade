@@ -37,15 +37,16 @@ html#appmount(lang='cmn')
 
       .footer__content
         p &copy; 2014 江南听雨网.
-        ul.footer__versions
-          li.footer__versions__item weiyu
-            span.footer__versions__item__rev xxxxyyyy
-          li.footer__versions__item luohua
-            span.footer__versions__item__rev zzzzwwww
-          li.footer__versions__item jnrain-web
-            span.footer__versions__item__rev #{VER_GIT}
 
         .debug-box(data-ng-controller='DebugFooter')
+          ul.footer__versions
+            li.footer__versions__item weiyu
+              span.footer__versions__item__rev {{versions.weiyu}}
+            li.footer__versions__item luohua
+              span.footer__versions__item__rev {{versions.luohua}}
+            li.footer__versions__item jnrain-web
+              span.footer__versions__item__rev #{VER_GIT}
+
           .debug__rt
             .debug__rt__status {{rtStatus}}
             .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
