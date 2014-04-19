@@ -1,7 +1,7 @@
-define ['angular', 'jnrain/api/bridge'], (angular) ->
+define ['angular', 'jnrain/api/bridge', 'jnrain/ui/toasts'], (angular) ->
   (app) ->
     # footer 调试信息
-    app.controller 'DebugFooter', ['$scope', 'rtSocket', ($scope, rtSocket) ->
+    app.controller 'DebugFooter', ['$scope', 'rtSocket', 'Toasts', ($scope, rtSocket, Toasts) ->
       # 后端版本
       $scope.versions =
         weiyu: 'xxxxyyyy'
@@ -18,6 +18,7 @@ define ['angular', 'jnrain/api/bridge'], (angular) ->
       rtSocket.on 'connect', () ->
         $scope.rtStatus = 'connected'
         $scope.rtConnectionRetries = 0
+        Toasts.toast 'success', '成功建立实时连接', '实时信道已成功连接。'
 
         # 事件处理
         # hello 回应
@@ -33,6 +34,7 @@ define ['angular', 'jnrain/api/bridge'], (angular) ->
 
       rtSocket.on 'disconnect', () ->
         $scope.rtStatus = 'disconnected'
+        Toasts.toast 'warning', '实时连接中断', '实时信道连接已断开。'
 
       rtSocket.on 'reconnecting', () ->
         $scope.rtStatus = 'reconnecting'
