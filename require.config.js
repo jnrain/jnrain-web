@@ -10,7 +10,8 @@ requirejs.config({
     'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',
     'AngularJS-Toaster': '../../bower_components/AngularJS-Toaster/toaster',
     'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
-    'angular-animate': '../../bower_components/angular-animate/angular-animate'
+    'angular-animate': '../../bower_components/angular-animate/angular-animate',
+    'jsSHA': '../../bower_components/jsSHA/src/sha'
   },
   shim: {
     // jQuery plugins
