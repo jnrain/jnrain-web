@@ -7,7 +7,8 @@ requirejs.config({
     'select2': '../../bower_components/select2/select2',
     'ui.select2': '../../bower_components/angular-ui-select2/src/select2',
     'angular-socket-io': '../../bower_components/angular-socket-io/socket',
-    'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io'
+    'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',
+    'AngularJS-Toaster': '../../bower_components/AngularJS-Toaster/toaster'
   },
   shim: {
     // jQuery plugins
@@ -42,6 +43,8 @@ requirejs.config({
     'restangular': ['angular', 'lodash'],
     // seems socket.io-client must be loaded in a separate <script>...
     'angular-socket-io': ['angular'],  // socket.io-client
+
+    'AngularJS-Toaster': ['angular'],
 
     // other libraries
     'lodash': {
