@@ -9,7 +9,8 @@ requirejs.config({
     'angular-socket-io': '../../bower_components/angular-socket-io/socket',
     'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',
     'AngularJS-Toaster': '../../bower_components/AngularJS-Toaster/toaster',
-    'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap'
+    'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
+    'angular-animate': '../../bower_components/angular-animate/angular-animate'
   },
   shim: {
     // jQuery plugins
@@ -46,7 +47,7 @@ requirejs.config({
     'angular-socket-io': ['angular'],  // socket.io-client
 
     'ui-bootstrap': ['angular'],
-    'AngularJS-Toaster': ['angular'],
+    'AngularJS-Toaster': ['angular', 'angular-animate'],
 
     // other libraries
     'lodash': {
