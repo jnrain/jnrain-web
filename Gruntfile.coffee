@@ -4,9 +4,15 @@ GRUNT_CONFIG =
     dist:
       files:
         'static/css/app.css': 'sass/app.scss'
-        'static/vendored/vendored.css': 'sass/vendored.scss'
       options:
-        includePaths: ['bower_components/bower-bourbon', './bower_components/font-awesome/scss']
+        includePaths: ['bower_components/bower-bourbon']
+        outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
+
+    vendored:
+      files:
+        'static/vendored/vendored.css': 'sass/vendored/vendored.scss'
+      options:
+        includePaths: ['./bower_components/font-awesome/scss']
         outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
 
   coffee:
