@@ -8,6 +8,7 @@ define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
       'jnrain/api/univ',
       'jnrain/api/account',
       'jnrain/api/ident',
+      'jnrain/ui/toasts',
 
       'btford.socket-io'
     ]
