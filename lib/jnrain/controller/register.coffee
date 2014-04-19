@@ -1,12 +1,13 @@
 define [
   'angular',
   'lodash',
+  'jsSHA',
   'ui.select2',
 
   'jnrain/api/univ',
   'jnrain/api/account',
   'jnrain/api/ident'
-], (angular, _) ->
+], (angular, _, jsSHA) ->
   (app) ->
     # 注册表单 (在读本科生)
     app.controller 'Register', ['$scope', 'univInfo', 'accountAPI', 'identAPI', ($scope, univInfo, accountAPI, identAPI) ->
@@ -91,7 +92,7 @@ define [
 
         registerPayload =
           name: $scope.displayName
-          pass: $scope.psw
+          pass: new jsSHA($scope.psw, 'TEXT').getHash 'SHA-512', 'HEX'
           email: $scope.email
           mobile: $scope.mobile
           itype: 0
