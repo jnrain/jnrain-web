@@ -11,6 +11,7 @@ connectSlashes = require 'connect-slashes'
 argv = minimist process.argv.slice(2)
 isInProduction = argv.production ? false
 port = argv.p ? 8000
+deployChannelName = argv.channel ? 'localdebug'
 console.log 'Listening on port ' + port + '.'
 
 
@@ -22,6 +23,7 @@ app.set 'view engine', 'jade'
 
 
 # 公共参数
+app.locals.DEPLOY_CHANNEL_NAME = deployChannelName
 app.locals.DEBUG_LIVERELOAD = !isInProduction
 gitRev.short (short) ->
   app.locals.VER_GIT = short

@@ -43,6 +43,11 @@
   margin: 0 10px 0 0;
 }
 
+// 部署频道
+.debug__channel {
+  @include monospace;
+}
+
 // 组件版本显示
 .footer__versions {
   @include clearfix;
