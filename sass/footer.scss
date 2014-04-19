@@ -29,9 +29,22 @@
 }
 
 
+// 调试信息
+.footer__debug {
+  @extend .footer__minor;
+  @include clearfix;
+}
+
+.debug__item__title {
+  float: left;
+
+  color: lighten($FOOTER_FGCOLOR_MINOR, 5);
+
+  margin: 0 10px 0 0;
+}
+
 // 组件版本显示
 .footer__versions {
-  @extend .footer__minor;
   @include clearfix;
 }
 

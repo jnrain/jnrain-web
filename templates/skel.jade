@@ -38,18 +38,22 @@ html#appmount(lang='cmn')
       .footer__content
         p &copy; 2014 江南听雨网.
 
-        .debug-box(data-ng-controller='DebugFooter')
-          ul.footer__versions
-            li.footer__versions__item weiyu
-              span.footer__versions__item__rev {{versions.weiyu}}
-            li.footer__versions__item luohua
-              span.footer__versions__item__rev {{versions.luohua}}
-            li.footer__versions__item jnrain-web
-              span.footer__versions__item__rev #{VER_GIT}
+        .footer__debug(data-ng-controller='DebugFooter')
+          dl.debug__items
+            dt.debug__item__title 组件版本
+            dd.debug__item
+              ul.footer__versions
+                li.footer__versions__item weiyu
+                  span.footer__versions__item__rev {{versions.weiyu}}
+                li.footer__versions__item luohua
+                  span.footer__versions__item__rev {{versions.luohua}}
+                li.footer__versions__item jnrain-web
+                  span.footer__versions__item__rev #{VER_GIT}
 
-          .debug__rt
-            .debug__rt__status {{rtStatus}}
-            .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
+            dt.debug__item__title 实时信道
+            dd.debug__item
+              .debug__rt__status {{rtStatus}}
+              .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
 
     if DEBUG_LIVERELOAD
       script(src='//localhost:35729/livereload.js')
