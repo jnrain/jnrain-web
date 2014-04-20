@@ -12,7 +12,9 @@ requirejs.config({
     'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
     'angular-animate': '../../bower_components/angular-animate/angular-animate',
     'jsSHA': '../../bower_components/jsSHA/src/sha',
-    'angular-local-storage': '../../bower_components/angular-local-storage/angular-local-storage'
+    'angular-local-storage': '../../bower_components/angular-local-storage/angular-local-storage',
+    'flow': '../../bower_components/flow.js/dist/flow',  // known to be simply 'flow'
+    'ng-flow': '../../bower_components/ng-flow/dist/ng-flow.js'
   },
   shim: {
     // jQuery plugins
@@ -51,6 +53,9 @@ requirejs.config({
     'ui-bootstrap': ['angular'],
     'AngularJS-Toaster': ['angular', 'angular-animate'],
     'angular-local-storage': ['angular'],
+
+    // flow.js is AMD-compatible
+    'ng-flow': ['angular', 'flow'],
 
     // other libraries
     'lodash': {
