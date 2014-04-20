@@ -11,7 +11,8 @@ requirejs.config({
     'AngularJS-Toaster': '../../bower_components/AngularJS-Toaster/toaster',
     'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
     'angular-animate': '../../bower_components/angular-animate/angular-animate',
-    'jsSHA': '../../bower_components/jsSHA/src/sha'
+    'jsSHA': '../../bower_components/jsSHA/src/sha',
+    'angular-local-storage': '../../bower_components/angular-local-storage/angular-local-storage'
   },
   shim: {
     // jQuery plugins
@@ -49,6 +50,7 @@ requirejs.config({
 
     'ui-bootstrap': ['angular'],
     'AngularJS-Toaster': ['angular', 'angular-animate'],
+    'angular-local-storage': ['angular'],
 
     // other libraries
     'lodash': {
