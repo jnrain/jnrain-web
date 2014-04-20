@@ -1,0 +1,48 @@
+extends ../skel
+
+
+block vars
+  - var pageTitle = '登陆'
+
+
+block content
+  form.page-form(
+    name='loginForm'
+    novalidate='novalidate'
+    data-ng-controller='Login'
+    )
+      h1.form__title 登陆江南听雨网
+
+      .login-form--hidden(data-ng-show='alreadyHaveToken')
+        // TODO: 提供跳转回首页或注销的链接
+        p 您似乎已经登陆？ *TODO: 各种链接*
+
+      .login-form(data-ng-hide='alreadyHaveToken')
+        section.form__section
+          input.form__input(
+            type='text'
+            name='name'
+            required='required'
+            placeholder='您的昵称或学号'
+            data-ng-model='name'
+            data-ng-maxlength='16'
+            )
+          input.form__input(
+            type='password'
+            name='psw'
+            required='required'
+            placeholder='您的密码'
+            data-ng-model='psw'
+            data-ng-minlength='6'
+            )
+
+        section.form__section
+          button.form__submit(
+            type='submit'
+            data-ng-disabled='alreadyHaveToken || loginForm.$invalid || submitInProgress'
+            data-ng-click='doLogin()'
+            )
+            登陆
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

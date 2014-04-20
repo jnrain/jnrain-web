@@ -49,6 +49,9 @@ app.use (req, res, next) ->
 app.get '/', (req, res) ->
   res.render 'home'
 
+app.get '/login', (req, res) ->
+  res.render 'controller/login'
+
 app.get '/register', (req, res) ->
   res.render 'controller/register'
 

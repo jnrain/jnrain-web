@@ -4,13 +4,15 @@ define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
     controllers.registerWith mod
 
     angular.bootstrap angular.element('#appmount'), [
-      'jnrain/main',
-      'jnrain/api/univ',
-      'jnrain/api/account',
-      'jnrain/api/ident',
-      'jnrain/ui/toasts',
+      'jnrain/main'
+      'jnrain/api/univ'
+      'jnrain/api/account'
+      'jnrain/api/ident'
+      'jnrain/api/session'
+      'jnrain/ui/toasts'
 
       'btford.socket-io'
+      'LocalStorageModule'
     ]
 
 
