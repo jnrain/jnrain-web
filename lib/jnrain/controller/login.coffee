@@ -4,13 +4,15 @@ define [
   'jsSHA'
 
   'jnrain/api/session'
+  'jnrain/ui/toasts'
 ], (angular, _, jsSHA) ->
   (app) ->
     # 登陆 (登陆 token 请求) 表单
     app.controller 'Login', [
       '$scope'
       'sessionAPI'
-      ($scope, sessionAPI) ->
+      'Toasts'
+      ($scope, sessionAPI, Toasts) ->
         $scope.submitInProgress = false
 
         # 是否已经有记录登陆 token?
@@ -29,9 +31,14 @@ define [
             if retcode != 0
               # 认证失败
               console.log '[Login] Authentication failed, retcode = ', retcode
+
+              # TODO: 错误消息
+              Toasts.toast 'error', '登陆失败', '登陆失败: ' + retcode
             else
               # 认证成功
               console.log '[Login] Authentication OK: token = ', token
+
+              Toasts.toast 'info', '登陆成功', '您已成功登陆。'
               # TODO: 跳转回首页或其他页面
 
         console.log '[Login] $scope = ', $scope

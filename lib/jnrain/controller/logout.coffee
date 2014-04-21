@@ -2,19 +2,26 @@ define [
   'angular',
 
   'jnrain/api/session'
+  'jnrain/ui/toasts'
 ], (angular) ->
   (app) ->
     # 注销
-    app.controller 'LogoutPage', ['$scope', 'sessionAPI', ($scope, sessionAPI) ->
-      $scope.inProgress = true
-      $scope.retcode = -1
+    app.controller 'LogoutPage', [
+      '$scope'
+      'sessionAPI'
+      'Toasts'
+      ($scope, sessionAPI, Toasts) ->
+        $scope.inProgress = true
+        $scope.retcode = -1
 
-      sessionAPI.logout (retcode) ->
-        console.log '[LogoutPage] retcode = ', retcode
-        $scope.inProgress = false
-        $scope.retcode = retcode
+        sessionAPI.logout (retcode) ->
+          console.log '[LogoutPage] retcode = ', retcode
+          $scope.inProgress = false
+          $scope.retcode = retcode
 
-      console.log '[LogoutPage] $scope = ', $scope
+          Toasts.toast 'info', '注销成功', '您已成功注销。'
+
+        console.log '[LogoutPage] $scope = ', $scope
     ]
 
 
