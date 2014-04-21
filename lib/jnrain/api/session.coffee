@@ -24,8 +24,19 @@ define [
       removeLoginToken = () ->
         localStorageService.remove 'authToken'
 
+      getUID = () ->
+        localStorageService.get 'uid'
+
+      setUID = (uid) ->
+        removeUID()
+        localStorageService.add 'uid', uid
+
+      removeUID = () ->
+        localStorageService.remove 'uid'
+
       # 以下是返回对象 (暴露 API)
       getLoginToken: getLoginToken
+      getUID: getUID
 
       authenticate: (name, pass, callback) ->
         basePath().one('auth').customPOST(
@@ -41,11 +52,17 @@ define [
         basePath().one('refresh').customPOST(
           token: getLoginToken()
         ).then (data) ->
+          retcode = data.r
+
+          if retcode == 0
+            setUID data.u
+
           callback data.r
 
       logout: (callback) ->
         basePath().one('logout').customPOST().then (data) ->
           removeLoginToken()
+          removeUID()
           callback data.r
   ]
 
