@@ -52,6 +52,9 @@ app.get '/', (req, res) ->
 app.get '/login', (req, res) ->
   res.render 'controller/login'
 
+app.get '/logout', (req, res) ->
+  res.render 'controller/logout'
+
 app.get '/register', (req, res) ->
   res.render 'controller/register'
 
