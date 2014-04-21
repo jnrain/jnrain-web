@@ -132,4 +132,40 @@
 }
 
 
+// 独立进度指示
+.form--progress__result__title {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.form--progress__inprogress__title {
+  @extend .form--progress__result__title;
+
+  color: #999;
+}
+
+.form--progress__result--success__title {
+  @extend .form--progress__result__title;
+
+  color: #5bbc1b;
+}
+
+.form--progress__result--notfound__title {
+  @extend .form--progress__result__title;
+
+  color: #bc1b5b;
+}
+
+.form--progress__result__icon {
+  margin: 0 10px 0 0;
+}
+
+.form--progress__result__debug {
+  color: $FORM_FGCOLOR_MINOR;
+  font-size: 12px;
+
+  margin: 100px 0 0;
+}
+
+
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

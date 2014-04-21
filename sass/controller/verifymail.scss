@@ -1,38 +1,6 @@
 // 邮箱验证结果
-.verifymail__result__title {
-  font-size: 24px;
-  margin: 20px 0;
-}
-
-.verifymail__inprogress__title {
-  @extend .verifymail__result__title;
-
-  color: #999;
-}
-
-.verifymail__result--success__title {
-  @extend .verifymail__result__title;
-
-  color: #5bbc1b;
-}
-
-.verifymail__result--notfound__title {
-  @extend .verifymail__result__title;
-
-  color: #bc1b5b;
-}
-
-.verifymail__result__icon {
-  margin: 0 10px 0 0;
-}
-
-.verifymail__result__debug {
-  color: $FORM_FGCOLOR_MINOR;
-  font-size: 12px;
-
-  margin: 100px 0 0;
-}
-
+// 调试信息
+// 激活 key
 .verifymail__result__debug__key {
   @include monospace;
 
