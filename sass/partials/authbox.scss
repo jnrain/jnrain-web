@@ -1,16 +1,42 @@
-.auth-box {
+.auth-box-container {
   @include box-sizing(border-box);
 
+  display: table;
   position: absolute;
   top: 0;
   right: 0;
   
   padding: 10px 0;
 
-  max-width: 150px;
   height: 100%;
 
   text-align: right;
 }
+
+.auth-box {
+  display: table-cell;
+}
+
+.auth-box--logged-in {
+  @extend .auth-box;
+
+  vertical-align: top;
+}
+
+.auth-box--guest {
+  @extend .auth-box;
+
+  vertical-align: middle;
+}
+
+.auth-box__btn {
+  @extend .widget__btn;
+
+  margin: 0 0 0 10px;
+
+  // 让按钮小一点
+  padding: 5px;
+}
+
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
