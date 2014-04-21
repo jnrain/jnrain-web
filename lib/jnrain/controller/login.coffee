@@ -2,7 +2,6 @@ define [
   'angular'
   'lodash'
   'jsSHA'
-  'angular-local-storage'
 
   'jnrain/api/session'
 ], (angular, _, jsSHA) ->
@@ -11,12 +10,11 @@ define [
     app.controller 'Login', [
       '$scope'
       'sessionAPI'
-      'localStorageService'
-      ($scope, sessionAPI, localStorageService) ->
+      ($scope, sessionAPI) ->
         $scope.submitInProgress = false
 
         # 是否已经有记录登陆 token?
-        $scope.alreadyHaveToken = (localStorageService.get 'authToken')?
+        $scope.alreadyHaveToken = sessionAPI.getLoginToken()?
 
         $scope.doLogin = () ->
           $scope.submitInProgress = true
@@ -34,9 +32,6 @@ define [
             else
               # 认证成功
               console.log '[Login] Authentication OK: token = ', token
-              localStorageService.remove 'authToken'
-              localStorageService.add 'authToken', token
-
               # TODO: 跳转回首页或其他页面
 
         console.log '[Login] $scope = ', $scope
