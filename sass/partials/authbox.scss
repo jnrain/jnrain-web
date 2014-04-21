@@ -1,0 +1,16 @@
+.auth-box {
+  @include box-sizing(border-box);
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+  padding: 10px 0;
+
+  max-width: 150px;
+  height: 100%;
+
+  text-align: right;
+}
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
