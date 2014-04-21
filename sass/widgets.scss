@@ -15,6 +15,9 @@
 
 // 按钮
 .widget__btn {
+  // 照顾一下固有 display 不是 block 的元素, 比如 a 之类的
+  display: inline-block;
+
   border-style: none;
   border-radius: 4px;
   margin-bottom: 0;
