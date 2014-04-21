@@ -6,7 +6,7 @@ define [
   'jnrain/api/session'
 ], (angular, _, jsSHA) ->
   (app) ->
-    # 邮箱验证
+    # 登陆 (登陆 token 请求) 表单
     app.controller 'Login', [
       '$scope'
       'sessionAPI'
