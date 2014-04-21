@@ -1,5 +1,13 @@
 section.auth-box(data-ng-controller='AuthBox')
-  p hehe
+  .auth-box--logged-in(data-ng-show='alreadyHaveToken')
+    .auth-box__user
+      h3.auth-box__user__name {{selfInfo.displayName}}
+
+    a.widget__btn--minor(href='/logout') 注销
+
+  .auth-box--guest(data-ng-hide='alreadyHaveToken')
+    a.widget__btn(href='/login') 登陆
+    a.widget__btn(href='/register') 注册
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
