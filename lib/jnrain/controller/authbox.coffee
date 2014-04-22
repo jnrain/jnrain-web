@@ -9,11 +9,12 @@ define [
     # 用户信息组件
     app.controller 'AuthBox', [
       '$scope'
+      '$rootScope'
       '$timeout'
       'sessionAPI'
       'accountAPI'
       'sessionRefreshInterval'
-      ($scope, $timeout, sessionAPI, accountAPI, sessionRefreshInterval) ->
+      ($scope, $rootScope, $timeout, sessionAPI, accountAPI, sessionRefreshInterval) ->
         # 是否已经有记录登陆 token?
         $scope.alreadyHaveToken = sessionAPI.getLoginToken()?
 
@@ -28,10 +29,15 @@ define [
 
         # 隔一段时间就刷新一下会话确保服务器端 session 存活, 避免不必要的麻烦
         refreshSession = () ->
-          sessionAPI.refresh (retcode) ->
+          sessionAPI.refresh (retcode, rtLoginToken) ->
             console.log '[AuthBox] Token refresh retcode = ', retcode
 
             accountAPI.statSelf refreshUserStatCallback
+
+            # 通知各组件会话已刷新
+            $rootScope.$broadcast 'api:sessionRefreshed'
+
+            # "隔一段时间再刷新"
             $timeout refreshSession, sessionRefreshInterval
 
         # 启动会话刷新
