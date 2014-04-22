@@ -62,7 +62,9 @@ html#appmount(lang='cmn')
               .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
 
     if DEBUG_LIVERELOAD
-      script(src='//localhost:35729/livereload.js')
+      // grunt-watch 的 LiveReload 貌似只有 HTTP 版...
+      // 不过因为这一条反正不会出现在生产页面上, 所以无所谓的
+      script(src='http://localhost:35729/livereload.js')
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
