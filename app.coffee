@@ -5,6 +5,8 @@ gitRev = require 'git-rev'
 morgan = require 'morgan'  # formerly express.logger
 connectUAParser = require 'connect-ua-parser'
 connectSlashes = require 'connect-slashes'
+fs = require 'fs'
+https = require 'https'
 
 
 # 处理 argv
@@ -12,7 +14,21 @@ argv = minimist process.argv.slice(2)
 isInProduction = argv.production ? false
 port = argv.p ? 8000
 deployChannelName = argv.channel ? 'localdebug'
-console.log 'Listening on port ' + port + '.'
+
+# SSL 参数
+# 生产环境下由 nginx 等组件负责 SSL, 强制关闭 Node.js 的 SSL 支持
+sslEnabled = !(argv['disable-ssl'] or isInProduction)
+keyFile = argv.keyfile
+certFile = argv.certfile
+
+if sslEnabled
+  unless keyFile? and certFile?
+    console.error 'error: SSL must be configured by passing --keyfile and --certfile!'
+    process.exit 100
+
+  sslOptions =
+    key: fs.readFileSync keyFile
+    cert: fs.readFileSync certFile
 
 
 # 初始化应用
@@ -64,7 +80,13 @@ app.get /^\/verifymail\/([0-9A-Za-z_-]{32})$/, (req, res) ->
 
 
 # Fire up JNRain!
-app.listen port
+server = if sslEnabled then https.createServer sslOptions, app else app
+server.listen port, () ->
+  if sslEnabled
+    console.log 'Using SSL private key: ' + keyFile
+    console.log 'Using SSL certificate: ' + certFile
+
+  console.log 'Listening on port ' + port + '.'
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
