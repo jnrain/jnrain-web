@@ -58,7 +58,7 @@ html#appmount(lang='cmn')
 
             dt.debug__item__title 实时信道
             dd.debug__item
-              .debug__rt__status {{rtStatus}}
+              .debug__rt__status {{rtStatus}}; rtSID={{rtSID}}
               .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
 
     if DEBUG_LIVERELOAD
