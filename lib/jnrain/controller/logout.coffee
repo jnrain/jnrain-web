@@ -8,9 +8,15 @@ define [
     # 注销
     app.controller 'LogoutPage', [
       '$scope'
+      '$window'
+      '$timeout'
       'sessionAPI'
       'Toasts'
-      ($scope, sessionAPI, Toasts) ->
+      ($scope, $window, $timeout, sessionAPI, Toasts) ->
+        doLogoutRedirect = () ->
+          # 首页
+          $window.location.href = '/'
+
         $scope.inProgress = true
         $scope.retcode = -1
 
@@ -20,6 +26,9 @@ define [
           $scope.retcode = retcode
 
           Toasts.toast 'info', '注销成功', '您已成功注销。'
+
+          # 2 秒后跳转回首页
+          $timeout doLogoutRedirect, 2000
 
         console.log '[LogoutPage] $scope = ', $scope
     ]
