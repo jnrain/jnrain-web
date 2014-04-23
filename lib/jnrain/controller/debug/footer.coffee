@@ -76,7 +76,7 @@ define [
 
             # 记录下实时会话 ID
             $scope.rtSID = data.rt_sid
-          else if authResult == 'fail'
+          else if authResult == 'failed'
             # 认证失败
             $scope.rtCanReconnect = data.canReconnect
 
