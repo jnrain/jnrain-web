@@ -80,6 +80,9 @@ define [
             # 认证失败
             $scope.rtCanReconnect = data.canReconnect
 
+        # 实时事件
+        rtSocket.on 'rtEvent', (data) ->
+          console.log '[DebugFooter] RT Event: ', data
 
         console.log '[DebugFooter] $scope = ', $scope
     ]
