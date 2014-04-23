@@ -32,7 +32,8 @@ define [
           sessionAPI.refresh (retcode) ->
             console.log '[AuthBox] Token refresh retcode = ', retcode
 
-            accountAPI.statSelf refreshUserStatCallback
+            # 如果已登陆, 刷新用户信息
+            accountAPI.statSelf refreshUserStatCallback if sessionAPI.getLoginToken()?
 
             # 通知各组件会话已刷新
             $rootScope.$broadcast 'api:sessionRefreshed'
