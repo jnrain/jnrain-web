@@ -11,8 +11,6 @@ define [
     'APIv1'
     'localStorageService'
     (APIv1, localStorageService) ->
-      currentRTLoginToken = null
-
       basePath = () ->
         APIv1.one('session')
 
@@ -36,12 +34,8 @@ define [
       removeUID = () ->
         localStorageService.remove 'uid'
 
-      getRTLoginToken = () ->
-        currentRTLoginToken
-
       # 以下是返回对象 (暴露 API)
       getLoginToken: getLoginToken
-      getRTLoginToken: getRTLoginToken
       getUID: getUID
 
       authenticate: (name, pass, callback) ->
@@ -62,7 +56,6 @@ define [
 
           if retcode == 0
             setUID data.u
-            currentRTLoginToken = data.t
 
           callback data.r
 

@@ -29,7 +29,7 @@ define [
 
         # 隔一段时间就刷新一下会话确保服务器端 session 存活, 避免不必要的麻烦
         refreshSession = () ->
-          sessionAPI.refresh (retcode, rtLoginToken) ->
+          sessionAPI.refresh (retcode) ->
             console.log '[AuthBox] Token refresh retcode = ', retcode
 
             accountAPI.statSelf refreshUserStatCallback
