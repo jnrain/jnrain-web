@@ -1,3 +1,9 @@
+body {
+  // Bootstrap 似乎没有提供框架级的 font-weight 设定?
+  font-weight: 100;
+}
+
+
 // 字体类
 @mixin monospace {
   font-family: $font-family-monospace;
