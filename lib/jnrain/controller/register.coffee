@@ -1,163 +1,170 @@
 define [
-  'angular',
-  'lodash',
-  'jsSHA',
-  'ui.select2',
-  'ui-bootstrap',
+  'angular'
+  'lodash'
+  'jsSHA'
+  'ui.select2'
+  'ui-bootstrap'
 
-  'jnrain/api/univ',
-  'jnrain/api/account',
+  'jnrain/api/univ'
+  'jnrain/api/account'
   'jnrain/api/ident'
 ], (angular, _, jsSHA) ->
   (app) ->
     # 注册表单 (在读本科生)
-    app.controller 'Register', ['$scope', '$window', '$modal', 'univInfo', 'accountAPI', 'identAPI', ($scope, $window, $modal, univInfo, accountAPI, identAPI) ->
-      # 最无聊的东西...
-      $scope.zeropad = (x) ->
-        (if x < 10 then '0' else '') + x
+    app.controller 'Register', [
+      '$scope'
+      '$window'
+      '$modal'
+      'univInfo'
+      'accountAPI'
+      'identAPI'
+      ($scope, $window, $modal, univInfo, accountAPI, identAPI) ->
+        # 最无聊的东西...
+        $scope.zeropad = (x) ->
+          (if x < 10 then '0' else '') + x
 
-      # 防止重复提交
-      $scope.submitInProgress = false
+        # 防止重复提交
+        $scope.submitInProgress = false
 
-      # 成功提交后跳转
-      doSuccessRedirect = () ->
-        # 首页
-        $window.location.href = '/'
+        # 成功提交后跳转
+        doSuccessRedirect = () ->
+          # 首页
+          $window.location.href = '/'
 
-      # 专业信息
-      updateMajorsInfo = (majors) ->
-        $scope.majorsInfo = majors
+        # 专业信息
+        updateMajorsInfo = (majors) ->
+          $scope.majorsInfo = majors
 
-      # 请求本校宿舍分布信息
-      updateDormInfo = (info) ->
-        $scope.dormInfo = info
+        # 请求本校宿舍分布信息
+        updateDormInfo = (info) ->
+          $scope.dormInfo = info
 
-        # 按性别 (主要) 与组团 (次要) 分组
-        dormByGender = _.transform info, (result, v, k) ->
-          group = v.group
-          gender = v.gender
+          # 按性别 (主要) 与组团 (次要) 分组
+          dormByGender = _.transform info, (result, v, k) ->
+            group = v.group
+            gender = v.gender
 
-          if gender of result
-            groupDict = result[gender]
-          else
-            result[gender] = {}
-            groupDict = result[gender]
-
-          if group of groupDict
-            groupDict[group].push k
-          else
-            groupDict[group] = [k]
-
-        $scope.dormByGender = dormByGender
-        $scope.dormGroups = _.mapValues dormByGender, (v, k) ->
-          _.keys v
-
-      # 身份信息验证逻辑
-      $scope.identInfo = null
-      $scope.identCheckMsg = ''
-      maybeCheckIdent = () ->
-        number = $scope.number
-        idnumber = $scope.idnumber
-        if number? and idnumber?
-          doCheckIdent number, idnumber
-        else
-          $scope.identInfo = null
-          if number?
-            $scope.identCheckMsg = '请正确填写身份证后六位号码。'
-          else
-            if idnumber?
-              $scope.identCheckMsg = '请正确填写学号。'
+            if gender of result
+              groupDict = result[gender]
             else
-              $scope.identCheckMsg = '请填写身份信息。'
+              result[gender] = {}
+              groupDict = result[gender]
 
-      setIdentCheckValidity = (isValid) ->
-        # 强制刷新控件验证结果
-        $scope.registerForm.number.$setValidity 'identCheck', isValid
-        $scope.registerForm.idnumber.$setValidity 'identCheck', isValid
+            if group of groupDict
+              groupDict[group].push k
+            else
+              groupDict[group] = [k]
 
-      doCheckIdent = (number, idnumber) ->
-        identAPI.queryIdent number, 0, idnumber.toUpperCase(), (retcode, data) ->
-          console.log 'queryIdent returned:', retcode, data
-          if retcode == 0
-            $scope.identInfo = data
-            setIdentCheckValidity true
+          $scope.dormByGender = dormByGender
+          $scope.dormGroups = _.mapValues dormByGender, (v, k) ->
+            _.keys v
+
+        # 身份信息验证逻辑
+        $scope.identInfo = null
+        $scope.identCheckMsg = ''
+        maybeCheckIdent = () ->
+          number = $scope.number
+          idnumber = $scope.idnumber
+          if number? and idnumber?
+            doCheckIdent number, idnumber
           else
             $scope.identInfo = null
-            $scope.identCheckMsg = identAPI.errorcode[retcode]
-            setIdentCheckValidity false
-
-      attrWatcher = (to, from) ->
-        maybeCheckIdent()
-
-      $scope.$watch 'number', attrWatcher
-      $scope.$watch 'idnumber', attrWatcher
-
-      # 模态弹层
-      showModal = (title, message, callback, dismissCallback) ->
-        modalInstance = $modal.open
-          templateUrl: 'modalContent.html'
-          controller: RegisterFormModalInstance
-          resolve:
-            title: () ->
-              title
-            message: () ->
-              message
-
-        modalInstance.result.then((() ->
-          console.log '[RegisterFormModalInstance] closed normally'
-          callback?.apply this, arguments
-        ), (() ->
-          console.log '[RegisterFormModalInstance] dismissed'
-          dismissCallback?()
-        ))
-
-      # 表单提交
-      $scope.doRegister = (sendHTMLMail) ->
-        $scope.submitInProgress = true
-
-        registerPayload =
-          name: $scope.displayName
-          pass: new jsSHA($scope.psw, 'TEXT').getHash 'SHA-512', 'HEX'
-          email: $scope.email
-          mobile: $scope.mobile
-          itype: 0
-          inum: $scope.number
-          idtype: 0
-          idnum: $scope.idnumber
-          iinfo:
-            dorm_bldg: parseInt($scope.dormBuilding)
-            dorm_room: $scope.dormRoom
-          htmlmail: !!sendHTMLMail
-
-        console.log '[registerForm] payload: ', registerPayload
-        accountAPI.createAccount registerPayload, (retcode, err) ->
-          $scope.submitInProgress = false
-
-          if retcode == 0
-            console.log '[registerForm] submit: OK'
-            showModal '提交成功', '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；现在页面将跳转回首页。', doSuccessRedirect, doSuccessRedirect
-          else
-            console.log '[registerForm] submit: retcode = ', retcode
-            console.log '[registerForm] submit: err = ', err
-
-            # 生成错误信息
-            retcodeMsg = accountAPI.errorcode[retcode]
-            if retcode == 257
-              # TODO: 整理用户/实名身份组件的错误码对应信息
-              userErrorMsg = '' + err
-              errorMessage = retcodeMsg + '\n错误信息：' + userErrorMsg
+            if number?
+              $scope.identCheckMsg = '请正确填写身份证后六位号码。'
             else
-              errorMessage = retcodeMsg
+              if idnumber?
+                $scope.identCheckMsg = '请正确填写学号。'
+              else
+                $scope.identCheckMsg = '请填写身份信息。'
 
-            showModal '注册遇到问题', errorMessage
+        setIdentCheckValidity = (isValid) ->
+          # 强制刷新控件验证结果
+          $scope.registerForm.number.$setValidity 'identCheck', isValid
+          $scope.registerForm.idnumber.$setValidity 'identCheck', isValid
 
-      univInfo.getMajorsInfo (info) ->
-        updateMajorsInfo info
+        doCheckIdent = (number, idnumber) ->
+          identAPI.queryIdent number, 0, idnumber.toUpperCase(), (retcode, data) ->
+            console.log 'queryIdent returned:', retcode, data
+            if retcode == 0
+              $scope.identInfo = data
+              setIdentCheckValidity true
+            else
+              $scope.identInfo = null
+              $scope.identCheckMsg = identAPI.errorcode[retcode]
+              setIdentCheckValidity false
 
-      univInfo.getDormsInfo (info) ->
-        updateDormInfo info
+        attrWatcher = (to, from) ->
+          maybeCheckIdent()
 
-      console.log $scope
+        $scope.$watch 'number', attrWatcher
+        $scope.$watch 'idnumber', attrWatcher
+
+        # 模态弹层
+        showModal = (title, message, callback, dismissCallback) ->
+          modalInstance = $modal.open
+            templateUrl: 'modalContent.html'
+            controller: RegisterFormModalInstance
+            resolve:
+              title: () ->
+                title
+              message: () ->
+                message
+
+          modalInstance.result.then((() ->
+            console.log '[RegisterFormModalInstance] closed normally'
+            callback?.apply this, arguments
+          ), (() ->
+            console.log '[RegisterFormModalInstance] dismissed'
+            dismissCallback?()
+          ))
+
+        # 表单提交
+        $scope.doRegister = (sendHTMLMail) ->
+          $scope.submitInProgress = true
+
+          registerPayload =
+            name: $scope.displayName
+            pass: new jsSHA($scope.psw, 'TEXT').getHash 'SHA-512', 'HEX'
+            email: $scope.email
+            mobile: $scope.mobile
+            itype: 0
+            inum: $scope.number
+            idtype: 0
+            idnum: $scope.idnumber
+            iinfo:
+              dorm_bldg: parseInt($scope.dormBuilding)
+              dorm_room: $scope.dormRoom
+            htmlmail: !!sendHTMLMail
+
+          console.log '[registerForm] payload: ', registerPayload
+          accountAPI.createAccount registerPayload, (retcode, err) ->
+            $scope.submitInProgress = false
+
+            if retcode == 0
+              console.log '[registerForm] submit: OK'
+              showModal '提交成功', '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；现在页面将跳转回首页。', doSuccessRedirect, doSuccessRedirect
+            else
+              console.log '[registerForm] submit: retcode = ', retcode
+              console.log '[registerForm] submit: err = ', err
+
+              # 生成错误信息
+              retcodeMsg = accountAPI.errorcode[retcode]
+              if retcode == 257
+                # TODO: 整理用户/实名身份组件的错误码对应信息
+                userErrorMsg = '' + err
+                errorMessage = retcodeMsg + '\n错误信息：' + userErrorMsg
+              else
+                errorMessage = retcodeMsg
+
+              showModal '注册遇到问题', errorMessage
+
+        univInfo.getMajorsInfo (info) ->
+          updateMajorsInfo info
+
+        univInfo.getDormsInfo (info) ->
+          updateDormInfo info
+
+        console.log $scope
   ]
 
   # 模态弹层
