@@ -1,12 +1,14 @@
 define [
+  'jnrain/controller/nav/index'
   'jnrain/controller/debug/index'
   'jnrain/controller/register'
   'jnrain/controller/verifymail'
   'jnrain/controller/login'
   'jnrain/controller/logout'
   'jnrain/controller/authbox'
-], (debugModules, register, verifymail, login, logout, authbox) ->
+], (navModules, debugModules, register, verifymail, login, logout, authbox) ->
   registerWith: (app) ->
+    navModules.registerWith app
     debugModules.registerWith app
 
     register app

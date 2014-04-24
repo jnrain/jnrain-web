@@ -9,6 +9,8 @@ define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
       'jnrain/api/account'
       'jnrain/api/ident'
       'jnrain/api/session'
+      # jnrain/api/ds 已经由各个 provider 引入, 这里就不用写了
+      'jnrain/provider/vpool'
       'jnrain/ui/toasts'
 
       'btford.socket-io'
