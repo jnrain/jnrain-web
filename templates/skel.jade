@@ -58,8 +58,9 @@ html#appmount(lang='cmn')
 
             dt.debug__item__title 实时信道
             dd.debug__item
-              .debug__rt__status {{rtStatus}}; rtSID={{rtSID}}
-              .debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') {{rtConnectionRetries}}
+              .debug__rt__status {{rtStatus}}
+                span.debug__rt__sid(data-ng-show='!!rtSID') ; rtSID={{rtSID}}
+                span.debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') ; retries={{rtConnectionRetries}}
 
     if DEBUG_LIVERELOAD
       // grunt-watch 的 LiveReload 貌似只有 HTTP 版...
