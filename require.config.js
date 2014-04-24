@@ -9,7 +9,7 @@ requirejs.config({
     'angular-socket-io': '../../bower_components/angular-socket-io/socket',
     'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',
     'AngularJS-Toaster': '../../bower_components/AngularJS-Toaster/toaster',
-    'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap',
+    'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
     'angular-animate': '../../bower_components/angular-animate/angular-animate',
     'jsSHA': '../../bower_components/jsSHA/src/sha',
     'angular-local-storage': '../../bower_components/angular-local-storage/angular-local-storage',
