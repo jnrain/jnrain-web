@@ -36,7 +36,7 @@ if sslEnabled
 # 初始化应用
 app = express()
 
-app.set 'views', path.join(__dirname, 'templates')
+app.set 'views', path.join(__dirname, 'views')
 app.set 'view engine', 'jade'
 
 

@@ -43,7 +43,7 @@ GRUNT_CONFIG =
 
   watch:
     source:
-      files: ['sass/**/*.scss', 'templates/**/*.jade', 'lib/**/*.coffee']
+      files: ['sass/**/*.scss', 'views/**/*.jade', 'lib/**/*.coffee']
       tasks: BUILD_PHASES
       options:
         livereload: true
