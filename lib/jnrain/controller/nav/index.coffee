@@ -1,6 +1,8 @@
 define [
   'jnrain/controller/nav/header'
 ], (navHeader) ->
+  'use strict'
+
   registerWith: (app) ->
     navHeader app
 

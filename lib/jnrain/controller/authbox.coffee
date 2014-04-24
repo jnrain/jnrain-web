@@ -5,6 +5,8 @@ define [
   'jnrain/api/session'
   'jnrain/api/account'
 ], (angular) ->
+  'use strict'
+
   (app) ->
     # 用户信息组件
     app.controller 'AuthBox', [

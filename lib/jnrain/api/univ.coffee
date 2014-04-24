@@ -1,4 +1,6 @@
 define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
+  'use strict'
+
   mod = angular.module 'jnrain/api/univ', ['jnrain/api/bridge']
 
   mod.factory 'univInfo', ['APIv1', (APIv1) ->

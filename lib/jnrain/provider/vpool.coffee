@@ -4,6 +4,8 @@ define [
 
   'jnrain/api/ds'
 ], (angular) ->
+  'use strict'
+
   mod = angular.module 'jnrain/provider/vpool', [
     'jnrain/api/ds'
     'LocalStorageModule'

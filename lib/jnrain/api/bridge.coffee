@@ -1,4 +1,6 @@
 define ['angular', 'restangular', 'angular-socket-io', 'jnrain/config'], (angular) ->
+  'use strict'
+
   mod = angular.module 'jnrain/api/bridge', ['restangular', 'jnrain/config']
 
   rawSocket = null

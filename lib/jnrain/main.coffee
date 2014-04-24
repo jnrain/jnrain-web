@@ -1,4 +1,6 @@
 define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
+  'use strict'
+
   boot: () ->
     mod = angular.module 'jnrain/main', ['ui.select2']
     controllers.registerWith mod

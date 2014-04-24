@@ -9,6 +9,8 @@ define [
   'jnrain/api/account'
   'jnrain/api/ident'
 ], (angular, _, jsSHA) ->
+  'use strict'
+
   (app) ->
     # 注册表单 (在读本科生)
     app.controller 'Register', [

@@ -1,6 +1,8 @@
 define [
   'jnrain/controller/debug/footer'
 ], (debugFooter) ->
+  'use strict'
+
   registerWith: (app) ->
     debugFooter app
 

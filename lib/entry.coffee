@@ -1,4 +1,6 @@
 require ['jnrain/main'], (main) ->
+  'use strict'
+
   main.boot()
 
 

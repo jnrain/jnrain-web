@@ -4,6 +4,8 @@ define [
 
   'jnrain/api/bridge'
 ], (angular, _) ->
+  'use strict'
+
   # 返回值是作为 dsAPI 的一个属性而存在的, 所以没有用模块做包装
   (APIv1) ->
     basePath = () ->

@@ -4,6 +4,8 @@ define [
 
   'jnrain/provider/vpool'
 ], (angular, _) ->
+  'use strict'
+
   (app) ->
     # 顶部导航
     app.controller 'NavHeader', [

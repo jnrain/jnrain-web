@@ -1,4 +1,6 @@
 define ['angular'], (angular) ->
+  'use strict'
+
   mod = angular.module 'jnrain/config', []
 
   mod.constant 'apiDomain', '//127.0.0.1:9090'

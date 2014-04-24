@@ -3,6 +3,8 @@ define [
 
   'AngularJS-Toaster'
 ], (angular) ->
+  'use strict'
+
   mod = angular.module 'jnrain/ui/toasts', ['toaster']
 
   mod.factory 'Toasts', ['toaster', (toaster) ->

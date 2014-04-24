@@ -3,6 +3,8 @@ define [
 
   'jnrain/api/vobj/vpool'
 ], (angular, vpool) ->
+  'use strict'
+
   mod = angular.module 'jnrain/api/ds', [
     'jnrain/api/bridge'
   ]

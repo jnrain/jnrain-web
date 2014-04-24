@@ -5,6 +5,8 @@ define [
   'jnrain/api/bridge'
   'jnrain/api/session'
 ], (angular, _) ->
+  'use strict'
+
   mod = angular.module 'jnrain/api/account', [
     'jnrain/api/bridge'
     'jnrain/api/session'

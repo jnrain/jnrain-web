@@ -5,6 +5,8 @@ define [
 
   'jnrain/api/bridge'
 ], (angular, _) ->
+  'use strict'
+
   mod = angular.module 'jnrain/api/session', ['jnrain/api/bridge', 'LocalStorageModule']
 
   mod.factory 'sessionAPI', [

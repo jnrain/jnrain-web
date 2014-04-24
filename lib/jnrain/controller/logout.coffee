@@ -4,6 +4,8 @@ define [
   'jnrain/api/session'
   'jnrain/ui/toasts'
 ], (angular) ->
+  'use strict'
+
   (app) ->
     # 注销
     app.controller 'LogoutPage', [

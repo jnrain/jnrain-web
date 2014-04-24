@@ -1,4 +1,6 @@
 define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
+  'use strict'
+
   mod = angular.module 'jnrain/api/ident', ['jnrain/api/bridge']
 
   ERROR_CODE_MAP =

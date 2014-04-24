@@ -5,6 +5,8 @@ define [
   'jnrain/api/session'
   'jnrain/ui/toasts'
 ], (angular) ->
+  'use strict'
+
   (app) ->
     # footer 调试信息
     app.controller 'DebugFooter', [

@@ -6,6 +6,8 @@ define [
   'jnrain/api/session'
   'jnrain/ui/toasts'
 ], (angular, _, jsSHA) ->
+  'use strict'
+
   (app) ->
     # 登陆 (登陆 token 请求) 表单
     app.controller 'Login', [

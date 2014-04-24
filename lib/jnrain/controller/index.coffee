@@ -7,6 +7,8 @@ define [
   'jnrain/controller/logout'
   'jnrain/controller/authbox'
 ], (navModules, debugModules, register, verifymail, login, logout, authbox) ->
+  'use strict'
+
   registerWith: (app) ->
     navModules.registerWith app
     debugModules.registerWith app

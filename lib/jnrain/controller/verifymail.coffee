@@ -4,6 +4,8 @@ define [
 
   'jnrain/api/ident'
 ], (angular, _) ->
+  'use strict'
+
   (app) ->
     # 邮箱验证
     app.controller 'VerifyMail', [
