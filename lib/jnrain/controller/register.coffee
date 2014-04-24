@@ -3,6 +3,7 @@ define [
   'lodash',
   'jsSHA',
   'ui.select2',
+  'ui-bootstrap',
 
   'jnrain/api/univ',
   'jnrain/api/account',
@@ -10,13 +11,18 @@ define [
 ], (angular, _, jsSHA) ->
   (app) ->
     # 注册表单 (在读本科生)
-    app.controller 'Register', ['$scope', 'univInfo', 'accountAPI', 'identAPI', ($scope, univInfo, accountAPI, identAPI) ->
+    app.controller 'Register', ['$scope', '$window', '$modal', 'univInfo', 'accountAPI', 'identAPI', ($scope, $window, $modal, univInfo, accountAPI, identAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
 
       # 防止重复提交
       $scope.submitInProgress = false
+
+      # 成功提交后跳转
+      doSuccessRedirect = () ->
+        # 首页
+        $window.location.href = '/'
 
       # 专业信息
       updateMajorsInfo = (majors) ->
@@ -86,6 +92,25 @@ define [
       $scope.$watch 'number', attrWatcher
       $scope.$watch 'idnumber', attrWatcher
 
+      # 模态弹层
+      showModal = (title, message, callback, dismissCallback) ->
+        modalInstance = $modal.open
+          templateUrl: 'modalContent.html'
+          controller: RegisterFormModalInstance
+          resolve:
+            title: () ->
+              title
+            message: () ->
+              message
+
+        modalInstance.result.then((() ->
+          console.log '[RegisterFormModalInstance] closed normally'
+          callback?.apply this, arguments
+        ), (() ->
+          console.log '[RegisterFormModalInstance] dismissed'
+          dismissCallback?()
+        ))
+
       # 表单提交
       $scope.doRegister = (sendHTMLMail) ->
         $scope.submitInProgress = true
@@ -110,9 +135,21 @@ define [
 
           if retcode == 0
             console.log '[registerForm] submit: OK'
+            showModal '提交成功', '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；现在页面将跳转回首页。', doSuccessRedirect, doSuccessRedirect
           else
             console.log '[registerForm] submit: retcode = ', retcode
             console.log '[registerForm] submit: err = ', err
+
+            # 生成错误信息
+            retcodeMsg = accountAPI.errorcode[retcode]
+            if retcode == 257
+              # TODO: 整理用户/实名身份组件的错误码对应信息
+              userErrorMsg = '' + err
+              errorMessage = retcodeMsg + '\n错误信息：' + userErrorMsg
+            else
+              errorMessage = retcodeMsg
+
+            showModal '注册遇到问题', errorMessage
 
       univInfo.getMajorsInfo (info) ->
         updateMajorsInfo info
@@ -121,6 +158,21 @@ define [
         updateDormInfo info
 
       console.log $scope
+  ]
+
+  # 模态弹层
+  RegisterFormModalInstance = ($scope, $modalInstance, title, message) ->
+    $scope.title = title
+    $scope.message = message
+
+    $scope.ok = () ->
+      $modalInstance.close()
+
+  RegisterFormModalInstance.$inject = [
+    '$scope'
+    '$modalInstance'
+    'title'
+    'message'
     ]
 
 

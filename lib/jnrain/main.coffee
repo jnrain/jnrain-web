@@ -12,6 +12,7 @@ define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
       'jnrain/ui/toasts'
 
       'btford.socket-io'
+      'ui.bootstrap'
     ]
 
 
