@@ -165,22 +165,22 @@ define [
           updateDormInfo info
 
         console.log $scope
-  ]
-
-  # 模态弹层
-  RegisterFormModalInstance = ($scope, $modalInstance, title, message) ->
-    $scope.title = title
-    $scope.message = message
-
-    $scope.ok = () ->
-      $modalInstance.close()
-
-  RegisterFormModalInstance.$inject = [
-    '$scope'
-    '$modalInstance'
-    'title'
-    'message'
     ]
+
+    # 模态弹层
+    RegisterFormModalInstance = ($scope, $modalInstance, title, message) ->
+      $scope.title = title
+      $scope.message = message
+
+      $scope.ok = () ->
+        $modalInstance.close()
+
+    RegisterFormModalInstance.$inject = [
+      '$scope'
+      '$modalInstance'
+      'title'
+      'message'
+      ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
