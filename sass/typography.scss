@@ -1,14 +1,6 @@
-// 默认字体
-html {
-  font-family: "Ubuntu", "Microsoft YaHei", "WenQuanYi Micro Hei", "SimSun", sans-serif;
-  font-weight: 100;
-  font-size: 16px;
-}
-
-
 // 字体类
 @mixin monospace {
-  font-family: "Source Code Pro", "Inconsolata", "DejaVu Sans Mono", "Consolas",  monospace;
+  font-family: $font-family-monospace;
 }
 
 

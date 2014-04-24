@@ -51,6 +51,7 @@
 // 组件版本显示
 .footer__versions {
   @include clearfix;
+  margin: 0;
 }
 
 .footer__versions__item {

@@ -1,7 +1,19 @@
-$PAGE_BGCOLOR: /*#ffe6f6;*/ #fffbf0;
+// Bootstrap
+// 字体
+$font-family-sans-serif: "Ubuntu", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+$font-family-serif: "Georgia", "Times New Roman", "SimSun", serif;
+$font-family-monospace: "Source Code Pro", "Inconsolata", "DejaVu Sans Mono", "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+$font-size-base: 16px;
+
+// 颜色
+$body-bg: /*#ffe6f6;*/ #fffbf0;
+$brand-success: #5bbc1b;
+$brand-danger: #bc1b5b;
+
+
+// 页面
 $PAGE_CONTENT_WIDTH_PERC: 75%;
 $PAGE_CONTENT_WIDTH_MIN: 1000px;
-$PAGE_FONT_SIZE: 16px;
 
 $LOGO_WIDTH: 250px;
 $LOGO_HEIGHT: 90px;
@@ -21,9 +33,9 @@ $FORM_WIDTH_MIN: $PAGE_CONTENT_WIDTH_MIN / 2;
 $FORM_BORDER_RADIUS: 60px;
 $FORM_FONT_SIZE_H1: 36px;
 $FORM_FONT_SIZE_H2: 24px;
-$FORM_FONT_SIZE: $PAGE_FONT_SIZE;
-$FORM_FONT_SIZE_MINOR: $FORM_FONT_SIZE * 0.75;
-$FORM_LINE_HEIGHT: $PAGE_FONT_SIZE * 1.125;
+$FORM_FONT_SIZE: $font-size-base;
+$FORM_FONT_SIZE_MINOR: $font-size-base * 0.75;
+$FORM_LINE_HEIGHT: $font-size-base * 1.125;
 
 
 // footer

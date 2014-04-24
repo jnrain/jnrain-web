@@ -5,7 +5,10 @@ GRUNT_CONFIG =
       files:
         'static/css/app.css': 'sass/app.scss'
       options:
-        includePaths: ['bower_components/bower-bourbon']
+        includePaths: [
+          'bower_components/bootstrap-sass-official/vendor/assets/stylesheets'
+          'bower_components/bower-bourbon'
+        ]
         outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
 
     vendored:
