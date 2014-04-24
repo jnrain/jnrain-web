@@ -41,6 +41,7 @@
   color: lighten($FOOTER_FGCOLOR_MINOR, 5);
 
   margin: 0 10px 0 0;
+  font-weight: inherit;  // Bootstrap 默认设置 dt 元素为粗体, 这里改回去
 }
 
 // 部署频道
