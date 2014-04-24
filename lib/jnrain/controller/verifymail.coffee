@@ -6,7 +6,11 @@ define [
 ], (angular, _) ->
   (app) ->
     # 邮箱验证
-    app.controller 'VerifyMail', ['$scope', 'identAPI', ($scope, identAPI) ->
+    app.controller 'VerifyMail', ['$scope', '$window', '$timeout', 'identAPI', ($scope, $window, $timeout, identAPI) ->
+      doRedirect = () ->
+        # 首页
+        $window.location.href = '/';
+
       $scope.inProgress = true
       $scope.retcode = -1
 
@@ -20,6 +24,9 @@ define [
         console.log '[VerifyMail] retcode = ', retcode
         $scope.inProgress = false
         $scope.retcode = retcode
+
+        # 5 秒后自动返回首页
+        $timeout doRedirect, 5000
 
       console.log '[VerifyMail] $scope = ', $scope
     ]
