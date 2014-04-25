@@ -1,4 +1,4 @@
-BUILD_PHASES = ['sass', 'coffee', 'requirejs', 'copy']
+BUILD_PHASES = ['sass', 'coffee', 'ngmin', 'requirejs', 'copy']
 GRUNT_CONFIG =
   sass:
     dist:
@@ -23,10 +23,17 @@ GRUNT_CONFIG =
       expand: true
       cwd: 'lib'
       src: ['**/*.coffee']
-      dest: 'build/js'
+      dest: 'build/coffee'
       ext: '.js'
       options:
         bare: true
+
+  ngmin:
+    all:
+      expand: true
+      cwd: 'build/coffee'
+      src: ['**/*.js']
+      dest: 'build/js'
 
   requirejs:
     compile:
@@ -84,6 +91,7 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-ngmin'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-copy'
