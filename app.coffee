@@ -9,6 +9,7 @@ connectUAParser = require 'connect-ua-parser'
 connectSlashes = require 'connect-slashes'
 fs = require 'fs'
 https = require 'https'
+helmet = require 'helmet'
 
 
 # 处理 argv
@@ -45,6 +46,12 @@ app.locals.DEPLOY_CHANNEL_NAME = deployChannelName
 app.locals.DEBUG_LIVERELOAD = !isInProduction
 gitRev.short (short) ->
   app.locals.VER_GIT = short
+
+
+# 基本安全设置
+app.use helmet.xframe 'deny'
+app.use helmet.hsts 31536000, true  # 31536000s = 365d
+app.disable 'x-powered-by'
 
 
 # 中间件

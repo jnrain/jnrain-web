@@ -20,7 +20,8 @@
     "git-rev": "^0.2.1",
     "connect-ua-parser": "^0.1.0",
     "connect-slashes": "^1.2.0",
-    "morgan": "^1.0.0"
+    "morgan": "^1.0.0",
+    "helmet": "^0.2.1"
   },
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1"
