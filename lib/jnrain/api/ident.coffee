@@ -10,7 +10,7 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
     22: '传入参数格式不正确。'  # API 调用应该不会遇到
     257: '身份信息格式不正确。'  # 同上
 
-  mod.factory 'identAPI', ['APIv1', (APIv1) ->
+  mod.factory 'identAPI', (APIv1) ->
     basePath = () ->
       APIv1.one('account').one('ident')
 
@@ -43,7 +43,6 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
       ).then (data) ->
         retcode = data.r
         callback retcode
-  ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

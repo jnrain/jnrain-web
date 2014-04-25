@@ -9,11 +9,8 @@ define [
     'jnrain/api/bridge'
   ]
 
-  mod.factory 'dsAPI', [
-    'APIv1'
-    (APIv1) ->
-      vpool: vpool APIv1
-  ]
+  mod.factory 'dsAPI', (APIv1) ->
+    vpool: vpool APIv1
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

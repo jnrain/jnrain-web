@@ -17,7 +17,7 @@ define [
     28: '今日注册用户量已达最大值。'
     257: '创建用户失败。'  # 同上
 
-  mod.factory 'accountAPI', ['APIv1', 'sessionAPI', (APIv1, sessionAPI) ->
+  mod.factory 'accountAPI', (APIv1, sessionAPI) ->
     basePath = () ->
       APIv1.one 'account'
 
@@ -67,7 +67,6 @@ define [
 
     statSelf: (callback) ->
       statAccountInternal 'self', callback, parseExtendedStat
-  ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -9,9 +9,7 @@ define [
 
   mod = angular.module 'jnrain/api/session', ['jnrain/api/bridge', 'LocalStorageModule']
 
-  mod.factory 'sessionAPI', [
-    'APIv1'
-    'localStorageService'
+  mod.factory 'sessionAPI',
     (APIv1, localStorageService) ->
       basePath = () ->
         APIv1.one('session')
@@ -66,7 +64,6 @@ define [
           removeLoginToken()
           removeUID()
           callback data.r
-  ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
