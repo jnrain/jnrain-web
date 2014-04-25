@@ -22,7 +22,8 @@
     "connect-slashes": "^1.2.0",
     "morgan": "^1.0.0",
     "helmet": "^0.2.1",
-    "grunt-ngmin": "0.0.3"
+    "grunt-ngmin": "0.0.3",
+    "grunt-coffeelint": "0.0.10"
   },
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1"

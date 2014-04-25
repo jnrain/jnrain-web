@@ -1,4 +1,4 @@
-BUILD_PHASES = ['sass', 'coffee', 'ngmin', 'requirejs', 'copy']
+BUILD_PHASES = ['sass', 'coffeelint', 'coffee', 'ngmin', 'requirejs', 'copy']
 GRUNT_CONFIG =
   sass:
     dist:
@@ -17,6 +17,14 @@ GRUNT_CONFIG =
       options:
         includePaths: ['./bower_components/font-awesome/scss']
         outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
+
+  coffeelint:
+    all:
+      expand: true
+      cwd: 'lib'
+      src: ['**/*.coffee']
+      options:
+        configFile: 'coffeelint.json'
 
   coffee:
     compile:
@@ -90,6 +98,7 @@ module.exports = (grunt) ->
   grunt.initConfig GRUNT_CONFIG
 
   grunt.loadNpmTasks 'grunt-sass'
+  grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-ngmin'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
