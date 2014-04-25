@@ -12,11 +12,22 @@ define [
       '$scope'
       'VPool'
       ($scope, VPool) ->
-        VPool.maybeRefresh VPool.GLOBAL_VPOOL, (retcode, vtpData, errorPhase) ->
-          if retcode == 0
-            console.log '[NavHeader] global vpool refresh: OK, vtpData=', vtpData
-          else
-            console.log '[NavHeader] global vpool refresh: errored, retcode=', retcode, ' errorPhase=', errorPhase
+        VPool.maybeRefresh(
+          VPool.GLOBAL_VPOOL,
+          (retcode, vtpData, errorPhase) ->
+            if retcode == 0
+              console.log(
+                '[NavHeader] global vpool refresh: OK, vtpData=',
+                vtpData,
+              )
+            else
+              console.log(
+                '[NavHeader] global vpool refresh: errored, retcode=',
+                retcode,
+                ' errorPhase=',
+                errorPhase,
+              )
+        )
 
         console.log '[NavHeader] $scope = ', $scope
     ]

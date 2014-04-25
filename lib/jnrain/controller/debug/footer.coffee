@@ -54,7 +54,9 @@ define [
             # 随机确定一个重连的时间点, 平均下重连过程的服务器负载
             # 5 到 15 秒后随机时间点重连
             reconnectInterval = Math.floor(10000 * Math.random() + 5000)
-            console.log '[DebugFooter] RT reconnect in ' + reconnectInterval + 'ms'
+            console.log(
+              '[DebugFooter] RT reconnect in ' + reconnectInterval + 'ms',
+            )
             console.log rtSocket
             $timeout (() ->
               _raw_rtSocket.socket.reconnect()
@@ -63,7 +65,11 @@ define [
         rtSocket.on 'reconnecting', () ->
           $scope.rtStatus = 'reconnecting'
           $scope.rtConnectionRetries++
-          Toasts.toast 'info', '尝试重建实时连接', '正在进行第 ' + $scope.rtConnectionRetries + ' 次重连。'
+          Toasts.toast(
+            'info',
+            '尝试重建实时连接',
+            '正在进行第 ' + $scope.rtConnectionRetries + ' 次重连。',
+          )
 
         # 事件处理
         # hello 回应

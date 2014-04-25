@@ -57,13 +57,23 @@ define [
       doRefresh = (vtpid, callback) ->
         # 查询基本信息
         dsAPI.vpool.stat vtpid, (retcode, stat) ->
-          console.log '[provider/vpool] stat retcode=', retcode, ' stat=', stat
+          console.log(
+            '[provider/vpool] stat retcode=',
+            retcode,
+            ' stat=',
+            stat,
+          )
           unless retcode == 0
             return callback retcode, null, 'stat'
 
           # 查询虚标签
           dsAPI.vpool.readdir vtpid, (retcode, vtags) ->
-            console.log '[provider/vpool] readdir retcode=', retcode, ' vtags=', vtags
+            console.log(
+              '[provider/vpool] readdir retcode=',
+              retcode,
+              ' vtags=',
+              vtags,
+            )
             unless retcode == 0
               return callback retcode, null, 'readdir'
 

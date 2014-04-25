@@ -7,7 +7,10 @@ define [
 ], (angular, _) ->
   'use strict'
 
-  mod = angular.module 'jnrain/api/session', ['jnrain/api/bridge', 'LocalStorageModule']
+  mod = angular.module 'jnrain/api/session', [
+    'jnrain/api/bridge'
+    'LocalStorageModule'
+  ]
 
   mod.factory 'sessionAPI',
     (APIv1, localStorageService) ->

@@ -85,7 +85,8 @@ define [
           $scope.registerForm.idnumber.$setValidity 'identCheck', isValid
 
         doCheckIdent = (number, idnumber) ->
-          identAPI.queryIdent number, 0, idnumber.toUpperCase(), (retcode, data) ->
+          normIDNumber = idnumber.toUpperCase()
+          identAPI.queryIdent number, 0, normIDNumber, (retcode, data) ->
             console.log 'queryIdent returned:', retcode, data
             if retcode == 0
               $scope.identInfo = data
@@ -144,7 +145,13 @@ define [
 
             if retcode == 0
               console.log '[registerForm] submit: OK'
-              showModal '提交成功', '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；现在页面将跳转回首页。', doSuccessRedirect, doSuccessRedirect
+              showModal(
+                '提交成功',
+                '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；'
+                '现在页面将跳转回首页。',
+                doSuccessRedirect,
+                doSuccessRedirect,
+              )
             else
               console.log '[registerForm] submit: retcode = ', retcode
               console.log '[registerForm] submit: err = ', err

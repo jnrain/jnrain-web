@@ -25,7 +25,8 @@ define [
         $scope.submitInProgress = false
 
         # 是否已经有记录登陆 token?
-        alreadyHaveToken = $scope.alreadyHaveToken = sessionAPI.getLoginToken()?
+        alreadyHaveToken = sessionAPI.getLoginToken()?
+        $scope.alreadyHaveToken = alreadyHaveToken
 
         $scope.doLogin = () ->
           $scope.submitInProgress = true
