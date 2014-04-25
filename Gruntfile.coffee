@@ -40,6 +40,7 @@ GRUNT_CONFIG =
         out: 'static/js/bundle.js'
         optimize: '<%= grunt.option("production") ? "uglify2" : "none" %>'
         wrap: true
+        useStrict: true
 
   watch:
     source:
