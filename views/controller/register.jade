@@ -29,7 +29,7 @@ block content
       input.form__input(
         type='text'
         name='number'
-        required='required'
+        required
         placeholder='您的学号'
         data-ng-model='number'
         data-ng-pattern='/^[0-9]{10}$/'
@@ -38,7 +38,7 @@ block content
       input.form__input(
         type='text'
         name='idnumber'
-        required='required'
+        required
         placeholder='身份证后六位'
         data-ng-model='idnumber'
         data-ng-pattern='/^[0-9Xx]{6}$/'
@@ -65,14 +65,14 @@ block content
         input.form__input(
           type='email'
           name='email'
-          required='required'
+          required
           placeholder='邮箱地址'
           data-ng-model='email'
           )
         input.form__input(
           type='text'
           name='mobile'
-          required='required'
+          required
           placeholder='手机号码'
           data-ng-model='mobile'
           data-ng-pattern='/^[0-9]{11}$/'
@@ -80,7 +80,7 @@ block content
         input.form__input(
           type='text'
           name='displayName'
-          required='required'
+          required
           placeholder='设置一个昵称'
           data-ng-model='displayName'
           data-ng-maxlength='16'
@@ -88,7 +88,7 @@ block content
         input.form__input(
           type='password'
           name='psw'
-          required='required'
+          required
           placeholder='设置一个密码'
           data-ng-model='psw'
           data-ng-minlength='6'
@@ -101,18 +101,18 @@ block content
       h2.form__section__title 住宿信息
 
       .dorm-info(data-ng-show='!!identInfo')
-        select.form__select2(required='required', data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
+        select.form__select2(required, data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
           option(value='')
           option(data-ng-repeat='groupName in dormGroups[identInfo.gender]', value='{{$index}}') {{groupName}}
 
-        select.form__select2(required='required', data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
+        select.form__select2(required, data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
           option(value='')
           option(data-ng-repeat='bldgNum in dormByGender[identInfo.gender][dormGroups[identInfo.gender][dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
 
         input.form__input(
           type='text'
           name='dormRoom'
-          required='required'
+          required
           placeholder='宿舍房间号'
           data-ng-model='dormRoom'
           data-ng-pattern='/^[0-9]{3}$/'
