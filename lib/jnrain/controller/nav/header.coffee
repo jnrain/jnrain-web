@@ -20,6 +20,7 @@ define [
                 '[NavHeader] global vpool refresh: OK, vtpData=',
                 vtpData,
               )
+              $scope.vtags = vtpData.vtags
             else
               console.log(
                 '[NavHeader] global vpool refresh: errored, retcode=',
