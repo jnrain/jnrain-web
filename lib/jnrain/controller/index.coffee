@@ -1,18 +1,29 @@
 define [
   'jnrain/controller/nav/index'
   'jnrain/controller/debug/index'
+  'jnrain/controller/rtchannel'
   'jnrain/controller/register'
   'jnrain/controller/verifymail'
   'jnrain/controller/login'
   'jnrain/controller/logout'
   'jnrain/controller/authbox'
-], (navModules, debugModules, register, verifymail, login, logout, authbox) ->
+], (
+  navModules,
+  debugModules,
+  rtchannel,
+  register,
+  verifymail,
+  login,
+  logout,
+  authbox,
+) ->
   'use strict'
 
   registerWith: (app) ->
     navModules.registerWith app
     debugModules.registerWith app
 
+    rtchannel app
     register app
     verifymail app
     login app

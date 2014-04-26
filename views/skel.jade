@@ -57,7 +57,7 @@ html#appmount(lang='cmn')
             dd.debug__item.debug__channel #{DEPLOY_CHANNEL_NAME}
 
             dt.debug__item__title 实时信道
-            dd.debug__item
+            dd.debug__item(data-ng-controller='RTChannelManager')
               .debug__rt__status {{rtStatus}}
                 span.debug__rt__sid(data-ng-show='!!rtSID') ; rtSID={{rtSID}}
                 span.debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') ; retries={{rtConnectionRetries}}
