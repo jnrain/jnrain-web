@@ -1,5 +1,9 @@
-.pagehdr__nav__channels(data-ng-controller='NavHeader')
-  p 这是频道导航模块
+.pagehdr__nav__channels-container
+  .pagehdr__nav__channels(data-ng-controller='NavHeader')
+    .pagehdr__nav__channels--none(data-ng-hide='vtags')
+      i.fa.fa-2x.fa-info-circle
+      该站点尚未配置任何内容板块。
+      button.btn.btn-info 去新建板块
 
 
 include partials/authbox
