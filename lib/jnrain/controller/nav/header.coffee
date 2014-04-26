@@ -12,6 +12,9 @@ define [
       '$scope'
       'VPool'
       ($scope, VPool) ->
+        # 这个引用是给模板用的
+        $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
+
         VPool.maybeRefresh(
           VPool.GLOBAL_VPOOL,
           (retcode, vtpData, errorPhase) ->
