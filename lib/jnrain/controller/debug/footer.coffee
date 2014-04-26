@@ -1,24 +1,25 @@
 define [
-], () ->
+  'angular'
+], (angular) ->
   'use strict'
 
-  (app) ->
-    # footer 调试信息
-    app.controller 'DebugFooter', [
-      '$scope'
-      ($scope) ->
-        # 后端版本
-        $scope.versions =
-          weiyu: 'unknown'
-          luohua: 'unknown'
+  mod = angular.module 'jnrain/controller/debug/footer', [
+  ]
 
-        # 从实时信道组件接收后端版本的更新
-        $scope.$on 'api:backendVersionsObtained', (evt, versions) ->
-          console.log '[DebugFooter] obtained backend versions: ', versions
-          $scope.versions = versions
+  # footer 调试信息
+  mod.controller 'DebugFooter',
+    ($scope) ->
+      # 后端版本
+      $scope.versions =
+        weiyu: 'unknown'
+        luohua: 'unknown'
 
-        console.log '[DebugFooter] $scope = ', $scope
-    ]
+      # 从实时信道组件接收后端版本的更新
+      $scope.$on 'api:backendVersionsObtained', (evt, versions) ->
+        console.log '[DebugFooter] obtained backend versions: ', versions
+        $scope.versions = versions
+
+      console.log '[DebugFooter] $scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

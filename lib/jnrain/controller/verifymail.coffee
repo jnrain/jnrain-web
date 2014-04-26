@@ -1,42 +1,39 @@
 define [
   'angular'
-  'lodash'
 
   'jnrain/api/ident'
-], (angular, _) ->
+], (angular) ->
   'use strict'
 
-  (app) ->
-    # 邮箱验证
-    app.controller 'VerifyMail', [
-      '$scope'
-      '$window'
-      '$timeout'
-      'identAPI'
-      ($scope, $window, $timeout, identAPI) ->
-        doRedirect = () ->
-          # 首页
-          $window.location.href = '/';
+  mod = angular.module 'jnrain/controller/verifymail', [
+    'jnrain/api/ident'
+  ]
 
-        $scope.inProgress = true
-        $scope.retcode = -1
+  # 邮箱验证
+  mod.controller 'VerifyMail',
+    ($scope, $window, $timeout, identAPI) ->
+      doRedirect = () ->
+        # 首页
+        $window.location.href = '/'
 
-        # 从页面中解出 activationKey
-        getActivationKey = () ->
-          angular.element('#activation-key').text().trim()
-        $scope.activationKey = getActivationKey()
+      $scope.inProgress = true
+      $scope.retcode = -1
 
-        # 进行 API 请求
-        identAPI.verifyMail $scope.activationKey, (retcode) ->
-          console.log '[VerifyMail] retcode = ', retcode
-          $scope.inProgress = false
-          $scope.retcode = retcode
+      # 从页面中解出 activationKey
+      getActivationKey = () ->
+        angular.element('#activation-key').text().trim()
+      $scope.activationKey = getActivationKey()
 
-          # 5 秒后自动返回首页
-          $timeout doRedirect, 5000
+      # 进行 API 请求
+      identAPI.verifyMail $scope.activationKey, (retcode) ->
+        console.log '[VerifyMail] retcode = ', retcode
+        $scope.inProgress = false
+        $scope.retcode = retcode
 
-        console.log '[VerifyMail] $scope = ', $scope
-    ]
+        # 5 秒后自动返回首页
+        $timeout doRedirect, 5000
+
+      console.log '[VerifyMail] $scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

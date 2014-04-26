@@ -8,56 +8,54 @@ define [
 ], (angular, _, jsSHA) ->
   'use strict'
 
-  (app) ->
-    # 登陆 (登陆 token 请求) 表单
-    app.controller 'Login', [
-      '$scope'
-      '$window'
-      '$timeout'
-      'sessionAPI'
-      'Toasts'
-      ($scope, $window, $timeout, sessionAPI, Toasts) ->
-        doLoginSuccessRedirect = () ->
-          # 首页
-          $window.location.href = '/'
+  mod = angular.module 'jnrain/controller/login', [
+    'jnrain/api/session'
+    'jnrain/ui/toasts'
+  ]
 
-        # 防止重复提交
-        $scope.submitInProgress = false
+  # 登陆 (登陆 token 请求) 表单
+  mod.controller 'Login',
+    ($scope, $window, $timeout, sessionAPI, Toasts) ->
+      doLoginSuccessRedirect = () ->
+        # 首页
+        $window.location.href = '/'
 
-        # 是否已经有记录登陆 token?
-        alreadyHaveToken = sessionAPI.getLoginToken()?
-        $scope.alreadyHaveToken = alreadyHaveToken
+      # 防止重复提交
+      $scope.submitInProgress = false
 
-        $scope.doLogin = () ->
-          $scope.submitInProgress = true
+      # 是否已经有记录登陆 token?
+      alreadyHaveToken = sessionAPI.getLoginToken()?
+      $scope.alreadyHaveToken = alreadyHaveToken
 
-          name = $scope.name
-          psw = $scope.psw
-          pswHash = new jsSHA(psw, 'TEXT').getHash 'SHA-512', 'HEX'
+      $scope.doLogin = () ->
+        $scope.submitInProgress = true
 
-          sessionAPI.authenticate name, pswHash, (retcode, token) ->
-            $scope.submitInProgress = false
+        name = $scope.name
+        psw = $scope.psw
+        pswHash = new jsSHA(psw, 'TEXT').getHash 'SHA-512', 'HEX'
 
-            if retcode != 0
-              # 认证失败
-              console.log '[Login] Authentication failed, retcode = ', retcode
+        sessionAPI.authenticate name, pswHash, (retcode, token) ->
+          $scope.submitInProgress = false
 
-              # TODO: 错误消息
-              Toasts.toast 'error', '登陆失败', '登陆失败: ' + retcode
-            else
-              # 认证成功
-              console.log '[Login] Authentication OK: token = ', token
+          if retcode != 0
+            # 认证失败
+            console.log '[Login] Authentication failed, retcode = ', retcode
 
-              Toasts.toast 'info', '登陆成功', '您已成功登陆。'
+            # TODO: 错误消息
+            Toasts.toast 'error', '登陆失败', '登陆失败: ' + retcode
+          else
+            # 认证成功
+            console.log '[Login] Authentication OK: token = ', token
 
-              # 2 秒后跳转回首页
-              $timeout doLoginSuccessRedirect, 2000
+            Toasts.toast 'info', '登陆成功', '您已成功登陆。'
 
-        # 已经有记录登陆 token 的话也回首页
-        $timeout doLoginSuccessRedirect, 2000 if alreadyHaveToken
+            # 2 秒后跳转回首页
+            $timeout doLoginSuccessRedirect, 2000
 
-        console.log '[Login] $scope = ', $scope
-    ]
+      # 已经有记录登陆 token 的话也回首页
+      $timeout doLoginSuccessRedirect, 2000 if alreadyHaveToken
+
+      console.log '[Login] $scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

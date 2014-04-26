@@ -1,34 +1,31 @@
 define [
-  'jnrain/controller/nav/index'
-  'jnrain/controller/debug/index'
+  'angular'
+
+  'jnrain/controller/nav/header'
+
+  'jnrain/controller/debug/footer'
+
   'jnrain/controller/rtchannel'
   'jnrain/controller/register'
   'jnrain/controller/verifymail'
   'jnrain/controller/login'
   'jnrain/controller/logout'
   'jnrain/controller/authbox'
-], (
-  navModules,
-  debugModules,
-  rtchannel,
-  register,
-  verifymail,
-  login,
-  logout,
-  authbox,
-) ->
+], (angular) ->
   'use strict'
 
-  registerWith: (app) ->
-    navModules.registerWith app
-    debugModules.registerWith app
+  mod = angular.module 'jnrain/controller/index', [
+    'jnrain/controller/nav/header'
 
-    rtchannel app
-    register app
-    verifymail app
-    login app
-    logout app
-    authbox app
+    'jnrain/controller/debug/footer'
+
+    'jnrain/controller/rtchannel'
+    'jnrain/controller/register'
+    'jnrain/controller/verifymail'
+    'jnrain/controller/login'
+    'jnrain/controller/logout'
+    'jnrain/controller/authbox'
+  ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

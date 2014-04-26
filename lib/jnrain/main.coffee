@@ -1,22 +1,21 @@
-define ['angular', 'jnrain/controller/index'], (angular, controllers) ->
+define [
+  'angular'
+
+  'jnrain/controller/index'
+], (angular) ->
   'use strict'
 
   boot: () ->
-    mod = angular.module 'jnrain/main', ['ui.select2']
-    controllers.registerWith mod
+    mod = angular.module 'jnrain/main', [
+      'jnrain/controller/index'
+
+      'btford.socket-io'
+      'ui.select2'
+      'ui.bootstrap'
+    ]
 
     angular.bootstrap angular.element('#appmount'), [
       'jnrain/main'
-      'jnrain/api/univ'
-      'jnrain/api/account'
-      'jnrain/api/ident'
-      'jnrain/api/session'
-      # jnrain/api/ds 已经由各个 provider 引入, 这里就不用写了
-      'jnrain/provider/vpool'
-      'jnrain/ui/toasts'
-
-      'btford.socket-io'
-      'ui.bootstrap'
     ]
 
 
