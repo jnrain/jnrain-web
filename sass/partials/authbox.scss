@@ -1,14 +1,10 @@
 .auth-box-container {
-  @include box-sizing(border-box);
+  @extend .pagehdr__nav__section;
 
   display: table;
   position: absolute;
   top: 0;
   right: 0;
-  
-  padding: 10px 0;
-
-  height: 100%;
 
   text-align: right;
 }
