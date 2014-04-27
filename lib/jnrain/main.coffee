@@ -1,5 +1,6 @@
 define [
   'angular'
+  'angular-route'
 
   'jnrain/controller/index'
 ], (angular) ->
@@ -7,12 +8,18 @@ define [
 
   boot: () ->
     mod = angular.module 'jnrain/main', [
+      'ngRoute'
+
       'jnrain/controller/index'
 
       'btford.socket-io'
       'ui.select2'
       'ui.bootstrap'
     ]
+
+    mod.config ($locationProvider) ->
+      $locationProvider.html5Mode true
+      $locationProvider.hashPrefix '!'
 
     angular.bootstrap angular.element('#appmount'), [
       'jnrain/main'

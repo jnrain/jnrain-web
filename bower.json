@@ -41,6 +41,7 @@
     "jsSHA": "~1.5.0",
     "angular-local-storage": "~0.0.1",
     "ng-flow": "~2",
+    "angular-route": "~1.2.16",
     "bootstrap-sass-official": "~3.1.1+2"
   }
 }
