@@ -1,14 +1,21 @@
 define [
   'angular'
+  'angular-route'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/debug/footer', [
+    'ngRoute'
   ]
 
   # footer 调试信息
   mod.controller 'DebugFooter',
-    ($scope) ->
+    ($scope, $route, $routeParams, $location) ->
+      # 单页应用路由
+      $scope.$route = $route
+      $scope.$location = $location
+      $scope.$routeParams = $routeParams
+
       # 后端版本
       $scope.versions =
         weiyu: 'unknown'

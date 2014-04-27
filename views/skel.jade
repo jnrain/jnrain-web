@@ -62,6 +62,9 @@ html#appmount(lang='cmn')
                 span.debug__rt__sid(data-ng-show='!!rtSID') ; rtSID={{rtSID}}
                 span.debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') ; retries={{rtConnectionRetries}}
 
+            dt.debug__item__title 路由信息
+            dd.debug__item path={{$location.path()}}; template={{$route.current.templateUrl}}; params={{$route.current.params}}; routeParams={{$routeParams}}
+
     if DEBUG_LIVERELOAD
       // grunt-watch 的 LiveReload 貌似只有 HTTP 版...
       // 不过因为这一条反正不会出现在生产页面上, 所以无所谓的
