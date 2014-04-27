@@ -92,9 +92,27 @@ GRUNT_CONFIG =
         useStrict: true
 
   watch:
-    source:
-      files: ['sass/**/*.scss', 'views/**/*.jade', 'lib/**/*.coffee']
-      tasks: BUILD_PHASES
+    sass:
+      files: ['sass/**/*.scss']
+      tasks: ['sass']
+      options:
+        livereload: true
+
+    ngtemplates:
+      files: ['views/**/*.tpl.jade']
+      tasks: ['jade', 'html2js', 'requirejs']
+      options:
+        livereload: true
+
+    lib:
+      files: ['lib/**/*.coffee']
+      tasks: ['coffeelint', 'coffee', 'ngmin', 'requirejs']
+      options:
+        livereload: true
+
+    misc:
+      files: ['images/ready/**/*']
+      tasks: ['copy']
       options:
         livereload: true
 
