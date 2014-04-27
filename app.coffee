@@ -71,9 +71,17 @@ app.use (req, res, next) ->
 
 
 # 视图
-app.get '/', (req, res) ->
+entryView = (req, res) ->
   res.render 'home'
 
+# 单页应用 (SPA) 部分
+# 这一部分需要和前端代码保持一致
+app.get '/', entryView
+app.get '/admin/vtp/:vtpid', entryView
+
+
+# 独立页面的视图单独处理
+# TODO: 把这些也集成到单页部分里
 app.get '/login', (req, res) ->
   res.render 'controller/login'
 

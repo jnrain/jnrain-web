@@ -5,6 +5,8 @@ define [
 
   'jnrain/controller/debug/footer'
 
+  'jnrain/controller/admin/vtp'
+
   'jnrain/controller/rtchannel'
   'jnrain/controller/register'
   'jnrain/controller/verifymail'
@@ -18,6 +20,8 @@ define [
     'jnrain/controller/nav/header'
 
     'jnrain/controller/debug/footer'
+
+    'jnrain/controller/admin/vtp'
 
     'jnrain/controller/rtchannel'
     'jnrain/controller/register'
