@@ -3,6 +3,7 @@ define [
   'angular-route'
 
   'jnrain/controller/index'
+  'jnrain/ui/gen/templates'
 ], (angular) ->
   'use strict'
 
@@ -11,6 +12,7 @@ define [
       'ngRoute'
 
       'jnrain/controller/index'
+      'jnrain/ui/gen/templates'
 
       'btford.socket-io'
       'ui.select2'

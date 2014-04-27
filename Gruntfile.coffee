@@ -1,4 +1,17 @@
-BUILD_PHASES = ['sass', 'coffeelint', 'coffee', 'ngmin', 'requirejs', 'copy']
+BUILD_PHASES = [
+  'sass'
+
+  'jade'
+  'html2js'
+
+  'coffeelint'
+  'coffee'
+  'ngmin'
+
+  'requirejs'
+  'copy'
+]
+
 GRUNT_CONFIG =
   sass:
     dist:
@@ -17,6 +30,27 @@ GRUNT_CONFIG =
       options:
         includePaths: ['./bower_components/font-awesome/scss']
         outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
+
+  jade:
+    ngtemplates:
+      expand: true
+      cwd: 'views'
+      src: '**/*.tpl.jade'
+      dest: 'build/templates'
+      ext: '.html'
+
+  html2js:
+    ngtemplates:
+      src: ['build/templates/**/*.html']
+      dest: 'build/js/jnrain/ui/gen/templates.js'
+      options:
+        base: 'build/templates/controller'
+        module: 'jnrain/ui/gen/templates'
+        quoteChar: "'"
+        # useStrict: true
+        # Instead, toggle strict mode on the AMD module scale...
+        fileHeaderString: "define(['angular'], function(angular) {\n'use strict';\n"
+        fileFooterString: '});'
 
   coffeelint:
     all:
@@ -98,6 +132,8 @@ module.exports = (grunt) ->
   grunt.initConfig GRUNT_CONFIG
 
   grunt.loadNpmTasks 'grunt-sass'
+  grunt.loadNpmTasks 'grunt-contrib-jade'
+  grunt.loadNpmTasks 'grunt-html2js'
   grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-ngmin'

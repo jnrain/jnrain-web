@@ -23,7 +23,9 @@
     "morgan": "^1.0.0",
     "helmet": "^0.2.1",
     "grunt-ngmin": "0.0.3",
-    "grunt-coffeelint": "0.0.10"
+    "grunt-coffeelint": "0.0.10",
+    "grunt-contrib-jade": "^0.11.0",
+    "grunt-html2js": "^0.2.4"
   },
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1"
