@@ -20,9 +20,9 @@ define [
         retcode = data.r
         if retcode == 0
           callback 0,
-            name: data.n
-            natural: data.t
-            xattr: data.x
+            name: data.s.n
+            natural: data.s.t
+            xattr: data.s.x
         else
           callback retcode, null
 
