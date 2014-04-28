@@ -93,6 +93,7 @@ define [
       getVPoolLastRefreshTime: getVPoolLastRefreshTime
       shouldRefresh: shouldRefresh
       maybeRefresh: maybeRefresh
+      forceRefresh: doRefresh
       getVPoolData: getVPoolData
   ]
 
