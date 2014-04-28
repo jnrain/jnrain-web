@@ -24,7 +24,7 @@ html#appmount(lang='cmn')
 
   body
     #wrap
-      #wrap__main
+      #wrap__main(data-ng-cloak)
         header
           .pagehdr__logo.jnrain-logo
           .pagehdr__nav-container
@@ -35,7 +35,9 @@ html#appmount(lang='cmn')
 
         toaster-container.toast-container
 
-    footer#wrap__footer
+      include splash
+
+    footer#wrap__footer(data-ng-cloak)
       block footer
 
       .footer__content
