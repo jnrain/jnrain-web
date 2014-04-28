@@ -1,5 +1,31 @@
-// TODO
-span {{params}}
+h1 板块分组管理
+
+.vtp-admin(data-ng-show='!requestInProgress && !retcode')
+  h2 基本信息
+  dl.vtp-admin__stat
+    dt 板块分组名
+    dd
+      span.vtp-admin__stat__name(data-ng-hide='isGlobalVPool') {{vtpStat.name}}
+      span.vtp-admin__stat__name--global(data-ng-show='isGlobalVPool') (主站板块分组)
+
+  h2 板块列表
+  section.vtp-admin__vtags__ops
+    a.btn.btn-success(href='/admin/vtp/{{vtpid}}/vtag/creat') 创建板块
+
+  ul.vtp-admin__vtags(data-ng-show='vtpVTags')
+    li.vtp-admin__vtags__vtag(data-ng-repeat='vtag in vtpVTagss')
+      // TODO
+
+  .vtp-admin__vtags--empty(data-ng-hide='vtpVTags')
+    p 该板块分组内没有板块。
+
+
+.vtp-admin--loading(data-ng-show='requestInProgress')
+  span 板块信息加载中，请稍候…
+
+
+.vtp-admin--error(data-ng-show='!requestInProgress && retcode')
+  span 板块信息加载出错，错误码 {{retcode}} ({{errorPhase}})
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
