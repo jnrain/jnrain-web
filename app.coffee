@@ -104,6 +104,7 @@ phantomCallbackFactory = (req, res) ->
           ))
 
 generateHTMLSnapshot = (req, res) ->
+  # TODO: 缓存生成的快照!
   phantom.create phantomCallbackFactory(req, res),
     parameters:
       # 因为是 self-signed SSL 证书, 这个选项很有必要, 否则会抓回空页面
