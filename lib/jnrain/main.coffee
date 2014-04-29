@@ -1,6 +1,6 @@
 define [
   'angular'
-  'angular-route'
+  'angular-ui-router'
 
   'jnrain/controller/index'
   'jnrain/ui/gen/templates'
@@ -9,14 +9,13 @@ define [
 
   boot: () ->
     mod = angular.module 'jnrain/main', [
-      'ngRoute'
-
       'jnrain/controller/index'
       'jnrain/ui/gen/templates'
 
       'btford.socket-io'
       'ui.select2'
       'ui.bootstrap'
+      'ui.router'
     ]
 
     mod.config ($locationProvider) ->
