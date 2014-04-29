@@ -15,7 +15,7 @@ requirejs.config({
     'angular-local-storage': '../../bower_components/angular-local-storage/angular-local-storage',
     'flow': '../../bower_components/flow.js/dist/flow',  // known to be simply 'flow'
     'ng-flow': '../../bower_components/ng-flow/dist/ng-flow.js',
-    'angular-route': '../../bower_components/angular-route/angular-route'
+    'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router'
   },
   shim: {
     // jQuery plugins
@@ -58,7 +58,7 @@ requirejs.config({
     // flow.js is AMD-compatible
     'ng-flow': ['angular', 'flow'],
 
-    'angular-route': ['angular'],
+    'angular-ui-router': ['angular'],
 
     // other libraries
     'lodash': {
