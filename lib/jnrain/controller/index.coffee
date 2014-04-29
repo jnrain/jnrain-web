@@ -5,6 +5,7 @@ define [
 
   'jnrain/controller/debug/footer'
 
+  'jnrain/controller/admin/index'
   'jnrain/controller/admin/vtp'
 
   'jnrain/controller/home'
@@ -22,6 +23,7 @@ define [
 
     'jnrain/controller/debug/footer'
 
+    'jnrain/controller/admin/index'
     'jnrain/controller/admin/vtp'
 
     'jnrain/controller/home'

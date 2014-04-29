@@ -123,6 +123,7 @@ entryView = (req, res) ->
 # 单页应用 (SPA) 部分
 # 这一部分需要和前端代码保持一致
 app.get '/', entryView
+app.get '/admin', entryView
 app.get '/admin/vtp/:vtpid', entryView
 
 

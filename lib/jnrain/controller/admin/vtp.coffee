@@ -1,20 +1,20 @@
 define [
   'angular'
-  'angular-route'
+  'angular-ui-router'
 
   'jnrain/provider/vpool'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/admin/vtp', [
-    'ngRoute'
+    'ui.router'
     'jnrain/provider/vpool'
   ]
 
   # 虚线索池管理视图
   mod.controller 'VTPAdmin',
-    ($scope, $routeParams, VPool) ->
-      vtpid = $routeParams.vtpid
+    ($scope, $stateParams, VPool) ->
+      vtpid = $stateParams.vtpid
 
       $scope.vtpid = vtpid
       $scope.isGlobalVPool = vtpid == VPool.GLOBAL_VPOOL
@@ -35,13 +35,15 @@ define [
           $scope.vtpStat = data.stat
           $scope.vtpVTags = data.vtags
 
-      console.log '[VTPAdmin] $routeParams = ', $routeParams
       console.log '[VTPAdmin] $scope = ', $scope
 
-  mod.config ($routeProvider) ->
-    $routeProvider.when '/admin/vtp/:vtpid',
-      templateUrl: 'admin/vtp.html'
+  mod.config ($stateProvider) ->
+    $stateProvider.state 'admin.vtp',
+      url: '/vtp/:vtpid'
       controller: 'VTPAdmin'
+      views:
+        main:
+          templateUrl: 'admin/vtp.html'
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
