@@ -7,6 +7,7 @@ define [
 
   'jnrain/controller/admin/vtp'
 
+  'jnrain/controller/home'
   'jnrain/controller/rtchannel'
   'jnrain/controller/register'
   'jnrain/controller/verifymail'
@@ -23,6 +24,7 @@ define [
 
     'jnrain/controller/admin/vtp'
 
+    'jnrain/controller/home'
     'jnrain/controller/rtchannel'
     'jnrain/controller/register'
     'jnrain/controller/verifymail'
