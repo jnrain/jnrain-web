@@ -1,12 +1,13 @@
-h1 系统管理面板
+.admin-container
+  aside.admin__nav
+    h1.admin__title 系统管理面板
+    tabset(vertical='true', type='"pills"')
+      tab(heading='板块管理', data-ui-sref='admin.vtp({vtpid: GLOBAL_VPOOL})')
+      tab(heading='TODO 1')
+      tab(heading='TODO 2')
 
-tabset(vertical='true', type='"pills"')
-  tab(heading='板块管理', data-ui-sref='admin.vtp({vtpid: "0"})')
-  tab(heading='TODO 1')
-  tab(heading='TODO 2')
 
-
-div(data-ui-view='main')
+  .admin__content(data-ui-view='main')
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -1,12 +1,12 @@
 .vtp-admin(data-ng-show='!requestInProgress && !retcode')
-  h2 基本信息
+  h2.admin__subtitle 基本信息
   dl.vtp-admin__stat
     dt 板块分组名
     dd
       span.vtp-admin__stat__name(data-ng-hide='isGlobalVPool') {{vtpStat.name}}
       span.vtp-admin__stat__name--global(data-ng-show='isGlobalVPool') (主站板块分组)
 
-  h2 板块列表
+  h2.admin__subtitle 板块列表
   section.vtp-admin__vtags__ops
     a.btn.btn-success(href='/admin/vtp/{{vtpid}}/vtag/creat') 创建板块
 

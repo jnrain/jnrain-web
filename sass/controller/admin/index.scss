@@ -1,0 +1,39 @@
+// 管理面板
+// 首页的左右两栏布局
+.admin-container {
+  display: table;
+  width: 100%;
+}
+
+.admin__nav,
+.admin__content {
+  display: table-cell;
+}
+
+.admin__title {
+  margin: 0 0 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.admin__nav {
+  width: 20%;
+  height: 100%;
+  padding: 0 10px 0;
+  border-right: 1px solid rgba(#000, 0.2);
+}
+
+.admin__content {
+  width: 80%;
+  padding: 0 0 0 10px;
+}
+
+
+// 管理面板内容部分
+.admin__subtitle {
+  font-size: 24px;
+  margin: 0 0 0.5em;
+}
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
