@@ -20,6 +20,8 @@ define [
     $stateProvider.state 'home',
       url: '/'
       controller: 'Home'
+      data:
+        title: '首页'
       views:
         main:
           templateUrl: 'home.html'
