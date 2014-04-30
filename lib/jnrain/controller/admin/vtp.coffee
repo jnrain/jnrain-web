@@ -56,7 +56,7 @@ define [
       url: '/vtp/:vtpid'
       controller: 'VTPAdmin'
       data:
-        title: '板块管理'
+        title: '版块管理'
       views:
         main:
           templateUrl: 'admin/vtp/index.html'
@@ -71,7 +71,7 @@ define [
     $stateProvider.state 'admin.vtp.vtag.creat',
       url: '/creat'
       data:
-        title: '创建板块'
+        title: '创建版块'
       onEnter: [
         '$state'
         '$stateParams'
