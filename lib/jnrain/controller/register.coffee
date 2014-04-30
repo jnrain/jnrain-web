@@ -107,7 +107,7 @@ define [
       # 模态弹层
       showModal = (title, message, callback, dismissCallback) ->
         options =
-          templateUrl: 'modalContent.html'
+          templateUrl: 'registerResponseDlg.html'
           controller: 'RegisterResponseDlg'
           resolve:
             title: () ->
