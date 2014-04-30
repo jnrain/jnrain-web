@@ -24,6 +24,14 @@ define [
         # 当前用户信息
         $scope.selfInfo = Account.getSelfInfo()
 
+      # 登陆/注销事件
+      # 这些时候要刷新会话, 以同步组件界面显示 (也是为了自己好, 保证会话有效)
+      $scope.$on 'session:authenticated', (evt) ->
+        Account.refreshSession()
+
+      $scope.$on 'session:loggedOut', (evt) ->
+        Account.refreshSession()
+
       # 启动会话刷新
       Account.refreshSession()
 
