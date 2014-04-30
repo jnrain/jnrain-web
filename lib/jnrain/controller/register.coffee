@@ -3,6 +3,7 @@ define [
   'lodash'
   'jsSHA'
   'ui.select2'
+  'angular-ui-router'
 
   'jnrain/api/univ'
   'jnrain/api/account'
@@ -12,6 +13,7 @@ define [
   'use strict'
 
   mod = angular.module 'jnrain/controller/register', [
+    'ui.router'
     'jnrain/api/univ'
     'jnrain/api/account'
     'jnrain/api/ident'
@@ -20,7 +22,7 @@ define [
 
   # 注册表单 (在读本科生)
   mod.controller 'Register',
-    ($scope, $window, ModalDlg, univInfo, accountAPI, identAPI) ->
+    ($scope, $state, ModalDlg, univInfo, accountAPI, identAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -31,7 +33,7 @@ define [
       # 成功提交后跳转
       doSuccessRedirect = () ->
         # 首页
-        $window.location.href = '/'
+        $state.go 'home'
 
       # 专业信息
       updateMajorsInfo = (majors) ->
@@ -168,6 +170,15 @@ define [
         updateDormInfo info
 
       console.log $scope
+
+  mod.config ($stateProvider) ->
+    $stateProvider.state 'register',
+      url: '/register'
+      data:
+        title: '新用户注册'
+      views:
+        main:
+          templateUrl: 'register.html'
 
   # 模态弹层
   RegisterFormModalInstance = ($scope, $modalInstance, title, message) ->

@@ -2,6 +2,7 @@ define [
   'angular'
   'lodash'
   'jsSHA'
+  'angular-ui-router'
 
   'jnrain/api/session'
   'jnrain/ui/toasts'
@@ -9,16 +10,17 @@ define [
   'use strict'
 
   mod = angular.module 'jnrain/controller/login', [
+    'ui.router'
     'jnrain/api/session'
     'jnrain/ui/toasts'
   ]
 
   # 登陆 (登陆 token 请求) 表单
   mod.controller 'Login',
-    ($scope, $window, $timeout, sessionAPI, Toasts) ->
+    ($scope, $state, $timeout, sessionAPI, Toasts) ->
       doLoginSuccessRedirect = () ->
         # 首页
-        $window.location.href = '/'
+        $state.go 'home'
 
       # 防止重复提交
       $scope.submitInProgress = false
@@ -56,6 +58,15 @@ define [
       $timeout doLoginSuccessRedirect, 2000 if alreadyHaveToken
 
       console.log '[Login] $scope = ', $scope
+
+  mod.config ($stateProvider) ->
+    $stateProvider.state 'login',
+      url: '/login'
+      data:
+        title: '登陆'
+      views:
+        main:
+          templateUrl: 'login.html'
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

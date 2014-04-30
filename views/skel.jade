@@ -7,7 +7,10 @@ html#appmount(lang='cmn')
     // 既然 oldIE 全都被中间件封杀了, 这一条声明就没有受众了, 还会让文档过不了 HTML5 校验...
     // meta(http-equiv='X-UA-Compatible', content='IE=edge')
 
-    title(data-ng-controller='PageTitle') #{pageTitle} - 江南听雨网
+    title(
+      data-ng-controller='PageTitle'
+      data-ng-bind='dynTitlePrefix + stateTitle + " - 江南听雨网"'
+      ) 江南听雨网
 
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0')
@@ -31,7 +34,7 @@ html#appmount(lang='cmn')
             nav.pagehdr__nav
               include nav
         .main-container
-          block content
+          div(data-ui-view='main')
 
         toaster-container.toast-container
 

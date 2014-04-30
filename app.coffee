@@ -117,7 +117,7 @@ entryView = (req, res) ->
   if isSpider req.useragent
     generateHTMLSnapshot req, res
   else
-    res.render 'home'
+    res.render 'skel'
 
 
 # 单页应用 (SPA) 部分
@@ -127,22 +127,10 @@ app.get '/admin', entryView
 app.get '/admin/vtp/:vtpid', entryView
 app.get '/admin/vtp/:vtpid/vtag', entryView
 app.get '/admin/vtp/:vtpid/vtag/creat', entryView
-
-
-# 独立页面的视图单独处理
-# TODO: 把这些也集成到单页部分里
-app.get '/login', (req, res) ->
-  res.render 'controller/login'
-
-app.get '/logout', (req, res) ->
-  res.render 'controller/logout'
-
-app.get '/register', (req, res) ->
-  res.render 'controller/register'
-
-app.get /^\/verifymail\/([0-9A-Za-z_-]{32})$/, (req, res) ->
-  res.render 'controller/verifymail',
-    activationKey: req.params[0]
+app.get '/login', entryView
+app.get '/logout', entryView
+app.get '/register', entryView
+app.get /^\/verifymail\/([0-9A-Za-z_-]{32})$/, entryView
 
 
 # Fire up JNRain!

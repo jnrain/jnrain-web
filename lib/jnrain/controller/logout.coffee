@@ -1,5 +1,6 @@
 define [
-  'angular',
+  'angular'
+  'angular-ui-router'
 
   'jnrain/api/session'
   'jnrain/ui/toasts'
@@ -7,16 +8,17 @@ define [
   'use strict'
 
   mod = angular.module 'jnrain/controller/logout', [
+    'ui.router'
     'jnrain/api/session'
     'jnrain/ui/toasts'
   ]
 
   # 注销
   mod.controller 'LogoutPage',
-    ($scope, $window, $timeout, sessionAPI, Toasts) ->
+    ($scope, $state, $timeout, sessionAPI, Toasts) ->
       doLogoutRedirect = () ->
         # 首页
-        $window.location.href = '/'
+        $state.go 'home'
 
       $scope.inProgress = true
       $scope.retcode = -1
@@ -32,6 +34,15 @@ define [
         $timeout doLogoutRedirect, 2000
 
       console.log '[LogoutPage] $scope = ', $scope
+
+  mod.config ($stateProvider) ->
+    $stateProvider.state 'logout',
+      url: '/logout'
+      data:
+        title: '注销'
+      views:
+        main:
+          templateUrl: 'logout.html'
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

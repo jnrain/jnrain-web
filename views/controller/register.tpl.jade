@@ -1,0 +1,134 @@
+script(id='modalContent.html', type='text/ng-template')
+  header.modal-header
+    h3 {{title}}
+
+  .modal-body
+    p {{message}}
+
+  footer.modal-footer
+    button.widget__btn(data-ng-click='ok()') 好的
+
+form.page-form(
+  name='registerForm'
+  novalidate='novalidate'
+  data-ng-controller='Register'
+  )
+  h1.form__title 注册一个江南听雨网帐号
+
+  section.form__section
+    h2.form__section__title 身份验证
+
+    input.form__input(
+      type='text'
+      name='number'
+      required
+      placeholder='您的学号'
+      data-ng-model='number'
+      data-ng-pattern='/^[0-9]{10}$/'
+      )
+
+    input.form__input(
+      type='text'
+      name='idnumber'
+      required
+      placeholder='身份证后六位'
+      data-ng-model='idnumber'
+      data-ng-pattern='/^[0-9Xx]{6}$/'
+      )
+
+    .ident-check-result(
+      data-ng-switch='!!identInfo'
+      )
+      .ident-check-passed(data-ng-switch-when='true')
+        i.ident__icon.fa.fa-check
+        i.ident__gender.fa(data-ng-class='{"fa-female": identInfo.gender == 1, "fa-male": identInfo.gender == 2}')
+        span.ident__name {{identInfo.name}}
+        span.ident__school {{identInfo.school}}
+        span.ident__major {{majorsInfo[identInfo.major].name}}
+        span.ident__klass {{identInfo.year % 100}}{{zeropad(identInfo.klass)}}班
+
+      .ident-check-fail(data-ng-switch-when='false')
+        span.ident__retcode {{identCheckMsg}}
+
+  section.form__section
+    h2.form__section__title 基本信息
+
+    .basic-info(data-ng-show='!!identInfo')
+      input.form__input(
+        type='email'
+        name='email'
+        required
+        placeholder='邮箱地址'
+        data-ng-model='email'
+        )
+      input.form__input(
+        type='text'
+        name='mobile'
+        required
+        placeholder='手机号码'
+        data-ng-model='mobile'
+        data-ng-pattern='/^[0-9]{11}$/'
+        )
+      input.form__input(
+        type='text'
+        name='displayName'
+        required
+        placeholder='设置一个昵称'
+        data-ng-model='displayName'
+        data-ng-maxlength='16'
+        )
+      input.form__input(
+        type='password'
+        name='psw'
+        required
+        placeholder='设置一个密码'
+        data-ng-model='psw'
+        data-ng-minlength='6'
+        )
+
+    .basic-info-hidden(data-ng-hide='!!identInfo')
+      p 请在通过身份验证之后设置基本信息。
+
+  section.form__section
+    h2.form__section__title 住宿信息
+
+    .dorm-info(data-ng-show='!!identInfo')
+      select.form__select2(required, data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
+        option(value='')
+        option(data-ng-repeat='groupName in dormGroups[identInfo.gender]', value='{{$index}}') {{groupName}}
+
+      select.form__select2(required, data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
+        option(value='')
+        option(data-ng-repeat='bldgNum in dormByGender[identInfo.gender][dormGroups[identInfo.gender][dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
+
+      input.form__input(
+        type='text'
+        name='dormRoom'
+        required
+        placeholder='宿舍房间号'
+        data-ng-model='dormRoom'
+        data-ng-pattern='/^[0-9]{3}$/'
+      )
+
+    .dorm-info-hidden(data-ng-hide='!!identInfo')
+      // TODO: 公共的成功/失败信息提示框组件
+      p 请在通过身份验证之后设置住宿信息。
+
+  section.form__section
+    button.form__submit(
+      type='submit'
+      data-ng-disabled='registerForm.$invalid || submitInProgress'
+      data-ng-click='doRegister(true)'
+      )
+      i.fa(data-ng-class='{"fa-check-square-o": registerForm.$valid, "fa-minus-square-o": registerForm.$invalid}')
+      提交注册
+    span.form__explanation 这会向您填写的邮箱发送一封验证邮件。
+    button.form__submit--minor(
+      type='submit'
+      data-ng-disabled='registerForm.$invalid || submitInProgress'
+      data-ng-click='doRegister(false)'
+      )
+      请发送纯文本邮件
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
