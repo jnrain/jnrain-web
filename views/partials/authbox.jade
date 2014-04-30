@@ -3,11 +3,11 @@ section.auth-box-container(data-ng-controller='AuthBox')
     .auth-box__user
       h3.auth-box__user__name {{selfInfo.displayName}}
 
-    a.widget__btn--minor(href='/logout') 注销
+    a.widget__btn--minor(data-ui-sref='logout') 注销
 
   .auth-box--guest(data-ng-hide='alreadyHaveToken')
-    a.auth-box__btn(href='/login') 登录
-    a.auth-box__btn(href='/register') 激活帐号
+    button.auth-box__btn(data-ui-sref='login') 登录
+    button.auth-box__btn(data-ui-sref='register') 激活帐号
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
