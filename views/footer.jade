@@ -1,0 +1,29 @@
+.footer__content
+  p &copy; 2014 江南听雨网.
+
+  .footer__debug(data-ng-controller='DebugFooter')
+    dl.debug__items
+      dt.debug__item__title 组件版本
+      dd.debug__item
+        ul.footer__versions
+          li.footer__versions__item weiyu
+            span.footer__versions__item__rev {{versions.weiyu}}
+          li.footer__versions__item luohua
+            span.footer__versions__item__rev {{versions.luohua}}
+          li.footer__versions__item jnrain-web
+            span.footer__versions__item__rev #{VER_GIT}
+
+      dt.debug__item__title 部署频道
+      dd.debug__item.debug__channel #{DEPLOY_CHANNEL_NAME}
+
+      dt.debug__item__title 实时信道
+      dd.debug__item(data-ng-controller='RTChannelManager')
+        .debug__rt__status {{rtStatus}}
+          span.debug__rt__sid(data-ng-show='!!rtSID') ; rtSID={{rtSID}}
+          span.debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') ; retries={{rtConnectionRetries}}
+
+      dt.debug__item__title 路由信息
+      dd.debug__item path={{$location.path()}}; $state={{$state}}; $stateParams={{$stateParams}}
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
