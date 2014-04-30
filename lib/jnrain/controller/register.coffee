@@ -37,7 +37,7 @@ define [
       # 大学信息
       $scope.$on 'provider:univInfoRefreshed', (evt) ->
         $scope.majorsInfo = UnivInfo.majorsInfo()
-        $scope.dormByGender = UnivInfo.dormsByGender()
+        $scope.dormsByGender = UnivInfo.dormsByGender()
         $scope.dormGroups = UnivInfo.dormGroups()
 
       # 身份信息验证逻辑

@@ -89,7 +89,7 @@ form.page-form(
 
       select.form__select2(required, data-ui-select2, data-ng-model='dormBuilding', data-placeholder='您居住的楼号')
         option(value='')
-        option(data-ng-repeat='bldgNum in dormByGender[identInfo.gender][dormGroups[identInfo.gender][dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
+        option(data-ng-repeat='bldgNum in dormsByGender[identInfo.gender][dormGroups[identInfo.gender][dormGroup]]' value='{{bldgNum}}') {{bldgNum}}
 
       input.form__input(
         type='text'
