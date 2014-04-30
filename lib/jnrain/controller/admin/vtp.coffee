@@ -1,6 +1,7 @@
 define [
   'angular'
   'angular-ui-router'
+  'ui-bootstrap'
 
   'jnrain/provider/vpool'
 ], (angular) ->
@@ -8,16 +9,17 @@ define [
 
   mod = angular.module 'jnrain/controller/admin/vtp', [
     'ui.router'
+    'ui.bootstrap'
     'jnrain/provider/vpool'
   ]
 
   # 虚线索池管理视图
   mod.controller 'VTPAdmin',
-    ($scope, $stateParams, VPool) ->
+    ($scope, $stateParams, $modal, VPool) ->
       vtpid = $stateParams.vtpid
 
+      $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
       $scope.vtpid = vtpid
-      $scope.isGlobalVPool = vtpid == VPool.GLOBAL_VPOOL
       $scope.requestInProgress = true
       $scope.retcode = null
       $scope.vtpStat = null
@@ -35,7 +37,17 @@ define [
           $scope.vtpStat = data.stat
           $scope.vtpVTags = data.vtags
 
-      console.log '[VTPAdmin] $scope = ', $scope
+      console.info '[VTPAdmin] $scope = ', $scope
+
+  # 虚标签创建对话框
+  mod.controller 'VTagCreatDlg',
+    ($scope, $modalInstance, vtpid) ->
+      $scope.vtpid = vtpid
+
+      $scope.dismiss = () ->
+        $scope.$dismiss()
+
+      console.log '[VTagCreatDlg] $scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin.vtp',
@@ -43,7 +55,38 @@ define [
       controller: 'VTPAdmin'
       views:
         main:
-          templateUrl: 'admin/vtp.html'
+          templateUrl: 'admin/vtp/index.html'
+
+    $stateProvider.state 'admin.vtp.vtag',
+      url: '/vtag'
+      abstract: true
+      views:
+        main:
+          template: '<div data-ui-view="main"></div>'
+
+    $stateProvider.state 'admin.vtp.vtag.creat',
+      url: '/creat'
+      onEnter: [
+        '$state'
+        '$stateParams'
+        '$modal'
+        ($state, $stateParams, $modal) ->
+          modalInstance = $modal.open
+            templateUrl: 'admin/vtp/vtagCreatDlg.html'
+            controller: 'VTagCreatDlg'
+            resolve:
+              vtpid: () ->
+                $stateParams.vtpid
+
+          modalInstance.result.then(((result) ->
+            $state.go 'admin.vtp'
+          ), (() ->
+            # dismissed
+            $state.go 'admin.vtp'
+          ))
+
+          console.info '[VTPAdmin] vtag creat dialog opened'
+      ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -125,6 +125,8 @@ entryView = (req, res) ->
 app.get '/', entryView
 app.get '/admin', entryView
 app.get '/admin/vtp/:vtpid', entryView
+app.get '/admin/vtp/:vtpid/vtag', entryView
+app.get '/admin/vtp/:vtpid/vtag/creat', entryView
 
 
 # 独立页面的视图单独处理
