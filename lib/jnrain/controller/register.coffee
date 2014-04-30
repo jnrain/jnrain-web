@@ -20,6 +20,9 @@ define [
   ]
 
   # 注册表单 (在读本科生)
+  # NOTE: 这个过程实质上是注册, 但在用户界面上应统一使用 "激活" 的说法.
+  # 造成一种注册很容易的感觉 (实际上比之前要容易多了, 但因为实名制的原因不可能
+  # 做到比各种商业网站还容易, 因此需要玩一点文字游戏)
   mod.controller 'RegisterPage',
     ($scope, $state, ModalDlg, UnivInfo, AccountAPI, IdentAPI) ->
       # 最无聊的东西...
@@ -119,7 +122,7 @@ define [
           if retcode == 0
             console.log '[RegisterPage] submit: OK'
             showModal(
-              '提交成功',
+              '提交激活成功',
               '您很快将收到一封验证邮件，请登录您的注册邮箱查收；'
               '现在页面将跳转回首页。',
               doSuccessRedirect,
@@ -138,7 +141,7 @@ define [
             else
               errorMessage = retcodeMsg
 
-            showModal '注册遇到问题', errorMessage
+            showModal '激活遇到问题', errorMessage
 
       # 请求大学信息
       UnivInfo.maybeRefresh()
@@ -158,7 +161,7 @@ define [
     $stateProvider.state 'register',
       url: '/register'
       data:
-        title: '新用户注册'
+        title: '激活帐号'
       views:
         main:
           templateUrl: 'register.html'

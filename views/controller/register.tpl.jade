@@ -3,7 +3,7 @@ form.page-form(
   novalidate='novalidate'
   data-ng-controller='RegisterPage'
   )
-  h1.form__title 注册一个江南听雨网帐号
+  h1.form__title 激活您的江南听雨网帐号
 
   section.form__section
     h2.form__section__title 身份验证
@@ -41,7 +41,7 @@ form.page-form(
         span.ident__retcode {{identCheckMsg}}
 
   section.form__section
-    h2.form__section__title 基本信息
+    h2.form__section__title 完善基本信息
 
     .basic-info(data-ng-show='!!identInfo')
       input.form__input(
@@ -77,10 +77,10 @@ form.page-form(
         )
 
     .basic-info-hidden(data-ng-hide='!!identInfo')
-      p 请在通过身份验证之后设置基本信息。
+      p 请在通过身份验证之后完善基本信息。
 
   section.form__section
-    h2.form__section__title 住宿信息
+    h2.form__section__title 完善住宿信息
 
     .dorm-info(data-ng-show='!!identInfo')
       select.form__select2(required, data-ui-select2, data-ng-model='dormGroup', data-placeholder='您所在的园区')
@@ -102,7 +102,7 @@ form.page-form(
 
     .dorm-info-hidden(data-ng-hide='!!identInfo')
       // TODO: 公共的成功/失败信息提示框组件
-      p 请在通过身份验证之后设置住宿信息。
+      p 请在通过身份验证之后完善住宿信息。
 
   section.form__section
     button.form__submit(
@@ -111,7 +111,7 @@ form.page-form(
       data-ng-click='doRegister(true)'
       )
       i.fa(data-ng-class='{"fa-check-square-o": registerForm.$valid, "fa-minus-square-o": registerForm.$invalid}')
-      | 提交注册
+      | 激活帐号
     span.form__explanation 这会向您填写的邮箱发送一封验证邮件。
     button.form__submit--minor(
       type='submit'

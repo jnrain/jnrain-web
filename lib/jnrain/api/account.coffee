@@ -14,7 +14,7 @@ define [
 
   ERROR_CODE_MAP =
     22: '传入参数格式不正确。'  # API 调用应该不会遇到
-    28: '今日注册用户量已达最大值。'
+    28: '今日激活用户量已达最大值。'
     257: '创建用户失败。'  # 同上
 
   mod.factory 'AccountAPI', (APIv1, SessionAPI) ->
