@@ -80,6 +80,7 @@ define [
           modalOptions =
             templateUrl: 'admin/vtp/vtagCreatDlg.html'
             controller: 'VTagCreatDlg'
+            backdrop: 'static'
             resolve:
               vtpid: () ->
                 $stateParams.vtpid
