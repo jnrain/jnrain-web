@@ -4,22 +4,22 @@
   .in-progress(data-ng-show='inProgress')
     h2.form--progress__inprogress__title
       i.form--progress__result__icon.fa.fa-meh-o
-      正在等待验证结果返回，请稍候……
+      | 正在等待验证结果返回，请稍候……
 
   .form--progress__result(data-ng-hide='inProgress')
     .form--progress__result__retcodes(data-ng-switch='retcode')
       .form--progress__result--success(data-ng-switch-when='0')
         h2.form--progress__result--success__title
           i.form--progress__result__icon.fa.fa-smile-o
-          成功通过邮箱验证
+          | 成功通过邮箱验证
         p 江南听雨网欢迎您的到来！
 
       .form--progress__result--notfound(data-ng-switch-when='2')
         h2.form--progress__result--notfound__title
           i.form--progress__result__icon.fa.fa-frown-o
-          未找到给定激活码对应的用户
+          | 未找到给定激活码对应的用户
 
-        您的邮箱是不是已经激活了？
+        | 您的邮箱是不是已经激活了？
 
     .form--progress__result__debug(data-ng-show='retcode != 0')
       p 如果您确信自己遇到了系统问题，请联系技术支持并提供以下信息，我们会尽力解决您的问题：

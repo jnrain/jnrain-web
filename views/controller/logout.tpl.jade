@@ -4,7 +4,7 @@
   .in-progress(data-ng-show='inProgress')
     h2.form--progress__inprogress__title
       i.form--progress__result__icon.fa.fa-meh-o
-      正在注销，请稍候……
+      | 正在注销，请稍候……
 
   .form--progress__result(data-ng-hide='inProgress')
     .form--progress__result__retcodes(data-ng-switch='retcode')
@@ -12,7 +12,7 @@
       .form--progress__result--success(data-ng-switch-when='0')
         h2.form--progress__result--success__title
           i.form--progress__result__icon.fa.fa-sign-out
-          注销成功
+          | 注销成功
         p 现在浏览器将跳转回首页。
 
 
