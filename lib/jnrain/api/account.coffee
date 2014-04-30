@@ -46,10 +46,11 @@ define [
       basePath().one(uid).one('stat').get().then (data) ->
         retcode = data.r
 
-        if retcode == 0
-          callback retcode, statParserFn data.s
-        else
-          callback retcode, undefined
+        if callback?
+          if retcode == 0
+            callback retcode, statParserFn data.s
+          else
+            callback retcode, undefined
 
     # 以下为暴露 API
     errorcode: ERROR_CODE_MAP
