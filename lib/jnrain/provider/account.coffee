@@ -53,9 +53,6 @@ define [
           if retcode == 0
             $log.info '[Account] Session refresh OK'
 
-            # 通知各组件会话已刷新
-            $rootScope.$broadcast 'provider:sessionRefreshed'
-
             # 如果已登陆, 刷新用户信息
             AccountAPI.statSelf(refreshUserStatCallback) if alreadyHaveToken()
           else

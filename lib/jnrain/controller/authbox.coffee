@@ -16,7 +16,7 @@ define [
       $scope.selfInfo = {}
 
       # 处理刷新事件
-      $scope.$on 'provider:sessionRefreshed', (evt) ->
+      $scope.$on 'session:refreshed', (evt) ->
         # 是否已经有记录登陆 token?
         $scope.alreadyHaveToken = Account.alreadyHaveToken()
 

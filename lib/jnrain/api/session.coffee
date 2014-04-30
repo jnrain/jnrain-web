@@ -13,7 +13,7 @@ define [
   ]
 
   mod.factory 'SessionAPI',
-    (APIv1, localStorageService) ->
+    ($rootScope, APIv1, localStorageService) ->
       basePath = () ->
         APIv1.one('session')
 
@@ -49,6 +49,9 @@ define [
           retcode = data.r
           token = data.t if retcode == 0
           setLoginToken token if token?
+
+          $rootScope.$broadcast 'session:authenticated'
+
           callback retcode, token
 
       refresh: (callback) ->
@@ -60,12 +63,22 @@ define [
           if retcode == 0
             setUID data.u
 
+            # 通知刷新会话
+            $rootScope.$broadcast 'session:refreshed'
+
           callback data.r
 
       logout: (callback) ->
         basePath().one('logout').customPOST().then (data) ->
           removeLoginToken()
           removeUID()
+
+          # 通知注销
+          $rootScope.$broadcast 'session:loggedOut'
+
+          # 通知刷新会话
+          $rootScope.$broadcast 'session:refreshed'
+
           callback data.r
 
 
