@@ -11,9 +11,7 @@ define [
     'LocalStorageModule'
   ]
 
-  mod.factory 'VPool', [
-    'DSAPI'
-    'localStorageService'
+  mod.factory 'VPool',
     (DSAPI, localStorageService) ->
       # 全局虚线索池 ID
       GLOBAL_VPOOL = '0'
@@ -95,7 +93,6 @@ define [
       maybeRefresh: maybeRefresh
       forceRefresh: doRefresh
       getVPoolData: getVPoolData
-  ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
