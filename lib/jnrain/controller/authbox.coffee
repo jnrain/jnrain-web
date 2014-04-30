@@ -18,12 +18,12 @@ define [
       $scope,
       $rootScope,
       $timeout,
-      sessionAPI,
-      accountAPI,
+      SessionAPI,
+      AccountAPI,
       sessionRefreshInterval,
     ) ->
       # 是否已经有记录登陆 token?
-      $scope.alreadyHaveToken = sessionAPI.getLoginToken()?
+      $scope.alreadyHaveToken = SessionAPI.getLoginToken()?
 
       # 当前用户信息
       $scope.selfInfo = {}
@@ -39,12 +39,12 @@ define [
 
       # 隔一段时间就刷新一下会话确保服务器端 session 存活, 避免不必要的麻烦
       refreshSession = () ->
-        sessionAPI.refresh (retcode) ->
+        SessionAPI.refresh (retcode) ->
           console.log '[AuthBox] Token refresh retcode = ', retcode
 
           # 如果已登陆, 刷新用户信息
-          accountAPI.statSelf(
-            refreshUserStatCallback if sessionAPI.getLoginToken()?,
+          AccountAPI.statSelf(
+            refreshUserStatCallback if SessionAPI.getLoginToken()?,
           )
 
           # 通知各组件会话已刷新

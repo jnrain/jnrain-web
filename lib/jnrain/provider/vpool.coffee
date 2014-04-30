@@ -12,9 +12,9 @@ define [
   ]
 
   mod.factory 'VPool', [
-    'dsAPI'
+    'DSAPI'
     'localStorageService'
-    (dsAPI, localStorageService) ->
+    (DSAPI, localStorageService) ->
       # 全局虚线索池 ID
       GLOBAL_VPOOL = '0'
 
@@ -56,7 +56,7 @@ define [
 
       doRefresh = (vtpid, callback) ->
         # 查询基本信息
-        dsAPI.vpool.stat vtpid, (retcode, stat) ->
+        DSAPI.vpool.stat vtpid, (retcode, stat) ->
           console.log(
             '[provider/vpool] stat retcode=',
             retcode,
@@ -67,7 +67,7 @@ define [
             return callback retcode, null, 'stat'
 
           # 查询虚标签
-          dsAPI.vpool.readdir vtpid, (retcode, vtags) ->
+          DSAPI.vpool.readdir vtpid, (retcode, vtags) ->
             console.log(
               '[provider/vpool] readdir retcode=',
               retcode,

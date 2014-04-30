@@ -17,7 +17,7 @@ define [
     28: '今日注册用户量已达最大值。'
     257: '创建用户失败。'  # 同上
 
-  mod.factory 'accountAPI', (APIv1, sessionAPI) ->
+  mod.factory 'AccountAPI', (APIv1, SessionAPI) ->
     basePath = () ->
       APIv1.one 'account'
 

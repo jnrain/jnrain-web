@@ -15,7 +15,7 @@ define [
 
   # 注销
   mod.controller 'LogoutPage',
-    ($scope, $state, $timeout, sessionAPI, Toasts) ->
+    ($scope, $state, $timeout, SessionAPI, Toasts) ->
       doLogoutRedirect = () ->
         # 首页
         $state.go 'home'
@@ -23,7 +23,7 @@ define [
       $scope.inProgress = true
       $scope.retcode = -1
 
-      sessionAPI.logout (retcode) ->
+      SessionAPI.logout (retcode) ->
         console.log '[LogoutPage] retcode = ', retcode
         $scope.inProgress = false
         $scope.retcode = retcode

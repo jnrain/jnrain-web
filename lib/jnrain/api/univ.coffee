@@ -3,7 +3,7 @@ define ['angular', 'lodash', 'jnrain/api/bridge'], (angular, _) ->
 
   mod = angular.module 'jnrain/api/univ', ['jnrain/api/bridge']
 
-  mod.factory 'univInfo', (APIv1) ->
+  mod.factory 'UnivAPI', (APIv1) ->
     getBasicInfo: (callback) ->
       APIv1.one('univ').one('basic').get().then (data) ->
         info =

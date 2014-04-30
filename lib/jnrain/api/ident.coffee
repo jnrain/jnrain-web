@@ -17,7 +17,7 @@ define [
     22: '传入参数格式不正确。'  # API 调用应该不会遇到
     257: '身份信息格式不正确。'  # 同上
 
-  mod.factory 'identAPI', (APIv1) ->
+  mod.factory 'IdentAPI', (APIv1) ->
     basePath = () ->
       APIv1.one('account').one('ident')
 

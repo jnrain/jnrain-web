@@ -9,7 +9,7 @@ define [
     'jnrain/api/bridge'
   ]
 
-  mod.factory 'dsAPI', (APIv1) ->
+  mod.factory 'DSAPI', (APIv1) ->
     vpool: vpool APIv1
 
 

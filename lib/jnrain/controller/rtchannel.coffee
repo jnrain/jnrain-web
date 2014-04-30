@@ -18,7 +18,7 @@ define [
       $scope,
       $rootScope,
       $timeout,
-      sessionAPI,
+      SessionAPI,
       rtSocket,
       _raw_rtSocket,
       Toasts,
@@ -41,7 +41,7 @@ define [
 
         # 发送 hello 认证自己
         rtSocket.emit 'hello',
-          loginToken: sessionAPI.getLoginToken()
+          loginToken: SessionAPI.getLoginToken()
 
       rtSocket.on 'disconnect', () ->
         $scope.rtIsConnected = false

@@ -17,7 +17,7 @@ define [
 
   # 登陆 (登陆 token 请求) 表单
   mod.controller 'Login',
-    ($scope, $state, $timeout, sessionAPI, Toasts) ->
+    ($scope, $state, $timeout, SessionAPI, Toasts) ->
       doLoginSuccessRedirect = () ->
         # 首页
         $state.go 'home'
@@ -26,7 +26,7 @@ define [
       $scope.submitInProgress = false
 
       # 是否已经有记录登陆 token?
-      alreadyHaveToken = sessionAPI.getLoginToken()?
+      alreadyHaveToken = SessionAPI.getLoginToken()?
       $scope.alreadyHaveToken = alreadyHaveToken
 
       $scope.doLogin = () ->
@@ -36,7 +36,7 @@ define [
         psw = $scope.psw
         pswHash = new jsSHA(psw, 'TEXT').getHash 'SHA-512', 'HEX'
 
-        sessionAPI.authenticate name, pswHash, (retcode, token) ->
+        SessionAPI.authenticate name, pswHash, (retcode, token) ->
           $scope.submitInProgress = false
 
           if retcode != 0

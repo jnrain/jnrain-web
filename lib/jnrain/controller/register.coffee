@@ -22,7 +22,7 @@ define [
 
   # 注册表单 (在读本科生)
   mod.controller 'Register',
-    ($scope, $state, ModalDlg, univInfo, accountAPI, identAPI) ->
+    ($scope, $state, ModalDlg, UnivAPI, AccountAPI, IdentAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -88,14 +88,14 @@ define [
 
       doCheckIdent = (number, idnumber) ->
         normIDNumber = idnumber.toUpperCase()
-        identAPI.queryIdent number, 0, normIDNumber, (retcode, data) ->
+        IdentAPI.queryIdent number, 0, normIDNumber, (retcode, data) ->
           console.log 'queryIdent returned:', retcode, data
           if retcode == 0
             $scope.identInfo = data
             setIdentCheckValidity true
           else
             $scope.identInfo = null
-            $scope.identCheckMsg = identAPI.errorcode[retcode]
+            $scope.identCheckMsg = IdentAPI.errorcode[retcode]
             setIdentCheckValidity false
 
       attrWatcher = (to, from) ->
@@ -136,7 +136,7 @@ define [
           htmlmail: !!sendHTMLMail
 
         console.log '[registerForm] payload: ', registerPayload
-        accountAPI.createAccount registerPayload, (retcode, err) ->
+        AccountAPI.createAccount registerPayload, (retcode, err) ->
           $scope.submitInProgress = false
 
           if retcode == 0
@@ -153,7 +153,7 @@ define [
             console.log '[registerForm] submit: err = ', err
 
             # 生成错误信息
-            retcodeMsg = accountAPI.errorcode[retcode]
+            retcodeMsg = AccountAPI.errorcode[retcode]
             if retcode == 257
               # TODO: 整理用户/实名身份组件的错误码对应信息
               userErrorMsg = '' + err
@@ -163,10 +163,10 @@ define [
 
             showModal '注册遇到问题', errorMessage
 
-      univInfo.getMajorsInfo (info) ->
+      UnivAPI.getMajorsInfo (info) ->
         updateMajorsInfo info
 
-      univInfo.getDormsInfo (info) ->
+      UnivAPI.getDormsInfo (info) ->
         updateDormInfo info
 
       console.log $scope

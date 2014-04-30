@@ -12,7 +12,7 @@ define [
     'LocalStorageModule'
   ]
 
-  mod.factory 'sessionAPI',
+  mod.factory 'SessionAPI',
     (APIv1, localStorageService) ->
       basePath = () ->
         APIv1.one('session')
