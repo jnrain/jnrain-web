@@ -120,7 +120,7 @@ define [
             console.log '[RegisterPage] submit: OK'
             showModal(
               '提交成功',
-              '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；'
+              '您很快将收到一封验证邮件，请登录您的注册邮箱查收；'
               '现在页面将跳转回首页。',
               doSuccessRedirect,
               doSuccessRedirect,

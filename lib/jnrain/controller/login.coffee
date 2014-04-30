@@ -15,7 +15,7 @@ define [
     'jnrain/ui/toasts'
   ]
 
-  # 登陆 (登陆 token 请求) 表单
+  # 登录 (登录 token 请求) 表单
   mod.controller 'LoginPage',
     ($scope, $state, $timeout, SessionAPI, Toasts) ->
       doLoginSuccessRedirect = () ->
@@ -25,7 +25,7 @@ define [
       # 防止重复提交
       $scope.submitInProgress = false
 
-      # 是否已经有记录登陆 token?
+      # 是否已经有记录登录 token?
       alreadyHaveToken = SessionAPI.getLoginToken()?
       $scope.alreadyHaveToken = alreadyHaveToken
 
@@ -44,17 +44,17 @@ define [
             console.log '[LoginPage] Auth. failed, retcode = ', retcode
 
             # TODO: 错误消息
-            Toasts.toast 'error', '登陆失败', '登陆失败: ' + retcode
+            Toasts.toast 'error', '登录失败', '登录失败: ' + retcode
           else
             # 认证成功
             console.log '[LoginPage] Auth. OK: token = ', token
 
-            Toasts.toast 'info', '登陆成功', '您已成功登陆。'
+            Toasts.toast 'info', '登录成功', '您已成功登录。'
 
             # 2 秒后跳转回首页
             $timeout doLoginSuccessRedirect, 2000
 
-      # 已经有记录登陆 token 的话也回首页
+      # 已经有记录登录 token 的话也回首页
       $timeout doLoginSuccessRedirect, 2000 if alreadyHaveToken
 
       console.log '[LoginPage] $scope = ', $scope
@@ -63,7 +63,7 @@ define [
     $stateProvider.state 'login',
       url: '/login'
       data:
-        title: '登陆'
+        title: '登录'
       views:
         main:
           templateUrl: 'login.html'

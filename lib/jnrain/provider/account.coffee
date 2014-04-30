@@ -22,7 +22,7 @@ define [
       AccountAPI,
       sessionRefreshInterval,
     ) ->
-      # 是否已经有记录登陆 token?
+      # 是否已经有记录登录 token?
       alreadyHaveToken = () ->
         SessionAPI.getLoginToken()?
 
@@ -53,7 +53,7 @@ define [
           if retcode == 0
             $log.info '[Account] Session refresh OK'
 
-            # 如果已登陆, 刷新用户信息
+            # 如果已登录, 刷新用户信息
             AccountAPI.statSelf(refreshUserStatCallback) if alreadyHaveToken()
           else
             $log.warn '[Account] Session refresh failed, retcode = ', retcode
