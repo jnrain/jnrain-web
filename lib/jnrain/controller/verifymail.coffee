@@ -12,7 +12,7 @@ define [
   ]
 
   # 邮箱验证
-  mod.controller 'VerifyMail',
+  mod.controller 'VerifyMailPage',
     ($scope, $state, $stateParams, $timeout, IdentAPI) ->
       doRedirect = () ->
         # 首页
@@ -25,14 +25,14 @@ define [
 
       # 进行 API 请求
       IdentAPI.verifyMail $scope.activationKey, (retcode) ->
-        console.log '[VerifyMail] retcode = ', retcode
+        console.log '[VerifyMailPage] retcode = ', retcode
         $scope.inProgress = false
         $scope.retcode = retcode
 
         # 5 秒后自动返回首页
         $timeout doRedirect, 5000
 
-      console.log '[VerifyMail] $scope = ', $scope
+      console.log '[VerifyMailPage] $scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'verifymail',

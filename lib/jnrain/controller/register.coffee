@@ -21,7 +21,7 @@ define [
   ]
 
   # 注册表单 (在读本科生)
-  mod.controller 'Register',
+  mod.controller 'RegisterPage',
     ($scope, $state, ModalDlg, UnivAPI, AccountAPI, IdentAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
@@ -89,7 +89,7 @@ define [
       doCheckIdent = (number, idnumber) ->
         normIDNumber = idnumber.toUpperCase()
         IdentAPI.queryIdent number, 0, normIDNumber, (retcode, data) ->
-          console.log 'queryIdent returned:', retcode, data
+          console.log '[RegisterPage] queryIdent returned:', retcode, data
           if retcode == 0
             $scope.identInfo = data
             setIdentCheckValidity true
@@ -135,12 +135,12 @@ define [
             dorm_room: $scope.dormRoom
           htmlmail: !!sendHTMLMail
 
-        console.log '[registerForm] payload: ', registerPayload
+        console.log '[RegisterPage] payload: ', registerPayload
         AccountAPI.createAccount registerPayload, (retcode, err) ->
           $scope.submitInProgress = false
 
           if retcode == 0
-            console.log '[registerForm] submit: OK'
+            console.log '[RegisterPage] submit: OK'
             showModal(
               '提交成功',
               '您很快将收到一封验证邮件，请登陆您的注册邮箱查收；'
@@ -149,8 +149,8 @@ define [
               doSuccessRedirect,
             )
           else
-            console.log '[registerForm] submit: retcode = ', retcode
-            console.log '[registerForm] submit: err = ', err
+            console.log '[RegisterPage] submit: retcode = ', retcode
+            console.log '[RegisterPage] submit: err = ', err
 
             # 生成错误信息
             retcodeMsg = AccountAPI.errorcode[retcode]

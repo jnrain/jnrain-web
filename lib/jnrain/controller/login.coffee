@@ -16,7 +16,7 @@ define [
   ]
 
   # 登陆 (登陆 token 请求) 表单
-  mod.controller 'Login',
+  mod.controller 'LoginPage',
     ($scope, $state, $timeout, SessionAPI, Toasts) ->
       doLoginSuccessRedirect = () ->
         # 首页
@@ -41,13 +41,13 @@ define [
 
           if retcode != 0
             # 认证失败
-            console.log '[Login] Authentication failed, retcode = ', retcode
+            console.log '[LoginPage] Auth. failed, retcode = ', retcode
 
             # TODO: 错误消息
             Toasts.toast 'error', '登陆失败', '登陆失败: ' + retcode
           else
             # 认证成功
-            console.log '[Login] Authentication OK: token = ', token
+            console.log '[LoginPage] Auth. OK: token = ', token
 
             Toasts.toast 'info', '登陆成功', '您已成功登陆。'
 
@@ -57,7 +57,7 @@ define [
       # 已经有记录登陆 token 的话也回首页
       $timeout doLoginSuccessRedirect, 2000 if alreadyHaveToken
 
-      console.log '[Login] $scope = ', $scope
+      console.log '[LoginPage] $scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'login',
