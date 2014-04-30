@@ -15,13 +15,13 @@ phantom = require 'node-phantom'
 
 # 处理 argv
 argv = minimist process.argv.slice(2)
-isInProduction = argv.production ? false
+isDebug = argv.debug ? false
 port = argv.p ? 8000
 deployChannelName = argv.channel ? 'localdebug'
 
 # SSL 参数
-# 生产环境下由 nginx 等组件负责 SSL, 强制关闭 Node.js 的 SSL 支持
-sslEnabled = !(argv['disable-ssl'] or isInProduction)
+# 非调试环境下由 nginx 等组件负责 SSL, 强制关闭 Node.js 的 SSL 支持
+sslEnabled = !(argv['disable-ssl'] or !isDebug)
 keyFile = argv.keyfile
 certFile = argv.certfile
 
@@ -44,7 +44,7 @@ app.set 'view engine', 'jade'
 
 # 公共参数
 app.locals.DEPLOY_CHANNEL_NAME = deployChannelName
-app.locals.DEBUG_LIVERELOAD = !isInProduction
+app.locals.DEBUG_LIVERELOAD = isDebug
 gitRev.short (short) ->
   app.locals.VER_GIT = short
 
@@ -57,7 +57,7 @@ app.disable 'x-powered-by'
 
 # 中间件
 app.use morgan()
-app.use '/static', express.static('static') unless isInProduction
+app.use '/static', express.static('static') if isDebug
 app.use connectSlashes(false)  # 标准化 URL, 去掉末尾的 /
 
 
