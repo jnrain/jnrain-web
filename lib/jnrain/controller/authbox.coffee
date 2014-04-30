@@ -1,60 +1,31 @@
 define [
   'angular'
 
-  'jnrain/config'
-  'jnrain/api/session'
-  'jnrain/api/account'
+  'jnrain/provider/account'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/authbox', [
-    'jnrain/api/session'
-    'jnrain/api/account'
+    'jnrain/provider/account'
   ]
 
   # 用户信息组件
   mod.controller 'AuthBox',
-    (
-      $scope,
-      $rootScope,
-      $timeout,
-      SessionAPI,
-      AccountAPI,
-      sessionRefreshInterval,
-    ) ->
-      # 是否已经有记录登陆 token?
-      $scope.alreadyHaveToken = SessionAPI.getLoginToken()?
-
-      # 当前用户信息
+    ($scope, Account) ->
+      $scope.alreadyHaveToken = false
       $scope.selfInfo = {}
-      refreshUserStatCallback = (retcode, info) ->
-        if retcode == 0
-          console.log '[AuthBox] self info refreshed: ', info
-          $scope.selfInfo = info
-        else
-          console.log(
-            '[AuthBox] self info refresh failed: retcode = ',
-            retcode,
-          )
 
-      # 隔一段时间就刷新一下会话确保服务器端 session 存活, 避免不必要的麻烦
-      refreshSession = () ->
-        SessionAPI.refresh (retcode) ->
-          console.log '[AuthBox] Token refresh retcode = ', retcode
+      # 处理刷新事件
+      $scope.$on 'provider:sessionRefreshed', (evt) ->
+        # 是否已经有记录登陆 token?
+        $scope.alreadyHaveToken = Account.alreadyHaveToken()
 
-          # 如果已登陆, 刷新用户信息
-          AccountAPI.statSelf(
-            refreshUserStatCallback if SessionAPI.getLoginToken()?,
-          )
-
-          # 通知各组件会话已刷新
-          $rootScope.$broadcast 'api:sessionRefreshed'
-
-          # "隔一段时间再刷新"
-          $timeout refreshSession, sessionRefreshInterval
+      $scope.$on 'provider:accountRefreshed', (evt) ->
+        # 当前用户信息
+        $scope.selfInfo = Account.getSelfInfo()
 
       # 启动会话刷新
-      refreshSession()
+      Account.refreshSession()
 
       console.log '[AuthBox] $scope = ', $scope
 
