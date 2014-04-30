@@ -1,28 +1,27 @@
 define [
   'angular'
-  'lodash'
   'jsSHA'
   'ui.select2'
   'angular-ui-router'
 
-  'jnrain/api/univ'
   'jnrain/api/account'
   'jnrain/api/ident'
+  'jnrain/provider/univ'
   'jnrain/ui/modal'
-], (angular, _, jsSHA) ->
+], (angular, jsSHA) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/register', [
     'ui.router'
-    'jnrain/api/univ'
     'jnrain/api/account'
     'jnrain/api/ident'
+    'jnrain/provider/univ'
     'jnrain/ui/modal'
   ]
 
   # 注册表单 (在读本科生)
   mod.controller 'RegisterPage',
-    ($scope, $state, ModalDlg, UnivAPI, AccountAPI, IdentAPI) ->
+    ($scope, $state, ModalDlg, UnivInfo, AccountAPI, IdentAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -35,33 +34,11 @@ define [
         # 首页
         $state.go 'home'
 
-      # 专业信息
-      updateMajorsInfo = (majors) ->
-        $scope.majorsInfo = majors
-
-      # 请求本校宿舍分布信息
-      updateDormInfo = (info) ->
-        $scope.dormInfo = info
-
-        # 按性别 (主要) 与组团 (次要) 分组
-        dormByGender = _.transform info, (result, v, k) ->
-          group = v.group
-          gender = v.gender
-
-          if gender of result
-            groupDict = result[gender]
-          else
-            result[gender] = {}
-            groupDict = result[gender]
-
-          if group of groupDict
-            groupDict[group].push k
-          else
-            groupDict[group] = [k]
-
-        $scope.dormByGender = dormByGender
-        $scope.dormGroups = _.mapValues dormByGender, (v, k) ->
-          _.keys v
+      # 大学信息
+      $scope.$on 'provider:univInfoRefreshed', (evt) ->
+        $scope.majorsInfo = UnivInfo.majorsInfo()
+        $scope.dormByGender = UnivInfo.dormsByGender()
+        $scope.dormGroups = UnivInfo.dormGroups()
 
       # 身份信息验证逻辑
       $scope.identInfo = null
@@ -163,11 +140,8 @@ define [
 
             showModal '注册遇到问题', errorMessage
 
-      UnivAPI.getMajorsInfo (info) ->
-        updateMajorsInfo info
-
-      UnivAPI.getDormsInfo (info) ->
-        updateDormInfo info
+      # 请求大学信息
+      UnivInfo.maybeRefresh()
 
       console.log $scope
 
