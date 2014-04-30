@@ -3,11 +3,11 @@ define [
   'lodash'
   'jsSHA'
   'ui.select2'
-  'ui-bootstrap'
 
   'jnrain/api/univ'
   'jnrain/api/account'
   'jnrain/api/ident'
+  'jnrain/ui/modal'
 ], (angular, _, jsSHA) ->
   'use strict'
 
@@ -15,13 +15,12 @@ define [
     'jnrain/api/univ'
     'jnrain/api/account'
     'jnrain/api/ident'
-
-    'ui.bootstrap'
+    'jnrain/ui/modal'
   ]
 
   # 注册表单 (在读本科生)
   mod.controller 'Register',
-    ($scope, $window, $modal, univInfo, accountAPI, identAPI) ->
+    ($scope, $window, ModalDlg, univInfo, accountAPI, identAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -105,7 +104,7 @@ define [
 
       # 模态弹层
       showModal = (title, message, callback, dismissCallback) ->
-        modalInstance = $modal.open
+        options =
           templateUrl: 'modalContent.html'
           controller: RegisterFormModalInstance
           resolve:
@@ -114,13 +113,7 @@ define [
             message: () ->
               message
 
-        modalInstance.result.then((() ->
-          console.log '[RegisterFormModalInstance] closed normally'
-          callback?.apply this, arguments
-        ), (() ->
-          console.log '[RegisterFormModalInstance] dismissed'
-          dismissCallback?()
-        ))
+        ModalDlg.show options, callback, dismissCallback
 
       # 表单提交
       $scope.doRegister = (sendHTMLMail) ->

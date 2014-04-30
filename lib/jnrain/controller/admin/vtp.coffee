@@ -4,6 +4,7 @@ define [
   'ui-bootstrap'
 
   'jnrain/provider/vpool'
+  'jnrain/ui/modal'
 ], (angular) ->
   'use strict'
 
@@ -11,6 +12,7 @@ define [
     'ui.router'
     'ui.bootstrap'
     'jnrain/provider/vpool'
+    'jnrain/ui/modal'
   ]
 
   # 虚线索池管理视图
@@ -69,21 +71,23 @@ define [
       onEnter: [
         '$state'
         '$stateParams'
-        '$modal'
-        ($state, $stateParams, $modal) ->
-          modalInstance = $modal.open
+        'ModalDlg'
+        ($state, $stateParams, ModalDlg) ->
+          modalOptions =
             templateUrl: 'admin/vtp/vtagCreatDlg.html'
             controller: 'VTagCreatDlg'
             resolve:
               vtpid: () ->
                 $stateParams.vtpid
 
-          modalInstance.result.then(((result) ->
-            $state.go 'admin.vtp'
-          ), (() ->
-            # dismissed
-            $state.go 'admin.vtp'
-          ))
+          ModalDlg.show(
+            modalOptions,
+            (result) ->
+              $state.go 'admin.vtp'
+            , () ->
+              # dismissed
+              $state.go 'admin.vtp'
+          )
 
           console.info '[VTPAdmin] vtag creat dialog opened'
       ]
