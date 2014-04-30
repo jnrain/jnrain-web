@@ -108,7 +108,7 @@ define [
       showModal = (title, message, callback, dismissCallback) ->
         options =
           templateUrl: 'modalContent.html'
-          controller: RegisterFormModalInstance
+          controller: 'RegisterResponseDlg'
           resolve:
             title: () ->
               title
@@ -171,6 +171,15 @@ define [
 
       console.log $scope
 
+  # 模态弹层
+  mod.controller 'RegisterResponseDlg',
+    ($scope, $modalInstance, title, message) ->
+      $scope.title = title
+      $scope.message = message
+
+      $scope.ok = () ->
+        $modalInstance.close()
+
   mod.config ($stateProvider) ->
     $stateProvider.state 'register',
       url: '/register'
@@ -179,21 +188,6 @@ define [
       views:
         main:
           templateUrl: 'register.html'
-
-  # 模态弹层
-  RegisterFormModalInstance = ($scope, $modalInstance, title, message) ->
-    $scope.title = title
-    $scope.message = message
-
-    $scope.ok = () ->
-      $modalInstance.close()
-
-  RegisterFormModalInstance.$inject = [
-    '$scope'
-    '$modalInstance'
-    'title'
-    'message'
-    ]
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
