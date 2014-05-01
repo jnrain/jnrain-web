@@ -62,7 +62,7 @@ define [
             stat,
           )
           unless retcode == 0
-            return callback retcode, null, 'stat'
+            return callback? retcode, null, 'stat'
 
           # 查询虚标签
           DSAPI.vpool.readdir vtpid, (retcode, vtags) ->
@@ -73,11 +73,11 @@ define [
               vtags,
             )
             unless retcode == 0
-              return callback retcode, null, 'readdir'
+              return callback? retcode, null, 'readdir'
 
             # 两步查询均成功, 记录信息到浏览器存储
             setVPoolData vtpid, stat, vtags
-            callback 0, getVPoolData(vtpid), null
+            callback? 0, getVPoolData(vtpid), null
 
       maybeRefresh = (vtpid, callback) ->
         if shouldRefresh vtpid
@@ -86,6 +86,15 @@ define [
           # 直接回调, 装作刚刚刷新完的样子
           callback 0, getVPoolData(vtpid), null
 
+      createVTag = (vtpid, name, desc, callback, vtagid=null) ->
+        wrappedCallback = (retcode, vtagid) ->
+          # 如果创建成功, 强制刷新本虚线索池的信息
+          doRefresh vtpid if retcode == 0
+          # 调用真正的回调函数
+          callback retcode, vtagid
+
+        DSAPI.vtag.creat vtpid, name, desc, wrappedCallback, vtagid
+
       # 暴露 API
       GLOBAL_VPOOL: GLOBAL_VPOOL
       getVPoolLastRefreshTime: getVPoolLastRefreshTime
@@ -93,6 +102,7 @@ define [
       maybeRefresh: maybeRefresh
       forceRefresh: doRefresh
       getVPoolData: getVPoolData
+      createVTag: createVTag
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
