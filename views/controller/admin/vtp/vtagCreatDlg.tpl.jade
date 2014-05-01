@@ -1,14 +1,41 @@
-header.modal-header
-  h3 创建一个版块
+form(name='vtagCreatForm' novalidate)
+  header.modal-header
+    h3 创建一个版块
 
+  .modal-body
+    input.form__input(
+      type='text'
+      name='name'
+      required
+      placeholder='版块名称'
+      data-ng-model='name'
+      data-ng-readonly='requestInProgress'
+      )
+    input.form__input--long(
+      type='text'
+      name='desc'
+      placeholder='(可选) 一句话的版块主题说明'
+      data-ng-model='desc'
+      data-ng-readonly='requestInProgress'
+      )
 
-.modal-body
-  p TODO
+    // 暂且不暴露自定义虚标签 ID 的功能好了... 本身就是个非常高阶的功能,
+    // 而且大家貌似不喜欢直接看 URL, 那就晚些时候再加入
 
+  footer.modal-footer
+    span.modal__progress-hint(data-ng-show='requestInProgress')
+      i.fa.fa-spinner.fa-spin
+      | 请求提交中，请稍候…
 
-footer.modal-footer
-  button.btn.btn-info(data-ng-click='dismiss()') 取消
-  button.btn.btn-success.btn-default 创建
+    button.btn.btn-info(
+      data-ng-disabled='requestInProgress'
+      data-ng-click='dismiss()'
+      ) 取消
+    button.btn.btn-success.btn-default(
+      type='submit'
+      data-ng-disabled='vtagCreatForm.$invalid || requestInProgress'
+      data-ng-click='doCreat(name, desc)'
+      ) 创建
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

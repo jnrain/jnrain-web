@@ -72,6 +72,13 @@
   }
 }
 
+// 长文本框
+.form__input--long {
+  @extend .form__input;
+
+  width: 100%;
+}
+
 // Select2 选择控件
 .form__select2 {
   @extend .form__field;
@@ -165,6 +172,21 @@
   font-size: 12px;
 
   margin: 100px 0 0;
+}
+
+
+// Bootstrap 模态弹层相关
+// 进度提示
+.modal__progress-hint {
+  @include user-select(none);
+
+  color: $FORM_FGCOLOR_MINOR;
+  margin: 0 20px 0 0;
+  vertical-align: middle;
+
+  > .fa {
+    margin: 0 0.5em 0 0;
+  }
 }
 
 

@@ -45,9 +45,15 @@ define [
   mod.controller 'VTagCreatDlg',
     ($scope, $modalInstance, vtpid) ->
       $scope.vtpid = vtpid
+      $scope.requestInProgress = false
 
       $scope.dismiss = () ->
         $scope.$dismiss()
+
+      $scope.doCreat = (name, desc) ->
+        console.info '[VTagCreatDlg] name=', name, ', desc=', desc
+        $scope.requestInProgress = true
+        # TODO
 
       console.log '[VTagCreatDlg] $scope = ', $scope
 
