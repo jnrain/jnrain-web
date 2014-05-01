@@ -1,29 +1,30 @@
-.vtp-admin(data-ng-show='!requestInProgress && !retcode')
-  h2.admin__subtitle 基本信息
-  dl.vtp-admin__stat
-    dt 版块分组名
-    dd
-      span.vtp-admin__stat__name(data-ng-hide='vtpid === GLOBAL_VPOOL') {{vtpStat.name}}
-      span.vtp-admin__stat__name--global(data-ng-show='vtpid === GLOBAL_VPOOL') (主站版块分组)
+.vtp-admin-container(data-ng-controller='VTPAdmin')
+  .vtp-admin(data-ng-show='!requestInProgress && !retcode')
+    h2.admin__subtitle 基本信息
+    dl.vtp-admin__stat
+      dt 版块分组名
+      dd
+        span.vtp-admin__stat__name(data-ng-hide='vtpid === GLOBAL_VPOOL') {{vtpStat.name}}
+        span.vtp-admin__stat__name--global(data-ng-show='vtpid === GLOBAL_VPOOL') (主站版块分组)
 
-  h2.admin__subtitle 版块列表
-  section.vtp-admin__vtags__ops
-    button.btn.btn-success(data-ui-sref='admin.vtp.vtag.creat') 创建版块
+    h2.admin__subtitle 版块列表
+    section.vtp-admin__vtags__ops
+      button.btn.btn-success(data-ui-sref='admin.vtp.vtag.creat') 创建版块
 
-  ul.vtp-admin__vtags(data-ng-show='vtpVTags')
-    li.vtp-admin__vtags__vtag(data-ng-repeat='vtag in vtpVTagss')
-      // TODO
+    ul.vtp-admin__vtags(data-ng-show='vtpVTags')
+      li.vtp-admin__vtags__vtag(data-ng-repeat='vtag in vtpVTagss')
+        // TODO
 
-  .vtp-admin__vtags--empty(data-ng-hide='vtpVTags')
-    p 该版块分组内没有版块。
-
-
-.vtp-admin--loading(data-ng-show='requestInProgress')
-  span 版块信息加载中，请稍候…
+    .vtp-admin__vtags--empty(data-ng-hide='vtpVTags')
+      p 该版块分组内没有版块。
 
 
-.vtp-admin--error(data-ng-show='!requestInProgress && retcode')
-  span 版块信息加载出错，错误码 {{retcode}} ({{errorPhase}})
+  .vtp-admin--loading(data-ng-show='requestInProgress')
+    span 版块信息加载中，请稍候…
+
+
+  .vtp-admin--error(data-ng-show='!requestInProgress && retcode')
+    span 版块信息加载出错，错误码 {{retcode}} ({{errorPhase}})
 
 
 // vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

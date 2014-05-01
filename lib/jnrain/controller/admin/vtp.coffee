@@ -60,7 +60,6 @@ define [
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin.vtp',
       url: '/vtp/:vtpid'
-      controller: 'VTPAdmin'
       data:
         title: '版块管理'
       views:
