@@ -180,13 +180,32 @@
 .modal__progress-hint {
   @include user-select(none);
 
-  color: $FORM_FGCOLOR_MINOR;
   margin: 0 20px 0 0;
   vertical-align: middle;
+}
 
+@mixin modal-result-mixin {
   > .fa {
     margin: 0 0.5em 0 0;
   }
+}
+
+.modal__result--inprogress {
+  @include modal-result-mixin;
+
+  color: $FORM_FGCOLOR_MINOR;
+}
+
+.modal__result--success {
+  @include modal-result-mixin;
+
+  color: $brand-success;
+}
+
+.modal__result--failure {
+  @include modal-result-mixin;
+
+  color: $brand-danger;
 }
 
 
