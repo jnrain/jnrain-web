@@ -34,7 +34,7 @@ define [
       # 省略则自动生成
       payload.vtagid = vtagid if vtagid?
 
-      basePath().customPOST(payload).then (data) ->
+      basePath(vtpid).one('creat').customPOST(payload).then (data) ->
         retcode = data.r
         if retcode == 0
           vtagid = data.t
