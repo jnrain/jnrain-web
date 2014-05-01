@@ -23,17 +23,25 @@ form(name='vtagCreatForm' novalidate)
     // 而且大家貌似不喜欢直接看 URL, 那就晚些时候再加入
 
   footer.modal-footer
-    span.modal__progress-hint(data-ng-show='requestInProgress')
-      i.fa.fa-spinner.fa-spin
-      | 请求提交中，请稍候…
+    span.modal__progress-hint
+      span.modal__result--inprogress(data-ng-show='requestInProgress')
+        i.fa.fa-spinner.fa-spin
+        | 请求提交中，请稍候…
+      span.modal__result--success(data-ng-show='!requestInProgress && retcode === 0')
+        i.fa.fa-check
+        | 版块已成功创建！
+      span.modal__result--failure(data-ng-show='!requestInProgress && retcode > 0')
+        i.fa.fa-exclamation
+        // TODO: 改善出错提示信息
+        | 版块创建失败，错误码：{{retcode}}
 
     button.btn.btn-info(
-      data-ng-disabled='requestInProgress'
+      data-ng-disabled='requestInProgress || retcode == 0'
       data-ng-click='dismiss()'
       ) 取消
     button.btn.btn-success.btn-default(
       type='submit'
-      data-ng-disabled='vtagCreatForm.$invalid || requestInProgress'
+      data-ng-disabled='vtagCreatForm.$invalid || requestInProgress || retcode === 0'
       data-ng-click='doCreat(name, desc)'
       ) 创建
 

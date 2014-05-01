@@ -43,9 +43,10 @@ define [
 
   # 虚标签创建对话框
   mod.controller 'VTagCreatDlg',
-    ($scope, $modalInstance, vtpid) ->
+    ($scope, $modalInstance, $timeout, vtpid, VPool) ->
       $scope.vtpid = vtpid
       $scope.requestInProgress = false
+      $scope.retcode = -1
 
       $scope.dismiss = () ->
         $scope.$dismiss()
@@ -53,7 +54,22 @@ define [
       $scope.doCreat = (name, desc) ->
         console.info '[VTagCreatDlg] name=', name, ', desc=', desc
         $scope.requestInProgress = true
-        # TODO
+
+        # TODO: 暴露自定义虚标签 ID 的功能
+        VPool.createVTag vtpid, name, desc, (retcode, vtagid) ->
+          $scope.requestInProgress = false
+          $scope.retcode = retcode
+
+          if retcode == 0
+            console.info '[VTagCreatDlg] vtag created: vtagid=', vtagid
+            $timeout((() ->
+              $modalInstance.close()
+            ), 1500)
+          else
+            console.warn(
+              '[VTagCreatDlg] vtag creation failed; retcode=',
+              retcode,
+            )
 
       console.log '[VTagCreatDlg] $scope = ', $scope
 
