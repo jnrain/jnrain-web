@@ -30,9 +30,10 @@ define [
       basePathWithID(vtpid).one('readdir').get().then (data) ->
         retcode = data.r
         if retcode == 0
-          vtags = _.transform data.t, (result, item) ->
+          vtags = _.transform(data.t, ((result, item) ->
             result[item.i] =
               name: item.n
+          ), {})
 
           callback 0, vtags
         else
