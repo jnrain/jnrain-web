@@ -24,6 +24,9 @@ body {
   background: url("/static/img/logo-250x90.png") top left no-repeat;
   width: $LOGO_WIDTH;
   height: $LOGO_HEIGHT;
+
+  // 因为是点击回首页的效果所以需要给一个指针的光标
+  cursor: pointer;
 }
 
 .pagehdr__logo {
