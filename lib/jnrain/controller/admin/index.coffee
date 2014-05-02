@@ -25,7 +25,6 @@ define [
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin',
       url: '/admin'
-      controller: 'AdminIndex'
       data:
         title: '系统管理面板'
       views:
