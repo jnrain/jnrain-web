@@ -99,8 +99,15 @@ define [
         if shouldRefresh vtpid
           doRefresh vtpid, callback
         else
-          # 直接回调, 装作刚刚刷新完的样子
-          callback? 0, getVPoolData(vtpid), null
+          # 装作刚刚刷新完的样子
+          data = getVPoolData vtpid
+          $rootScope.$broadcast(
+            'provider:vtpDataUpdated',
+            vtpid,
+            data.stat,
+            data.vtags,
+          )
+          callback? 0, data, null
 
       createVTag = (vtpid, name, desc, callback, vtagid=null) ->
         wrappedCallback = (retcode, vtagid) ->
