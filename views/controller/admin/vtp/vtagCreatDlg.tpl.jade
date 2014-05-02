@@ -3,11 +3,11 @@ form(name='vtagCreatForm' novalidate)
     h3 创建一个版块
 
   .modal-body
-    input.form__input(
+    input.form__input--long(
       type='text'
       name='name'
       required
-      placeholder='版块名称'
+      placeholder='版块名称，举例：“Linux 新闻”、“西操场”、“树莓学院那些事”'
       data-ng-model='name'
       data-ng-readonly='requestInProgress'
       )
