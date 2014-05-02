@@ -11,6 +11,15 @@ form(name='vtagCreatForm' novalidate)
       data-ng-model='name'
       data-ng-readonly='requestInProgress'
       )
+    //- 这里的正则需要双重转义, 否则 Jade 编译的时候会吃掉一层转义符号把正则搞坏!
+    input.form__input--long(
+      type='text'
+      name='slug'
+      placeholder='(可选) 版块的简短名称，如“linux-news”或“西操场”'
+      data-ng-model='slug'
+      data-ng-pattern='/^[^\\s:;\\\\\\/\\.\\(\\)\\[\\]\\{\\}]{0,16}$/'
+      data-ng-readonly='requestInProgress'
+      )
     input.form__input--long(
       type='text'
       name='desc'
@@ -42,7 +51,7 @@ form(name='vtagCreatForm' novalidate)
     button.btn.btn-success.btn-default(
       type='submit'
       data-ng-disabled='vtagCreatForm.$invalid || requestInProgress || retcode === 0'
-      data-ng-click='doCreat(name, desc)'
+      data-ng-click='doCreat(name, slug, desc)'
       ) 创建
 
 

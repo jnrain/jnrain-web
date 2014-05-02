@@ -55,12 +55,12 @@ define [
       $scope.dismiss = () ->
         $scope.$dismiss()
 
-      $scope.doCreat = (name, desc) ->
-        $log.info 'name=', name, ', desc=', desc
+      $scope.doCreat = (name, slug, desc) ->
+        $log.info 'name=', name, ', slug=', slug, ', desc=', desc
         $scope.requestInProgress = true
 
         # TODO: 暴露自定义虚标签 ID 的功能
-        VPool.createVTag vtpid, name, desc, (retcode, vtagid) ->
+        VPool.createVTag vtpid, name, slug, desc, (retcode, vtagid) ->
           $scope.requestInProgress = false
           $scope.retcode = retcode
 
