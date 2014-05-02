@@ -97,8 +97,11 @@ define [
       onEnter: [
         '$state'
         '$stateParams'
+        '$log'
         'ModalDlg'
-        ($state, $stateParams, ModalDlg) ->
+        ($state, $stateParams, $log, ModalDlg) ->
+          $log = $log.getInstance 'VTPAdmin'
+
           modalOptions =
             templateUrl: 'admin/vtp/vtagCreatDlg.html'
             controller: 'VTagCreatDlg'
@@ -116,7 +119,7 @@ define [
               $state.go 'admin.vtp'
           )
 
-          $log.info '[VTPAdmin] vtag creat dialog opened'
+          $log.info 'vtag creat dialog opened'
       ]
 
 
