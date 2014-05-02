@@ -12,7 +12,7 @@ define [
   ]
 
   mod.factory 'VPool',
-    ($log, DSAPI, localStorageService) ->
+    ($rootScope, $log, DSAPI, localStorageService) ->
       # 全局虚线索池 ID
       GLOBAL_VPOOL = '0'
 
@@ -51,6 +51,9 @@ define [
         localStorageService.set key,
           stat: stat
           vtags: vtags
+
+        # 通知刷新
+        $rootScope.$broadcast 'provider:vtpDataUpdated', vtpid, stat, vtags
 
       doRefresh = (vtpid, callback) ->
         # 查询基本信息
