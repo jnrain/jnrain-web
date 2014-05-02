@@ -15,7 +15,8 @@ requirejs.config({
     'angular-local-storage': '../../bower_components/angular-local-storage/angular-local-storage',
     'flow': '../../bower_components/flow.js/dist/flow',  // known to be simply 'flow'
     'ng-flow': '../../bower_components/ng-flow/dist/ng-flow.js',
-    'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router'
+    'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
+    'angular-logex': '../../bower_components/angular-logex/dist/log-ex-unobtrusive'
   },
   shim: {
     // jQuery plugins
@@ -59,6 +60,7 @@ requirejs.config({
     'ng-flow': ['angular', 'flow'],
 
     'angular-ui-router': ['angular'],
+    'angular-logex': ['angular'],
 
     // other libraries
     'lodash': {

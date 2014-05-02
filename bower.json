@@ -42,6 +42,7 @@
     "angular-local-storage": "~0.0.1",
     "ng-flow": "~2",
     "angular-ui-router": "~0.2.10",
-    "bootstrap-sass-official": "~3.1.1+2"
+    "bootstrap-sass-official": "~3.1.1+2",
+    "angular-logex": "~0.0.7"
   }
 }
