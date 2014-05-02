@@ -26,9 +26,10 @@ define [
         else
           callback retcode, null
 
-    creat: (vtpid, name, desc, callback, vtagid=null) ->
+    creat: (vtpid, name, slug, desc, callback, vtagid=null) ->
       payload =
         name: name
+        slug: slug
         desc: desc
 
       # 省略则自动生成
