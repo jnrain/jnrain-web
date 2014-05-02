@@ -15,24 +15,20 @@ define [
     ($scope, VPool) ->
       # 这个引用是给模板用的
       $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
+      $scope.vtags = {}
+      $scope.numVTags = 0
 
-      VPool.maybeRefresh(
-        VPool.GLOBAL_VPOOL,
-        (retcode, vtpData, errorPhase) ->
-          if retcode == 0
-            console.log(
-              '[NavHeader] global vpool refresh: OK, vtpData=',
-              vtpData,
-            )
-            $scope.vtags = vtpData.vtags
-          else
-            console.log(
-              '[NavHeader] global vpool refresh: errored, retcode=',
-              retcode,
-              ' errorPhase=',
-              errorPhase,
-            )
-      )
+      $scope.$watch 'vtags', (to, from) ->
+        # 更新虚标签数量显示
+        $scope.numVTags = Object.keys($scope.vtags).length
+
+      $scope.$on 'provider:vtpDataUpdated', (evt, vtpid, stat, vtags) ->
+        if vtpid == VPool.GLOBAL_VPOOL
+          console.info '[NavHeader] global vpool data updated'
+          $scope.vtags = vtags
+
+      # 触发一次刷新
+      VPool.maybeRefresh(VPool.GLOBAL_VPOOL)
 
       console.log '[NavHeader] $scope = ', $scope
 
