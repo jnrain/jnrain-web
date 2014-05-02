@@ -96,14 +96,14 @@ define [
           )
           callback? 0, data, null
 
-      createVTag = (vtpid, name, desc, callback, vtagid=null) ->
+      createVTag = (vtpid, name, slug, desc, callback, vtagid=null) ->
         wrappedCallback = (retcode, vtagid) ->
           # 如果创建成功, 强制刷新本虚线索池的信息
           doRefresh vtpid if retcode == 0
           # 调用真正的回调函数
           callback retcode, vtagid
 
-        DSAPI.vtag.creat vtpid, name, desc, wrappedCallback, vtagid
+        DSAPI.vtag.creat vtpid, name, slug, desc, wrappedCallback, vtagid
 
       # 暴露 API
       GLOBAL_VPOOL: GLOBAL_VPOOL
