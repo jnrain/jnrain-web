@@ -33,6 +33,7 @@ define [
           vtags = _.transform(data.t, ((result, item) ->
             result[item.i] =
               name: item.n
+              desc: item.d
           ), {})
 
           callback 0, vtags
