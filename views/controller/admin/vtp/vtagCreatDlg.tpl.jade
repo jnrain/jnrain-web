@@ -19,8 +19,8 @@ form(name='vtagCreatForm' novalidate)
       data-ng-readonly='requestInProgress'
       )
 
-    // 暂且不暴露自定义虚标签 ID 的功能好了... 本身就是个非常高阶的功能,
-    // 而且大家貌似不喜欢直接看 URL, 那就晚些时候再加入
+    //- 暂且不暴露自定义虚标签 ID 的功能好了... 本身就是个非常高阶的功能,
+    //- 而且大家貌似不喜欢直接看 URL, 那就晚些时候再加入
 
   footer.modal-footer
     span.modal__progress-hint
@@ -32,7 +32,7 @@ form(name='vtagCreatForm' novalidate)
         | 版块已成功创建！
       span.modal__result--failure(data-ng-show='!requestInProgress && retcode > 0')
         i.fa.fa-exclamation
-        // TODO: 改善出错提示信息
+        //- TODO: 改善出错提示信息
         | 版块创建失败，错误码：{{retcode}}
 
     button.btn.btn-info(

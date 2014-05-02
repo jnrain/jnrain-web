@@ -3,8 +3,8 @@ html#appmount(lang='cmn')
   head
     meta(charset='utf-8')
 
-    // 既然 oldIE 全都被中间件封杀了, 这一条声明就没有受众了, 还会让文档过不了 HTML5 校验...
-    // meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    //- 既然 oldIE 全都被中间件封杀了, 这一条声明就没有受众了, 还会让文档过不了 HTML5 校验...
+    //- meta(http-equiv='X-UA-Compatible', content='IE=edge')
 
     title(
       data-ng-controller='PageTitle'
@@ -43,8 +43,8 @@ html#appmount(lang='cmn')
       include footer
 
     if DEBUG_LIVERELOAD
-      // grunt-watch 的 LiveReload 貌似只有 HTTP 版...
-      // 不过因为这一条反正不会出现在生产页面上, 所以无所谓的
+      //- grunt-watch 的 LiveReload 貌似只有 HTTP 版...
+      //- 不过因为这一条反正不会出现在生产页面上, 所以无所谓的
       script(src='http://localhost:35729/livereload.js')
 
 

@@ -18,8 +18,8 @@
 
       dt.debug__item__title 实时信道
       dd.debug__item(data-ng-controller='RTChannelManager')
-        // XXX 此处十分丑陋, 大概需要把 socket.io 连接的管理部分逻辑移动到一个
-        // provider 组件里? 找时间重构吧...
+        //- XXX 此处十分丑陋, 大概需要把 socket.io 连接的管理部分逻辑移动到一个
+        //- provider 组件里? 找时间重构吧...
         .debug__rt__status {{rtStatus}}
           span.debug__rt__sid(data-ng-show='!!rtSID') ; rtSID={{rtSID}}
           span.debug__rt__retries(data-ng-show='rtStatus == "reconnecting"') ; retries={{rtConnectionRetries}}
