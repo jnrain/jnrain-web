@@ -13,8 +13,8 @@ define [
 
   # 首页
   mod.controller 'Home',
-    ($scope, VPool) ->
-      console.log '[Home] $scope = ', $scope
+    ($scope, $log, VPool) ->
+      $log.debug '[Home] $scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'home',

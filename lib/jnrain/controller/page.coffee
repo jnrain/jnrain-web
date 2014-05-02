@@ -11,7 +11,7 @@ define [
 
   # 页面标题
   mod.controller 'PageTitle',
-    ($scope, $state, PageGlobals) ->
+    ($scope, $state, $log, PageGlobals) ->
       $scope.dynTitlePrefix = ''
       $scope.stateTitle = ''
       $scope.$state = $state
@@ -22,13 +22,13 @@ define [
           if !newTitle?
             newTitle = ''
 
-          console.info '[PageTitle] State changed: newTitle = ', newTitle
+          $log.info '[PageTitle] State changed: newTitle = ', newTitle
           $scope.stateTitle = newTitle
 
       $scope.$on 'ui:pageTitleFragChanged', (evt) ->
         $scope.dynTitlePrefix = PageGlobals.getTitlePrefix()
 
-      console.debug '[PageTitle] $scope = ', $scope
+      $log.debug '[PageTitle] $scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

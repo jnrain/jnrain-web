@@ -15,10 +15,10 @@ define [
 
   # 管理视图首页
   mod.controller 'AdminIndex',
-    ($scope, $stateParams, VPool) ->
+    ($scope, $stateParams, $log, VPool) ->
       $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
 
-      console.log '[AdminIndex] $scope = ', $scope
+      $log.debug '[AdminIndex] $scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin',

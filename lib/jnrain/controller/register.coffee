@@ -24,7 +24,7 @@ define [
   # 造成一种注册很容易的感觉 (实际上比之前要容易多了, 但因为实名制的原因不可能
   # 做到比各种商业网站还容易, 因此需要玩一点文字游戏)
   mod.controller 'RegisterPage',
-    ($scope, $state, ModalDlg, UnivInfo, AccountAPI, IdentAPI) ->
+    ($scope, $state, $log, ModalDlg, UnivInfo, AccountAPI, IdentAPI) ->
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -69,7 +69,7 @@ define [
       doCheckIdent = (number, idnumber) ->
         normIDNumber = idnumber.toUpperCase()
         IdentAPI.queryIdent number, 0, normIDNumber, (retcode, data) ->
-          console.log '[RegisterPage] queryIdent returned:', retcode, data
+          $log.info '[RegisterPage] queryIdent returned: ', retcode, data
           if retcode == 0
             $scope.identInfo = data
             setIdentCheckValidity true
@@ -115,12 +115,12 @@ define [
             dorm_room: $scope.dormRoom
           htmlmail: !!sendHTMLMail
 
-        console.log '[RegisterPage] payload: ', registerPayload
+        $log.debug '[RegisterPage] payload: ', registerPayload
         AccountAPI.createAccount registerPayload, (retcode, err) ->
           $scope.submitInProgress = false
 
           if retcode == 0
-            console.log '[RegisterPage] submit: OK'
+            $log.info '[RegisterPage] submit: OK'
             showModal(
               '提交激活成功',
               '您很快将收到一封验证邮件，请登录您的注册邮箱查收；'
@@ -129,8 +129,12 @@ define [
               doSuccessRedirect,
             )
           else
-            console.log '[RegisterPage] submit: retcode = ', retcode
-            console.log '[RegisterPage] submit: err = ', err
+            $log.warn(
+              '[RegisterPage] submit: failed, retcode=',
+              retcode,
+              ', err=',
+              err,
+            )
 
             # 生成错误信息
             retcodeMsg = AccountAPI.errorcode[retcode]
@@ -146,7 +150,7 @@ define [
       # 请求大学信息
       UnivInfo.maybeRefresh()
 
-      console.log $scope
+      $log.debug '[RegisterPage] $scope = ', $scope
 
   # 模态弹层
   mod.controller 'RegisterResponseDlg',

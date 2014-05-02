@@ -18,6 +18,7 @@ define [
       $scope,
       $rootScope,
       $timeout,
+      $log,
       SessionAPI,
       rtSocket,
       _raw_rtSocket,
@@ -54,10 +55,9 @@ define [
           # 随机确定一个重连的时间点, 平均下重连过程的服务器负载
           # 5 到 15 秒后随机时间点重连
           reconnectInterval = Math.floor(10000 * Math.random() + 5000)
-          console.log(
+          $log.debug(
             '[RTChannelManager] reconnect in ' + reconnectInterval + 'ms',
           )
-          console.log rtSocket
           $timeout (() ->
             _raw_rtSocket.socket.reconnect()
           ), reconnectInterval
@@ -74,7 +74,7 @@ define [
       # 事件处理
       # hello 回应
       rtSocket.on 'helloAck', (data) ->
-        console.log '[RTChannelManager] helloAck: ', data
+        $log.info '[RTChannelManager] helloAck: ', data
 
         authResult = data.result
         if authResult == 'ok'
@@ -91,9 +91,9 @@ define [
 
       # 实时事件
       rtSocket.on 'rtEvent', (data) ->
-        console.log '[RTChannelManager] event: ', data
+        $log.info '[RTChannelManager] event: ', data
 
-      console.log '[RTChannelManager] $scope = ', $scope
+      $log.debug '[RTChannelManager] $scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

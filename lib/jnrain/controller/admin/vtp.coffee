@@ -17,7 +17,7 @@ define [
 
   # 虚线索池管理视图
   mod.controller 'VTPAdmin',
-    ($scope, $stateParams, $modal, VPool) ->
+    ($scope, $stateParams, $modal, $log, VPool) ->
       vtpid = $stateParams.vtpid
 
       $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
@@ -39,11 +39,11 @@ define [
           $scope.vtpStat = data.stat
           $scope.vtpVTags = data.vtags
 
-      console.info '[VTPAdmin] $scope = ', $scope
+      $log.debug '[VTPAdmin] $scope = ', $scope
 
   # 虚标签创建对话框
   mod.controller 'VTagCreatDlg',
-    ($scope, $modalInstance, $timeout, vtpid, VPool) ->
+    ($scope, $modalInstance, $timeout, $log, vtpid, VPool) ->
       $scope.vtpid = vtpid
       $scope.requestInProgress = false
       $scope.retcode = -1
@@ -52,7 +52,7 @@ define [
         $scope.$dismiss()
 
       $scope.doCreat = (name, desc) ->
-        console.info '[VTagCreatDlg] name=', name, ', desc=', desc
+        $log.info '[VTagCreatDlg] name=', name, ', desc=', desc
         $scope.requestInProgress = true
 
         # TODO: 暴露自定义虚标签 ID 的功能
@@ -61,17 +61,17 @@ define [
           $scope.retcode = retcode
 
           if retcode == 0
-            console.info '[VTagCreatDlg] vtag created: vtagid=', vtagid
+            $log.info '[VTagCreatDlg] vtag created: vtagid=', vtagid
             $timeout((() ->
               $modalInstance.close()
             ), 1500)
           else
-            console.warn(
+            $log.warn(
               '[VTagCreatDlg] vtag creation failed; retcode=',
               retcode,
             )
 
-      console.log '[VTagCreatDlg] $scope = ', $scope
+      $log.debug '[VTagCreatDlg] $scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin.vtp',
@@ -115,7 +115,7 @@ define [
               $state.go 'admin.vtp'
           )
 
-          console.info '[VTPAdmin] vtag creat dialog opened'
+          $log.info '[VTPAdmin] vtag creat dialog opened'
       ]
 
 

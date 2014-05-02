@@ -12,7 +12,7 @@ define [
 
   # 顶部导航
   mod.controller 'NavHeader',
-    ($scope, VPool) ->
+    ($scope, $log, VPool) ->
       # 这个引用是给模板用的
       $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
       $scope.vtags = {}
@@ -24,13 +24,13 @@ define [
 
       $scope.$on 'provider:vtpDataUpdated', (evt, vtpid, stat, vtags) ->
         if vtpid == VPool.GLOBAL_VPOOL
-          console.info '[NavHeader] global vpool data updated'
+          $log.info '[NavHeader] global vpool data updated'
           $scope.vtags = vtags
 
       # 触发一次刷新
       VPool.maybeRefresh(VPool.GLOBAL_VPOOL)
 
-      console.log '[NavHeader] $scope = ', $scope
+      $log.debug '[NavHeader] $scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
