@@ -83,7 +83,7 @@ GRUNT_CONFIG =
         baseUrl: 'build/js'
         mainConfigFile: 'require.config.js'
 
-        name: '../../node_modules/almond/almond'
+        name: '../../bower_components/almond/almond'
         include: ['entry']
 
         out: 'static/js/bundle.js'

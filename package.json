@@ -15,7 +15,6 @@
     "grunt-contrib-coffee": "^0.10.1",
     "grunt-contrib-copy": "^0.5.0",
     "grunt-cli": "^0.1.13",
-    "almond": "^0.2.9",
     "minimist": "0.0.8",
     "git-rev": "^0.2.1",
     "connect-ua-parser": "^0.1.0",
