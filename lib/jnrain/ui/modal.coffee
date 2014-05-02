@@ -11,7 +11,7 @@ define [
   # 模态弹层
   mod.factory 'ModalDlg',
     ($modal, $log) ->
-      $log = $log.getInstance 'ModalDlg'
+      $log = $log.getInstance 'ui/modal'
 
       showModal = (options, callback, dismissCallback) ->
         modalInstance = $modal.open options

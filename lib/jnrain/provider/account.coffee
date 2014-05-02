@@ -22,7 +22,7 @@ define [
       AccountAPI,
       sessionRefreshInterval,
     ) ->
-      $log = $log.getInstance 'Account'
+      $log = $log.getInstance 'provider/account'
 
       # 是否已经有记录登录 token?
       alreadyHaveToken = () ->

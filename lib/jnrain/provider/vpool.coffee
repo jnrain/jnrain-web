@@ -13,7 +13,7 @@ define [
 
   mod.factory 'VPool',
     ($rootScope, $log, DSAPI, localStorageService) ->
-      $log = $log.getInstance 'VPool'
+      $log = $log.getInstance 'provider/vpool'
 
       # 全局虚线索池 ID
       GLOBAL_VPOOL = '0'

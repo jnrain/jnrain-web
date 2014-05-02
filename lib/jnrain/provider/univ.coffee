@@ -14,7 +14,7 @@ define [
 
   mod.factory 'UnivInfo',
     ($rootScope, $log, UnivAPI, localStorageService) ->
-      $log = $log.getInstance 'UnivInfo'
+      $log = $log.getInstance 'provider/univ'
 
       # TODO: 移动到 jnrain/config
       # 大学信息刷新时间间隔, 单位: 毫秒

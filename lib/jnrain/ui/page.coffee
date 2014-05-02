@@ -9,7 +9,7 @@ define [
   # 网页全局设置
   mod.factory 'PageGlobals',
     ($rootScope, $log) ->
-      $log = $log.getInstance 'PageGlobals'
+      $log = $log.getInstance 'ui/page'
 
       currentTitleFrag = ''
 
