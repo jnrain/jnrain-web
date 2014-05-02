@@ -103,9 +103,6 @@ getGruntConfig = (grunt) ->
         useStrict: true
 
   watch:
-    options:
-      livereload: liveReloadOptions
-
     sass:
       files: ['sass/**/*.scss']
       tasks: ['sass']
@@ -121,6 +118,11 @@ getGruntConfig = (grunt) ->
     misc:
       files: ['images/ready/**/*']
       tasks: ['copy']
+
+    livereload:
+      files: ['static/**/*']
+      options:
+        livereload: liveReloadOptions
 
   copy:
     'vendored-select2':
