@@ -2,8 +2,8 @@
   .vtp-admin(data-ng-show='!requestInProgress && !retcode')
     h2.admin__subtitle 基本信息
     dl.vtp-admin__stat
-      dt 版块分组名
-      dd
+      dt.vtp-admin__stat__key 版块分组名
+      dd.vtp-admin__stat__value
         span.vtp-admin__stat__name(data-ng-hide='vtpid === GLOBAL_VPOOL') {{vtpStat.name}}
         span.vtp-admin__stat__name--global(data-ng-show='vtpid === GLOBAL_VPOOL') (主站版块分组)
 

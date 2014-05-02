@@ -1,7 +1,27 @@
 // 虚线索池管理面板
+// 基本信息部分
+.vtp-admin__stat {
+  @include clearfix;
+
+  margin: 0 0 50px 0;
+}
+
+.vtp-admin__stat__key {
+  float: left;
+
+  margin: 0 1em 0 0;
+}
+
+// 虚线索池名称
+.vtp-admin__stat__name--global {
+  // 全局虚线索池 ("主站版块分组"), 名字不重要 (因为没有意义也没法修改)
+  // 设置为次要前景色
+  color: $FORM_FGCOLOR_MINOR;
+}
+
 // 虚标签操作面板
 .vtp-admin__vtags__ops {
-  margin: 0 0 2em 0;
+  margin: 2em 0;
 }
 
 
