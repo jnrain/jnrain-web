@@ -12,7 +12,7 @@ define [
   ]
 
   mod.factory 'VPool',
-    (DSAPI, localStorageService) ->
+    ($log, DSAPI, localStorageService) ->
       # 全局虚线索池 ID
       GLOBAL_VPOOL = '0'
 
@@ -55,23 +55,36 @@ define [
       doRefresh = (vtpid, callback) ->
         # 查询基本信息
         DSAPI.vpool.stat vtpid, (retcode, stat) ->
-          console.log(
-            '[provider/vpool] stat retcode=',
-            retcode,
-            ' stat=',
-            stat,
-          )
+          if retcode == 0
+            $log.info '[provider/vpool] vtpid=', vtpid, ' stat OK: ', stat
+          else
+            $log.warn(
+              '[provider/vpool] vtpid=',
+              vtpid,
+              ' stat failed: retcode=',
+              retcode,
+            )
+
           unless retcode == 0
             return callback? retcode, null, 'stat'
 
           # 查询虚标签
           DSAPI.vpool.readdir vtpid, (retcode, vtags) ->
-            console.log(
-              '[provider/vpool] readdir retcode=',
-              retcode,
-              ' vtags=',
-              vtags,
-            )
+            if retcode == 0
+              $log.info(
+                '[provider/vpool] vtpid=',
+                vtpid,
+                ' readdir OK: ',
+                vtags,
+              )
+            else
+              $log.warn(
+                '[provider/vpool] vtpid=',
+                vtpid,
+                ' readdir failed: retcode=',
+                retcode,
+              )
+
             unless retcode == 0
               return callback? retcode, null, 'readdir'
 
