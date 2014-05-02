@@ -38,6 +38,9 @@ define [
 
         timeFrag + classFrag
 
+    mod.config (localStorageServiceProvider) ->
+      localStorageServiceProvider.setPrefix 'jnrain.'
+
     angular.bootstrap angular.element('#appmount'), [
       'jnrain/main'
     ]
