@@ -22,6 +22,8 @@ define [
       AccountAPI,
       sessionRefreshInterval,
     ) ->
+      $log = $log.getInstance 'Account'
+
       # 是否已经有记录登录 token?
       alreadyHaveToken = () ->
         SessionAPI.getLoginToken()?
@@ -38,25 +40,22 @@ define [
 
       refreshUserStatCallback = (retcode, info) ->
         if retcode == 0
-          $log.info '[Account] self info refreshed: ', info
+          $log.info 'self info refreshed: ', info
           setSelfInfo info
         else
-          $log.warn(
-            '[Account] self info refresh failed: retcode = ',
-            retcode,
-          )
+          $log.warn 'self info refresh failed: retcode = ', retcode
 
       # 隔一段时间就刷新一下会话确保服务器端 session 存活, 避免不必要的麻烦
       refreshTimer = null
       refreshSession = () ->
         SessionAPI.refresh (retcode) ->
           if retcode == 0
-            $log.info '[Account] Session refresh OK'
+            $log.info 'Session refresh OK'
 
             # 如果已登录, 刷新用户信息
             AccountAPI.statSelf(refreshUserStatCallback) if alreadyHaveToken()
           else
-            $log.warn '[Account] Session refresh failed, retcode = ', retcode
+            $log.warn 'Session refresh failed, retcode = ', retcode
 
         # "隔一段时间再刷新"
         # 无论上次刷新是否成功, 都周期性刷新

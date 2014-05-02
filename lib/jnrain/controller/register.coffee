@@ -25,6 +25,8 @@ define [
   # 做到比各种商业网站还容易, 因此需要玩一点文字游戏)
   mod.controller 'RegisterPage',
     ($scope, $state, $log, ModalDlg, UnivInfo, AccountAPI, IdentAPI) ->
+      $log = $log.getInstance 'RegisterPage'
+
       # 最无聊的东西...
       $scope.zeropad = (x) ->
         (if x < 10 then '0' else '') + x
@@ -69,7 +71,7 @@ define [
       doCheckIdent = (number, idnumber) ->
         normIDNumber = idnumber.toUpperCase()
         IdentAPI.queryIdent number, 0, normIDNumber, (retcode, data) ->
-          $log.info '[RegisterPage] queryIdent returned: ', retcode, data
+          $log.info 'queryIdent returned: ', retcode, data
           if retcode == 0
             $scope.identInfo = data
             setIdentCheckValidity true
@@ -115,12 +117,12 @@ define [
             dorm_room: $scope.dormRoom
           htmlmail: !!sendHTMLMail
 
-        $log.debug '[RegisterPage] payload: ', registerPayload
+        $log.debug 'payload: ', registerPayload
         AccountAPI.createAccount registerPayload, (retcode, err) ->
           $scope.submitInProgress = false
 
           if retcode == 0
-            $log.info '[RegisterPage] submit: OK'
+            $log.info 'submit: OK'
             showModal(
               '提交激活成功',
               '您很快将收到一封验证邮件，请登录您的注册邮箱查收；'
@@ -130,7 +132,7 @@ define [
             )
           else
             $log.warn(
-              '[RegisterPage] submit: failed, retcode=',
+              'submit: failed, retcode=',
               retcode,
               ', err=',
               err,
@@ -150,7 +152,7 @@ define [
       # 请求大学信息
       UnivInfo.maybeRefresh()
 
-      $log.debug '[RegisterPage] $scope = ', $scope
+      $log.debug '$scope = ', $scope
 
   # 模态弹层
   mod.controller 'RegisterResponseDlg',

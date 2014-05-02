@@ -16,9 +16,11 @@ define [
   # 管理视图首页
   mod.controller 'AdminIndex',
     ($scope, $stateParams, $log, VPool) ->
+      $log = $log.getInstance 'AdminIndex'
+
       $scope.GLOBAL_VPOOL = VPool.GLOBAL_VPOOL
 
-      $log.debug '[AdminIndex] $scope = ', $scope
+      $log.debug '$scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin',

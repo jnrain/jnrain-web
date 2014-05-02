@@ -24,6 +24,8 @@ define [
       _raw_rtSocket,
       Toasts,
     ) ->
+      $log = $log.getInstance 'RTChannelManager'
+
       # 连接状态监视
       $scope.rtStatus = 'disconnected'
       $scope.rtSID = null
@@ -56,7 +58,7 @@ define [
           # 5 到 15 秒后随机时间点重连
           reconnectInterval = Math.floor(10000 * Math.random() + 5000)
           $log.debug(
-            '[RTChannelManager] reconnect in ' + reconnectInterval + 'ms',
+            'reconnect in ' + reconnectInterval + 'ms',
           )
           $timeout (() ->
             _raw_rtSocket.socket.reconnect()
@@ -74,7 +76,7 @@ define [
       # 事件处理
       # hello 回应
       rtSocket.on 'helloAck', (data) ->
-        $log.info '[RTChannelManager] helloAck: ', data
+        $log.info 'helloAck: ', data
 
         authResult = data.result
         if authResult == 'ok'
@@ -91,9 +93,9 @@ define [
 
       # 实时事件
       rtSocket.on 'rtEvent', (data) ->
-        $log.info '[RTChannelManager] event: ', data
+        $log.info 'event: ', data
 
-      $log.debug '[RTChannelManager] $scope = ', $scope
+      $log.debug '$scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -9,12 +9,14 @@ define [
   # 网页全局设置
   mod.factory 'PageGlobals',
     ($rootScope, $log) ->
+      $log = $log.getInstance 'PageGlobals'
+
       currentTitleFrag = ''
 
       # 页面标题的动态部分
       titleFrag = (value) ->
         if value?
-          $log.info '[PageGlobals] dynamic title fragment set to ', value
+          $log.info 'dynamic title fragment set to ', value
           currentTitleFrag = '' + value
           $rootScope.$broadcast 'ui:pageTitleFragChanged'
         else

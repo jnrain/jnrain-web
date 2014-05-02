@@ -14,7 +14,9 @@ define [
   # 首页
   mod.controller 'Home',
     ($scope, $log, VPool) ->
-      $log.debug '[Home] $scope = ', $scope
+      $log = $log.getInstance 'Home'
+
+      $log.debug '$scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'home',

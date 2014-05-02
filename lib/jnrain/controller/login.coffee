@@ -18,6 +18,8 @@ define [
   # 登录 (登录 token 请求) 表单
   mod.controller 'LoginPage',
     ($scope, $state, $timeout, $log, SessionAPI, Toasts) ->
+      $log = $log.getInstance 'LoginPage'
+
       doLoginSuccessRedirect = () ->
         # 首页
         $state.go 'home'
@@ -41,13 +43,13 @@ define [
 
           if retcode != 0
             # 认证失败
-            $log.warn '[LoginPage] Auth. failed, retcode = ', retcode
+            $log.warn 'Authentication failed, retcode=', retcode
 
             # TODO: 错误消息
             Toasts.toast 'error', '登录失败', '登录失败: ' + retcode
           else
             # 认证成功
-            $log.info '[LoginPage] Auth. OK: token = ', token
+            $log.info 'Authentication OK: token=', token
 
             Toasts.toast 'info', '登录成功', '您已成功登录。'
 
@@ -57,7 +59,7 @@ define [
       # 已经有记录登录 token 的话也回首页
       $timeout doLoginSuccessRedirect, 2000 if alreadyHaveToken
 
-      $log.debug '[LoginPage] $scope = ', $scope
+      $log.debug '$scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'login',

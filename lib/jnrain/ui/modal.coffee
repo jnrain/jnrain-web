@@ -11,13 +11,15 @@ define [
   # 模态弹层
   mod.factory 'ModalDlg',
     ($modal, $log) ->
+      $log = $log.getInstance 'ModalDlg'
+
       showModal = (options, callback, dismissCallback) ->
         modalInstance = $modal.open options
         modalInstance.result.then((() ->
-          $log.info '[jnrain/ui/modal] modal dialog closed'
+          $log.info 'modal dialog closed'
           callback?.apply this, arguments
         ), (() ->
-          $log.info '[jnrain/ui/modal] modal dialog dismissed'
+          $log.info 'modal dialog dismissed'
           dismissCallback?()
         ))
 

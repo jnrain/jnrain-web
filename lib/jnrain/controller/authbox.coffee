@@ -12,6 +12,8 @@ define [
   # 用户信息组件
   mod.controller 'AuthBox',
     ($scope, $log, Account) ->
+      $log = $log.getInstance 'AuthBox'
+
       $scope.alreadyHaveToken = false
       $scope.selfInfo = {}
 
@@ -35,7 +37,7 @@ define [
       # 启动会话刷新
       Account.refreshSession()
 
-      $log.debug '[AuthBox] $scope = ', $scope
+      $log.debug '$scope = ', $scope
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

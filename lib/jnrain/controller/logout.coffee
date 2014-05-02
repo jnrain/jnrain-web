@@ -16,6 +16,8 @@ define [
   # 注销
   mod.controller 'LogoutPage',
     ($scope, $state, $timeout, $log, SessionAPI, Toasts) ->
+      $log = $log.getInstance 'LogoutPage'
+
       doLogoutRedirect = () ->
         # 首页
         $state.go 'home'
@@ -25,10 +27,10 @@ define [
 
       SessionAPI.logout (retcode) ->
         if retcode == 0
-          $log.info '[LogoutPage] logout OK'
+          $log.info 'logout OK'
         else
           # 应该不会发生
-          $log.warn '[LogoutPage] logout failed: retcode=', retcode
+          $log.warn 'logout failed: retcode=', retcode
 
         $scope.inProgress = false
         $scope.retcode = retcode
@@ -38,7 +40,7 @@ define [
         # 2 秒后跳转回首页
         $timeout doLogoutRedirect, 2000
 
-      $log.debug '[LogoutPage] $scope = ', $scope
+      $log.debug '$scope = ', $scope
 
   mod.config ($stateProvider) ->
     $stateProvider.state 'logout',

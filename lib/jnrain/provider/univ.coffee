@@ -14,6 +14,8 @@ define [
 
   mod.factory 'UnivInfo',
     ($rootScope, $log, UnivAPI, localStorageService) ->
+      $log = $log.getInstance 'UnivInfo'
+
       # TODO: 移动到 jnrain/config
       # 大学信息刷新时间间隔, 单位: 毫秒
       univRefreshInterval = 30 * 86400 * 1000  # 30 d
@@ -76,10 +78,10 @@ define [
 
       doRefresh = () ->
         UnivAPI.getMajorsInfo (majorsData) ->
-          $log.info '[provider/univ] majors info retrieved: ', majorsData
+          $log.info 'majors info retrieved: ', majorsData
 
           UnivAPI.getDormsInfo (dormsData) ->
-            $log.info '[provider/univ] dorms info retrieved: ', dormsData
+            $log.info 'dorms info retrieved: ', dormsData
 
             dormsInfoProcessed = processDormInfo dormsData
 

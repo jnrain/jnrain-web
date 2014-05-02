@@ -13,6 +13,8 @@ define [
 
   mod.factory 'VPool',
     ($rootScope, $log, DSAPI, localStorageService) ->
+      $log = $log.getInstance 'VPool'
+
       # 全局虚线索池 ID
       GLOBAL_VPOOL = '0'
 
@@ -59,14 +61,9 @@ define [
         # 查询基本信息
         DSAPI.vpool.stat vtpid, (retcode, stat) ->
           if retcode == 0
-            $log.info '[provider/vpool] vtpid=', vtpid, ' stat OK: ', stat
+            $log.info 'vtpid=', vtpid, ' stat OK: ', stat
           else
-            $log.warn(
-              '[provider/vpool] vtpid=',
-              vtpid,
-              ' stat failed: retcode=',
-              retcode,
-            )
+            $log.warn 'vtpid=', vtpid, ' stat failed: retcode=', retcode
 
           unless retcode == 0
             return callback? retcode, null, 'stat'
@@ -74,19 +71,9 @@ define [
           # 查询虚标签
           DSAPI.vpool.readdir vtpid, (retcode, vtags) ->
             if retcode == 0
-              $log.info(
-                '[provider/vpool] vtpid=',
-                vtpid,
-                ' readdir OK: ',
-                vtags,
-              )
+              $log.info 'vtpid=', vtpid, ' readdir OK: ', vtags
             else
-              $log.warn(
-                '[provider/vpool] vtpid=',
-                vtpid,
-                ' readdir failed: retcode=',
-                retcode,
-              )
+              $log.warn 'vtpid=', vtpid, ' readdir failed: retcode=', retcode
 
             unless retcode == 0
               return callback? retcode, null, 'readdir'
