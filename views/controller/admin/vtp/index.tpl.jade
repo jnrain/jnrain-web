@@ -15,7 +15,7 @@
       li.vtp-admin__vtag(data-ng-repeat='(vtagid, vtag) in vtpVTags')
         h3.vtp-admin__vtag__name
           | {{vtag.name}}
-          span.vtp-admin__vtag__slug(data-ng-show='vtag.slug') {{vtag.slug}}
+          span.vtp-admin__vtag__slug /t/{{vtag.slug || vtagid}}
 
         span.vtp-admin__vtag__desc(data-ng-show='vtag.desc') {{vtag.desc}}
         span.vtp-admin__vtag__desc--empty(data-ng-hide='vtag.desc') 未填写版块描述
