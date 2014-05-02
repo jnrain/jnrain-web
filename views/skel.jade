@@ -43,9 +43,10 @@ html#appmount(lang='cmn')
       include footer
 
     if DEBUG_LIVERELOAD
-      //- grunt-watch 的 LiveReload 貌似只有 HTTP 版...
-      //- 不过因为这一条反正不会出现在生产页面上, 所以无所谓的
-      script(src='http://localhost:35729/livereload.js')
+      //- NOTE: 经过配置, grunt-watch 的 LiveReload 服务器也可以通过给
+      //- grunt watch 传入 --keyfile 和 --certfile 参数的方式启用 SSL, 跟
+      //- app.coffee 一样.
+      script(src='//localhost:35729/livereload.js')
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

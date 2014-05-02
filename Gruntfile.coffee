@@ -12,7 +12,18 @@ BUILD_PHASES = [
   'copy'
 ]
 
-GRUNT_CONFIG =
+getGruntConfig = (grunt) ->
+  # LiveReload
+  liveReloadOptions =
+    port: 35729  # 默认端口
+
+  sslKeyFile = grunt.option('keyfile')
+  sslCertFile = grunt.option('certfile')
+  if sslKeyFile? and sslCertFile?
+    liveReloadOptions.key = grunt.file.read sslKeyFile
+    liveReloadOptions.cert = grunt.file.read sslCertFile
+
+  # 配置
   sass:
     dist:
       files:
@@ -92,29 +103,24 @@ GRUNT_CONFIG =
         useStrict: true
 
   watch:
+    options:
+      livereload: liveReloadOptions
+
     sass:
       files: ['sass/**/*.scss']
       tasks: ['sass']
-      options:
-        livereload: true
 
     ngtemplates:
       files: ['views/**/*.tpl.jade']
       tasks: ['jade', 'html2js', 'requirejs']
-      options:
-        livereload: true
 
     lib:
       files: ['lib/**/*.coffee']
       tasks: ['coffeelint', 'coffee', 'ngmin', 'requirejs']
-      options:
-        livereload: true
 
     misc:
       files: ['images/ready/**/*']
       tasks: ['copy']
-      options:
-        livereload: true
 
   copy:
     'vendored-select2':
@@ -147,7 +153,7 @@ GRUNT_CONFIG =
 
 
 module.exports = (grunt) ->
-  grunt.initConfig GRUNT_CONFIG
+  grunt.initConfig getGruntConfig grunt
 
   grunt.loadNpmTasks 'grunt-sass'
   grunt.loadNpmTasks 'grunt-contrib-jade'
