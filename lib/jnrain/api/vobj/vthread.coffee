@@ -7,12 +7,12 @@ define [
   'use strict'
 
   (APIv1) ->
-    basePath = (vthid) ->
+    basePathWithID = (vthid) ->
       APIv1.one('vth').one vthid
 
     # 暴露 API
     stat: (vthid, callback) ->
-      basePath(vthid).one('stat').get().then (data) ->
+      basePathWithID(vthid).one('stat').get().then (data) ->
         retcode = data.r
         if retcode == 0
           callback 0,
@@ -27,7 +27,7 @@ define [
           callback retcode, null
 
     readdir: (vthid, callback) ->
-      basePath(vthid).one('readdir').get().then (data) ->
+      basePathWithID(vthid).one('readdir').get().then (data) ->
         retcode = data.r
         if retcode == 0
           callback 0, data.l
