@@ -11,23 +11,57 @@ define [
     ($rootScope, $log) ->
       $log = $log.getInstance 'ui/page'
 
-      currentTitleFrag = ''
+      # The improved breadcrumb nav implementation here is inspired by this
+      # detailed SO answer:
+      # http://stackoverflow.com/a/22263990/596531
+      titleFrags = []
 
-      # 页面标题的动态部分
-      titleFrag = (value) ->
-        if value?
-          $log.info 'dynamic title fragment set to ', value
-          currentTitleFrag = '' + value
-          $rootScope.$broadcast 'ui:pageTitleFragChanged'
+      # 按逆序构造状态碎片列表 (从内层到外层状态)
+      # stateCurrent 是 state.$current
+      constructTitleFrags = (stateCurrent, accumulator) ->
+        # 尝试解出 resolve 中的 navData
+        navData = stateCurrent.locals.globals.navData
+        shouldOmitState = false
+
+        if navData?
+          # 处理忽略本层状态的情况 (默认不会忽略)
+          shouldOmitState = navData.omit
+
+          # 取出标题
+          currentTitleFrag = navData.title
+          if !currentTitleFrag?
+            # 没有指定标题, fallback 到空标题
+            currentTitleFrag = ''
         else
-          currentTitleFrag
+          # 没有配置导航, 同样 fallback 到空标题
+          # 为何没有处理成忽略本层状态, 而是选择返回一个空字符串的状态名?
+          # 这是考虑到方便调试各种编程疏漏的原因, 故意造成的异常状态.
+          currentTitleFrag = ''
 
-      getTitlePrefix = () ->
-        if currentTitleFrag then currentTitleFrag + ' - ' else ''
+        unless shouldOmitState
+          accumulator.push currentTitleFrag
+
+        # 如果有 parent 状态就递归
+        # 但如果有设置 navData.root 的话就在这里结束
+        if stateCurrent.parent? and !navData?.root
+          constructTitleFrags stateCurrent.parent, accumulator
+        else
+          # 递归终止
+          accumulator
+
+      titleFragsFromState = (state) ->
+        constructTitleFrags state.$current, []
+
+      getTitleFrags = () ->
+        titleFrags
+
+      updateState = (state) ->
+        $log.debug 'updateState: state=', state
+        titleFrags = titleFragsFromState state
 
       # 暴露 API
-      titleFrag: titleFrag
-      getTitlePrefix: getTitlePrefix
+      getTitleFrags: getTitleFrags
+      updateState: updateState
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

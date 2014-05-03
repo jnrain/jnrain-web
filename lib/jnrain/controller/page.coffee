@@ -20,15 +20,12 @@ define [
 
       $scope.$on '$stateChangeSuccess',
         (evt, toState, toParams, fromState, fromParams) ->
-          newTitle = toState.data?.title
-          if !newTitle?
-            newTitle = ''
+          # 更新内部导航状态
+          PageGlobals.updateState $state
 
-          $log.info 'State changed: newTitle = ', newTitle
-          $scope.stateTitle = newTitle
-
-      $scope.$on 'ui:pageTitleFragChanged', (evt) ->
-        $scope.dynTitlePrefix = PageGlobals.getTitlePrefix()
+          newTitleFrags = PageGlobals.getTitleFrags()
+          $log.info 'State changed: newTitleFrags = ', newTitleFrags
+          $scope.stateTitle = newTitleFrags.join ' - '
 
       $log.debug '$scope = ', $scope
 
