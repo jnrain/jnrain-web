@@ -25,8 +25,10 @@ define [
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin',
       url: '/admin'
-      data:
-        title: '系统管理面板'
+      resolve:
+        navData: () ->
+          title: '系统管理面板'
+          root: true
       views:
         main:
           templateUrl: 'admin/index.html'

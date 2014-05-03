@@ -77,8 +77,9 @@ define [
   mod.config ($stateProvider) ->
     $stateProvider.state 'admin.vtp',
       url: '/vtp/:vtpid'
-      data:
-        title: '版块管理'
+      resolve:
+        navData: () ->
+          title: '版块管理'
       views:
         main:
           templateUrl: 'admin/vtp/index.html'
@@ -86,14 +87,18 @@ define [
     $stateProvider.state 'admin.vtp.vtag',
       url: '/vtag'
       abstract: true
+      resolve:
+        navData: () ->
+          omit: true
       views:
         main:
           template: '<div data-ui-view="main"></div>'
 
     $stateProvider.state 'admin.vtp.vtag.creat',
       url: '/creat'
-      data:
-        title: '创建版块'
+      resolve:
+        navData: () ->
+          title: '创建版块'
       onEnter: [
         '$state'
         '$stateParams'

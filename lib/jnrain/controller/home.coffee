@@ -21,9 +21,10 @@ define [
   mod.config ($stateProvider) ->
     $stateProvider.state 'home',
       url: '/'
-      controller: 'Home'
-      data:
-        title: '首页'
+      resolve:
+        navData: () ->
+          title: '首页'
+          root: true
       views:
         main:
           templateUrl: 'home.html'
