@@ -1,9 +1,8 @@
 define [
   'angular'
-  'lodash'
 
   'jnrain/api/bridge'
-], (angular, _) ->
+], (angular) ->
   'use strict'
 
   (APIv1) ->
