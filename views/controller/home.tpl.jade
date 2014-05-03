@@ -1,4 +1,12 @@
-h1 TODO: 首页
+.home-container
+  section.home__section.vtags-overview(data-ng-controller='VTagsOverview')
+    h1.home__section__title 全站版块导航
+
+    ul.vtags-overview__vtags
+      li.vtags-overview__vtag(data-ng-repeat='(vtagid, vtag) in vtags')
+        //- TODO: 支持 slug URLs
+        a(data-ui-sref='vtp.vtag({vtpid: GLOBAL_VPOOL, vtagid: vtagid})')
+          h2.vtags-overview__vtag__name {{vtag.name}}
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

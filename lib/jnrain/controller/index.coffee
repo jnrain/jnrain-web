@@ -8,6 +8,9 @@ define [
   'jnrain/controller/admin/index'
   'jnrain/controller/admin/vtp'
 
+  'jnrain/controller/vtp/index'
+  'jnrain/controller/vtag/index'
+
   'jnrain/controller/page'
   'jnrain/controller/home'
   'jnrain/controller/rtchannel'
@@ -26,6 +29,9 @@ define [
 
     'jnrain/controller/admin/index'
     'jnrain/controller/admin/vtp'
+
+    'jnrain/controller/vtp/index'
+    'jnrain/controller/vtag/index'
 
     'jnrain/controller/page'
     'jnrain/controller/home'
