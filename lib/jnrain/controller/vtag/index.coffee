@@ -1,7 +1,8 @@
 define [
   'angular'
+  'jnrain/util/time'
   'angular-ui-router'
-], (angular) ->
+], (angular, TimeUtil) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/vtag/index', [
@@ -16,6 +17,12 @@ define [
       # 造成 controller 不初始化, 原因不明...
       vtagInfo = $state.$current.locals.globals.vtagInfo
       $scope.vtagInfo = vtagInfo
+
+      # 指定默认展示虚线索的时间段为当前时间整小时数 + 1, 到该时间点 7 天之前
+      # 的内容
+      nowInFullHours = TimeUtil.fullHourFromDate new Date()
+      timeEnd = $scope.timeEnd = TimeUtil.hoursLater nowInFullHours, 1
+      $scope.timeStart = TimeUtil.hoursLater timeEnd, -24 * 7
 
       $log.debug '$scope = ', $scope
 
