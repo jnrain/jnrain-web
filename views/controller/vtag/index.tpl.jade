@@ -4,9 +4,16 @@
 
     .vtag__metadata__desc {{vtagInfo.desc}}
 
-  //- TODO
+  //- TODO: 虚线索列表展示
 
-  .vtag__content(data-ui-view='main')
+  .vtag__content--empty(data-ng-hide='vthList')
+    h2.vtag__empty__title 所选的时间段内没有内容
+    p 可能造成此现象的原因有：
+    ul.vtag__empty__reasons
+      li.vtag__empty__reason 本版块在您选择的时间段内确实没有内容产生；
+      li.vtag__empty__reason 您选择的时间段过于狭窄，请指定更宽广的一段时间。
+
+  .vtag__nest(data-ui-view='main')
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
