@@ -1,8 +1,19 @@
 .vtag-container(data-ng-controller='VTagIndexPage')
-  header.vtag__metadata
-    h1.vtag__metadata__name {{vtagInfo.name}}
+  header.vtag__header
+    section.vtag__metadata
+      h1.vtag__metadata__name {{vtagInfo.name}}
+      .vtag__metadata__desc {{vtagInfo.desc}}
+    section.vtag__params
+      dl.vtag__params__times
+        dt.vtag__params__times__name
+          显示起始时间
+        dd.vtag__params__times__value
+          {{timeStart | date:'yyyy-MM-dd HH:mm'}}
 
-    .vtag__metadata__desc {{vtagInfo.desc}}
+        dt.vtag__params__times__name
+          显示终止时间
+        dd.vtag__params__times__value
+          {{timeEnd | date:'yyyy-MM-dd HH:mm'}}
 
   //- TODO: 虚线索列表展示
 
