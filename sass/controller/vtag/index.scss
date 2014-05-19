@@ -32,6 +32,13 @@ $VTAG_PANEL_BORDER_COLOR: #ccc;
   font-size: 30px;
 }
 
+.vtag__metadata__desc {
+  &:before {
+    content: '\00bb';
+    margin: 0 0.5em;
+  }
+}
+
 
 // 查询参数
 .vtag__params {
