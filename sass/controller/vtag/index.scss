@@ -1,9 +1,11 @@
 // 虚标签页面
 // 顶端面板
 $VTAG_PANEL_PADDING: 10px;
+$VTAG_PANEL_BORDER_COLOR: #ccc;
+
 
 .vtag__header {
-  display: table;
+  @include clearfix;
   background-color: rgba(#fff, 0.8);
 
   width: calc(100% - #{$VTAG_PANEL_PADDING * 2});
@@ -15,16 +17,14 @@ $VTAG_PANEL_PADDING: 10px;
 
 .vtag__metadata,
 .vtag__params {
-  display: table-cell;
-  vertical-align: top;
+  float: left;
 }
 
 
 // 元数据
 .vtag__metadata {
   width: 75%;
-  border-right: 1px solid #ccc;
-  padding: 0 $VTAG_PANEL_PADDING 0 0;
+  padding: 0 $VTAG_PANEL_PADDING $VTAG_PANEL_PADDING 0;
 }
 
 .vtag__metadata__name {
@@ -36,13 +36,21 @@ $VTAG_PANEL_PADDING: 10px;
 // 查询参数
 .vtag__params {
   width: 25%;
-  padding: 0 0 0 $VTAG_PANEL_PADDING;
+  padding: 0 0 $VTAG_PANEL_PADDING $VTAG_PANEL_PADDING;
 }
 
 
 // 起止时间
 .vtag__params__times {
   margin: 0;
+}
+
+
+// 动作面板
+.vtag__actions {
+  clear: both;
+  padding: $VTAG_PANEL_PADDING 0 0;
+  border-top: 1px solid $VTAG_PANEL_BORDER_COLOR;
 }
 
 
