@@ -15,7 +15,7 @@
         dd.vtag__params__times__value
           {{timeEnd | date:'yyyy-MM-dd HH:mm'}}
     section.vtag__actions
-      button.vtag__new-vf.btn.btn-success 发表话题
+      button.vtag__new-vf.btn.btn-success(data-ui-sref='.newvth') 发表话题
 
   .vtag__content(data-ng-show='vthList')
     ul.vtag__vth-list

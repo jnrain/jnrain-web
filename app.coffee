@@ -133,6 +133,7 @@ app.get '/register', entryView
 app.get /^\/verifymail\/([0-9A-Za-z_-]{32})$/, entryView
 app.get '/p/:vtpid', entryView
 app.get '/p/:vtpid/t/:vtagid', entryView
+app.get '/p/:vtpid/t/:vtagid/post', entryView
 
 
 # Fire up JNRain!
