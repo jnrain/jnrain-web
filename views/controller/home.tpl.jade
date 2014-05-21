@@ -5,7 +5,7 @@
     ul.vtags-overview__vtags
       li.vtags-overview__vtag(data-ng-repeat='(vtagid, vtag) in vtags')
         //- TODO: 支持 slug URLs
-        a(data-ui-sref='vtp.vtag({vtpid: GLOBAL_VPOOL, vtagid: vtagid})')
+        a(data-ui-sref='vtp.vtag.content({vtpid: GLOBAL_VPOOL, vtagid: vtagid})')
           h2.vtags-overview__vtag__name {{vtag.name}}
 
 

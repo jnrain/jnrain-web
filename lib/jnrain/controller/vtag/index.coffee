@@ -77,9 +77,19 @@ define [
             title: vtagInfo.name
             root: true
         ]
+      abstract: true
       views:
         main:
           templateUrl: 'vtag/index.html'
+
+    $stateProvider.state 'vtp.vtag.content',
+      url: ''
+      resolve:
+        navData: () ->
+          omit: true
+      views:
+        main:
+          templateUrl: 'vtag/content.html'
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

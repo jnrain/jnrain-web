@@ -1,0 +1,21 @@
+.vtag-content-container
+  .vtag__content(data-ng-show='vthList')
+    ul.vtag__vth-list
+      li.vtag__vth(data-ng-repeat='vth in vthList')
+        h3.vtag__vth__title {{vth.title}}
+
+        //- TODO: 查询到对应用户的信息并显示
+        span.vtag__vth__owner {{vth.owner}}
+
+        time.vtag__vth__ctime(datetime='{{vth.ctime.toISOString()}}') {{vth.ctime | date:'yyyy-MM-dd HH:mm:ss'}}
+        time.vtag__vth__mtime(datetime='{{vth.mtime.toISOString()}}') {{vth.mtime | date:'yyyy-MM-dd HH:mm:ss'}}
+
+  .vtag__content--empty(data-ng-hide='vthList')
+    h2.vtag__empty__title 所选的时间段内没有内容
+    p 可能造成此现象的原因有：
+    ul.vtag__empty__reasons
+      li.vtag__empty__reason 本版块在您选择的时间段内确实没有内容产生；
+      li.vtag__empty__reason 您选择的时间段过于狭窄，请指定更宽广的一段时间。
+
+
+//- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
