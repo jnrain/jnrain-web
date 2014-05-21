@@ -58,11 +58,6 @@ define [
       # TODO: 支持 URL slug
       url: '/t/:vtagid'
       resolve:
-        vtpid: [
-          '$stateParams'
-          ($stateParams) ->
-            $stateParams.vtpid
-        ]
         vtagid: [
           '$stateParams'
           ($stateParams) ->

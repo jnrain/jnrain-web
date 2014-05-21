@@ -12,6 +12,11 @@ define [
     $stateProvider.state 'vtp',
       url: '/p/:vtpid'
       resolve:
+        vtpid: [
+          '$stateParams'
+          ($stateParams) ->
+            $stateParams.vtpid
+        ]
         navData: () ->
           # TODO: 带上虚线索池的名字
           title: '版块分组'
