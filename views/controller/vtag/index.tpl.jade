@@ -1,7 +1,8 @@
 .vtag-container(data-ng-controller='VTagIndexPage')
   header.vtag__header
     section.vtag__metadata
-      h1.vtag__metadata__name {{vtagInfo.name}}
+      h1.vtag__metadata__name
+        a(data-ui-sref='.') {{vtagInfo.name}}
       .vtag__metadata__desc {{vtagInfo.desc}}
     section.vtag__params
       dl.vtag__params__times
