@@ -17,7 +17,16 @@
     section.vtag__actions
       button.vtag__new-vf.btn.btn-success 发表话题
 
-  //- TODO: 虚线索列表展示
+  .vtag__content(data-ng-show='vthList')
+    ul.vtag__vth-list
+      li.vtag__vth(data-ng-repeat='vth in vthList')
+        h3.vtag__vth__title {{vth.title}}
+
+        //- TODO: 查询到对应用户的信息并显示
+        span.vtag__vth__owner {{vth.owner}}
+
+        time.vtag__vth__ctime(datetime='{{vth.ctime.toISOString()}}') {{vth.ctime | date:'yyyy-MM-dd HH:mm:ss'}}
+        time.vtag__vth__mtime(datetime='{{vth.mtime.toISOString()}}') {{vth.mtime | date:'yyyy-MM-dd HH:mm:ss'}}
 
   .vtag__content--empty(data-ng-hide='vthList')
     h2.vtag__empty__title 所选的时间段内没有内容
