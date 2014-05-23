@@ -23,6 +23,8 @@ define [
       vtagid = resolvedData.vtagid
       vtagInfo = resolvedData.vtagInfo
 
+      $scope.$state = $state
+
       $scope.vtagInfo = vtagInfo
       $scope.vthList = []
 

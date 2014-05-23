@@ -15,7 +15,9 @@
           显示终止时间
         dd.vtag__params__times__value
           {{timeEnd | date:'yyyy-MM-dd HH:mm'}}
-    section.vtag__actions
+
+    //- 在特定动作界面时不要显示动作列表
+    section.vtag__actions(data-ng-hide='$state.current.name != "vtp.vtag.content"')
       button.vtag__new-vf.btn.btn-success(data-ui-sref='vtp.vtag.newvth') 发表话题
 
   .vtag__nest(data-ui-view='main')
