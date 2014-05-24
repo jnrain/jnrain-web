@@ -2,7 +2,9 @@
   .vtag__content(data-ng-show='vthList')
     ul.vtag__vth-list
       li.vtag__vth(data-ng-repeat='vth in vthList')
-        h3.vtag__vth__title {{vth.title}}
+        h3.vtag__vth__title
+          a.vtag__vth__title__link(data-ui-sref='vtp.vtag.vth({vthid: vth.vthid})')
+            | {{vth.title}}
 
         //- TODO: 查询到对应用户的信息并显示
         span.vtag__vth__owner {{vth.owner}}
