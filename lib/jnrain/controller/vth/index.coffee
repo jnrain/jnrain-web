@@ -1,18 +1,18 @@
 define [
   'angular'
 
-  'jnrain/api/ds'
+  'jnrain/provider/vthread'
   'angular-ui-router'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/vth/index', [
     'ui.router'
-    'jnrain/api/ds'
+    'jnrain/provider/vthread'
   ]
 
   mod.controller 'VThreadIndexPage',
-    ($scope, $state, $log, DSAPI) ->
+    ($scope, $state, $log, VThread) ->
       $log = $log.getInstance 'VThreadIndexPage'
 
       # XXX: kludge
@@ -20,8 +20,27 @@ define [
       vthid = resolvedData.vthid
 
       $scope.vthid = vthid
+      $scope.vthStat = {}
+      $scope.vthRootVFID = null
+      $scope.vthReplies = []
 
-      # TODO
+      VThread.maybeRefresh vthid, (retcode, data, errorPhase) ->
+        if retcode == 0
+          $log.info 'vth refreshed:', data
+        else
+          $log.warn(
+            'vth refresh failure: retcode=',
+            retcode,
+            ', phase=',
+            errorPhase,
+          )
+          return
+
+        $scope.vthStat = data.stat
+
+        tree = data.tree
+        $scope.vthRootVFID = tree.shift()
+        $scope.vthReplies = tree
 
       $log.debug '$scope = ', $scope
 

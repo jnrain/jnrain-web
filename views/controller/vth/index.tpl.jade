@@ -1,5 +1,20 @@
 .vth-container(data-ng-controller='VThreadIndexPage')
-  p TODO
+  header.vth__header
+    section.vth__metadata
+      h1.vth__title {{vthStat.title}}
+      time.vth__ctime(datetime='{{vthStat.ctime.toISOString()}}')
+        | {{vthStat.ctime | date:'yyyy-MM-dd HH:mm:ss'}}
+      time.vth__mtime(datetime='{{vthStat.mtime.toISOString()}}')
+        | {{vthStat.mtime | date:'yyyy-MM-dd HH:mm:ss'}}
+
+  ul.vth__tree
+    //- TODO: 写一个虚文件 element directive
+    //- 楼主
+    li.vth__vf.vth__vf--root
+      p TODO; vfid={{vthRootVFID}}
+
+    li.vth__vf.vth__vf--reply(data-ng-repeat='vfid in vthReplies')
+      p TODO; vfid={{vfid}}
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
