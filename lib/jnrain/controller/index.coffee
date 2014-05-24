@@ -10,6 +10,7 @@ define [
 
   'jnrain/controller/vtp/index'
   'jnrain/controller/vtag/index'
+  'jnrain/controller/vth/index'
   'jnrain/controller/vf/newvth'
 
   'jnrain/controller/page'
@@ -33,6 +34,7 @@ define [
 
     'jnrain/controller/vtp/index'
     'jnrain/controller/vtag/index'
+    'jnrain/controller/vth/index'
     'jnrain/controller/vf/newvth'
 
     'jnrain/controller/page'
