@@ -38,7 +38,6 @@ define [
         navData: () ->
           # TODO: 注射虚线索元数据于此, 展示对应标题
           title: '阅读主题'
-      abstract: true
       views:
         main:
           templateUrl: 'vth/index.html'
