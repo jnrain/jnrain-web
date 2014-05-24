@@ -20,7 +20,8 @@
     section.vf-newvth-actions
       button.btn.btn-success(
         type='submit'
-        data-ng-disabled='newvthForm.$invalid'
+        data-ng-disabled='newvthForm.$invalid || requestInProgress'
+        data-ng-click='doCreateVFile()'
         )
         i.fa.fa-send
         | 发表
