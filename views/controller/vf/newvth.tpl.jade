@@ -1,5 +1,29 @@
 .vf-newvth-container(data-ng-controller='NewVFileWithVThread')
-  p TODO
+  form.vg-newvth-form(
+    name='newvthForm'
+    novalidate
+    )
+    input.vf-newvth__title(
+      type='text'
+      name='title'
+      required
+      placeholder='标题'
+      data-ng-model='title'
+      )
+    textarea.vf-newvth__content(
+      name='content'
+      required
+      placeholder='正文'
+      data-ng-model='content'
+      )
+
+    section.vf-newvth-actions
+      button.btn.btn-success(
+        type='submit'
+        data-ng-disabled='newvthForm.$invalid'
+        )
+        i.fa.fa-send
+        | 发表
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
