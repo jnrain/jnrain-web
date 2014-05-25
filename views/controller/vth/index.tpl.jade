@@ -7,14 +7,12 @@
       time.vth__mtime(datetime='{{vthStat.mtime.toISOString()}}')
         | {{vthStat.mtime | date:'yyyy-MM-dd HH:mm:ss'}}
 
-  ul.vth__tree
-    //- TODO: 写一个虚文件 element directive
+  section.vth__tree
     //- 楼主
-    li.vth__vf.vth__vf--root
-      p TODO; vfid={{vthRootVFID}}
+    jnrain-vf.vth__vf.vth__vf--root(data-vfid='vthRootVFID', data-is-root='true')
 
-    li.vth__vf.vth__vf--reply(data-ng-repeat='vfid in vthReplies')
-      p TODO; vfid={{vfid}}
+    //- 直接回复
+    jnrain-vf.vth__vf.vth__vf--reply(data-ng-repeat='vfid in vthReplies', data-vfid='vfid')
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -1,14 +1,17 @@
 define [
   'angular'
 
-  'jnrain/provider/vthread'
   'angular-ui-router'
+
+  'jnrain/provider/vthread'
+  'jnrain/ui/vfile'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/vth/index', [
     'ui.router'
     'jnrain/provider/vthread'
+    'jnrain/ui/vfile'
   ]
 
   mod.controller 'VThreadIndexPage',
