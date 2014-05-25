@@ -22,6 +22,7 @@ define [
             owner: data.s.o
             ctime: new Date(data.s.c * 1000)
             content: data.s.n
+            format: data.s.f
             xattr: data.s.x
         else
           callback retcode, null
