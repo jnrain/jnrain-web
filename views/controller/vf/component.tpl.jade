@@ -1,4 +1,11 @@
-p TODO; vfid={{vfid}}, isRoot={{isRoot}}, replies={{replies}}
+time.vf__ctime(datetime='{{vfData.ctime.toISOString()}}')
+  | {{vfData.ctime | date:'yyyy-MM-dd HH:mm:ss'}}
+time.vf__mtime(datetime='{{vfData.mtime.toISOString()}}')
+  | {{vfData.mtime | date:'yyyy-MM-dd HH:mm:ss'}}
+
+section.vf__content(data-ng-switch='vfData.format')
+  .vf__content--txt(data-ng-switch-when='"txt")
+    p {{vfData.content}}
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

@@ -14,35 +14,34 @@ define [
     ($scope, $log, VFile) ->
       $log = $log.getInstance 'VFileComponent'
 
-      vfid = null
-      isRoot = false
-      replies = []
+      $scope.vfData = null
 
       doRefreshView = () ->
-        VFile.maybeRefresh vfid, null
+        VFile.maybeRefresh $scope.vfid, null
 
       $scope.$on 'provider:vf:updated', (evt, vfidUpdated, data) ->
-        if vfid != vfidUpdated
+        if $scope.vfid != vfidUpdated
           return
 
-        $log.info 'vfid=', vfid, ': data updated: ', data
+        $log.info 'vfid=', $scope.vfid, ': data updated: ', data
+
+        $scope.vfData = data
 
       $scope.$watch 'vfid', (to, from) ->
         if to?
-          vfid = to
-          $log.debug 'vfid set to ', vfid
+          $log.debug 'vfid set to ', to
 
           # 触发数据刷新
           doRefreshView()
 
       $scope.$watch 'isRoot', (to, from) ->
-        isRoot = !!to
-        $log.debug 'isRoot set to ', isRoot
+        $log.debug 'isRoot set to ', to
 
       $scope.$watch 'replies', (to, from) ->
         if to?
-          replies = to
-          $log.debug 'replies set to ', replies
+          $log.debug 'replies set to ', to
+
+          # TODO: 刷新楼中楼回复数据
 
       $log.debug '$scope = ', $scope
 
