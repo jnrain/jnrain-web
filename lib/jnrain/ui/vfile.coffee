@@ -1,24 +1,39 @@
 define [
   'angular'
+
+  'jnrain/provider/vfile'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/ui/vfile', [
+    'jnrain/provider/vfile'
   ]
 
   # 虚文件组件
   mod.controller 'VFileComponent',
-    ($scope, $log) ->
+    ($scope, $log, VFile) ->
       $log = $log.getInstance 'VFileComponent'
 
       vfid = null
       isRoot = false
       replies = []
 
+      doRefreshView = () ->
+        VFile.maybeRefresh vfid, null
+
+      $scope.$on 'provider:vf:updated', (evt, vfidUpdated, data) ->
+        if vfid != vfidUpdated
+          return
+
+        $log.info 'vfid=', vfid, ': data updated: ', data
+
       $scope.$watch 'vfid', (to, from) ->
         if to?
           vfid = to
           $log.debug 'vfid set to ', vfid
+
+          # 触发数据刷新
+          doRefreshView()
 
       $scope.$watch 'isRoot', (to, from) ->
         isRoot = !!to
