@@ -88,10 +88,10 @@ getGruntConfig = (grunt) ->
       src: ['**/*.js']
       dest: 'build/js'
 
-    btford_markdown:
+    vendored:
       files:
+        'build/js/vendored/socket.js': 'bower_components/angular-socket-io/socket.js'
         'build/js/vendored/markdown.js': 'bower_components/angular-markdown-directive/markdown.js'
-
 
   requirejs:
     compile:

@@ -6,7 +6,7 @@ requirejs.config({
     'lodash': '../../bower_components/lodash/dist/lodash',
     'select2': '../../bower_components/select2/select2',
     'ui.select2': '../../bower_components/angular-ui-select2/src/select2',
-    'angular-socket-io': '../../bower_components/angular-socket-io/socket.min',
+    'angular-socket-io': 'vendored/socket',
     'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',
     'AngularJS-Toaster': '../../bower_components/AngularJS-Toaster/toaster',
     'ui-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
