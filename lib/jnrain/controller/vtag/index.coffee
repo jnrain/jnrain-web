@@ -51,6 +51,15 @@ define [
         timeEnd = $scope.timeEnd
         DSAPI.vtag.readdir vtpid, vtagid, timeStart, timeEnd, vthListCallback
 
+      # 接受请求刷新事件
+      $scope.$on 'vtag:requestRefresh', (evt, vtpidReq, vtagidReq) ->
+        unless vtpid == vtpidReq and vtagid == vtagidReq
+          return
+
+        $log.info 'vtag refresh requested'
+        $scope.refreshVThreadList()
+
+      # 初始刷新
       $scope.refreshVThreadList()
 
       $log.debug '$scope = ', $scope
