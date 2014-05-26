@@ -17,7 +17,7 @@ requirejs.config({
     'ng-flow': '../../bower_components/ng-flow/dist/ng-flow.js',
     'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-logex': '../../bower_components/angular-logex/dist/log-ex-unobtrusive',
-    'angular-markdown-directive': '../../bower_components/angular-markdown-directive/markdown',
+    'angular-markdown-directive': 'vendored/markdown',
     'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
     'showdown': '../../bower_components/showdown/src/showdown'
   },
