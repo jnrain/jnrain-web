@@ -14,7 +14,7 @@ define [
   ]
 
   mod.controller 'NewVFileWithVThread',
-    ($scope, $state, $timeout, $log, DSAPI, Toasts) ->
+    ($scope, $rootScope, $state, $timeout, $log, DSAPI, Toasts) ->
       $log = $log.getInstance 'NewVFileWithVThread'
 
       # XXX kludge
@@ -50,6 +50,9 @@ define [
           '发表话题成功',
           '您的话题已发表。',
         )
+
+        # 提前请求虚标签详情视图刷新虚线索列表
+        $rootScope.$broadcast 'vtag:requestRefresh', vtpid, vtagid
 
         # 2 秒后返回虚标签详情页
         $timeout doCreateSuccessRedirect, 2000
