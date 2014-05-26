@@ -16,7 +16,10 @@ requirejs.config({
     'flow': '../../bower_components/flow.js/dist/flow',  // known to be simply 'flow'
     'ng-flow': '../../bower_components/ng-flow/dist/ng-flow.js',
     'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
-    'angular-logex': '../../bower_components/angular-logex/dist/log-ex-unobtrusive'
+    'angular-logex': '../../bower_components/angular-logex/dist/log-ex-unobtrusive',
+    'angular-markdown-directive': '../../bower_components/angular-markdown-directive/markdown',
+    'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
+    'showdown': '../../bower_components/showdown/src/showdown'
   },
   shim: {
     // jQuery plugins
@@ -61,6 +64,12 @@ requirejs.config({
 
     'angular-ui-router': ['angular'],
     'angular-logex': ['angular'],
+
+    'angular-markdown-directive': ['angular', 'angular-sanitize', 'showdown'],
+    'showdown': {
+      deps: [],
+      exports: 'Showdown'
+    },
 
     // other libraries
     'lodash': {
