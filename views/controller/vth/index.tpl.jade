@@ -9,10 +9,15 @@
 
   section.vth__tree
     //- 楼主
-    jnrain-vf.vth__vf.vth__vf--root(data-vfid='vthRootVFID', data-is-root='true')
+    jnrain-vf-read.vth__vf.vth__vf--root(data-vfid='vthRootVFID', data-is-root='true')
 
     //- 直接回复
-    jnrain-vf.vth__vf.vth__vf--reply(data-ng-repeat='vfid in vthReplies', data-vfid='vfid')
+    jnrain-vf-read.vth__vf.vth__vf--reply(data-ng-repeat='vfid in vthReplies', data-vfid='vfid')
+
+  section.vth__actions
+    section.vth__reply
+      h2 发表回复
+
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

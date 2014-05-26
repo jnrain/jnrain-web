@@ -7,15 +7,15 @@ define [
 ], (angular) ->
   'use strict'
 
-  mod = angular.module 'jnrain/controller/vf/component', [
+  mod = angular.module 'jnrain/controller/vf/read', [
     'jnrain/provider/vfile'
     'btford.markdown'
   ]
 
-  # 虚文件组件
-  mod.controller 'VFileComponent',
+  # 虚文件详情组件
+  mod.controller 'VFileReadComponent',
     ($scope, $log, VFile) ->
-      $log = $log.getInstance 'VFileComponent'
+      $log = $log.getInstance 'VFileReadComponent'
 
       $scope.vfData = null
 
