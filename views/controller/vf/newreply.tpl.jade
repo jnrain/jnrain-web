@@ -1,0 +1,24 @@
+form.vf-newreply-form(
+  name='newreplyForm'
+  novalidate
+  )
+  //- TODO: 标题
+
+  textarea.vf-newreply__content(
+    name='content'
+    required
+    placeholder='回复正文'
+    data-ng-model='content'
+    )
+
+  section.vf-newreply-actions
+    button.btn.btn-success(
+      type='submit'
+      data-ng-disabled='newreplyForm.$invalid || requestInProgress'
+      data-ng-click='doCreateVFileReply()'
+      )
+      i.fa.fa-send
+      | 发表
+
+
+//- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
