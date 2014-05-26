@@ -1,12 +1,15 @@
 define [
   'angular'
 
+  'angular-markdown-directive'
+
   'jnrain/provider/vfile'
 ], (angular) ->
   'use strict'
 
   mod = angular.module 'jnrain/controller/vf/component', [
     'jnrain/provider/vfile'
+    'btford.markdown'
   ]
 
   # 虚文件组件
