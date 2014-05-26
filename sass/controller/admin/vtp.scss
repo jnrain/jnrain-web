@@ -32,7 +32,7 @@
   margin: 0 10px 20px 0;
   padding: 10px 20px;
   border-radius: 10px;
-  @include box-shadow(3px 3px 5px #999);
+  box-shadow: 3px 3px 5px #999;
 }
 
 .vtp-admin__vtag__name {
