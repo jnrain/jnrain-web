@@ -1,0 +1,102 @@
+// 虚文件详情组件 (jnrain-vf-read)
+jnrain-vf-read {
+  display: block;
+}
+
+
+// 作为虚线索一部分而存在的虚文件组件
+// 公共样式
+.vth__vf {
+  background-color: rgba(#fff, 0.8);
+
+  width: 60%;
+  margin: 0 0 1.5em 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+// 组件容器 - 楼主
+.vth__vf--root {
+
+  width: 80%;
+  margin: 0 auto 2em;
+}
+
+
+// 内容容器
+.vf__content {
+  padding: 0 0 0 1em;
+}
+
+
+// Markdown 渲染
+.vf__content--md {
+  h1, h2, h3, h4, h5, h6 {
+    border-bottom: 1px solid;
+  }
+
+  h1, h2, h3 {
+    padding: 0 0 0.2em;
+
+    font-weight: bold;
+  }
+
+  h4, h5, h6 {
+    padding: 0 0 0.1em;
+  }
+
+  h1 {
+    border-bottom-color: #999;
+  }
+
+  h2 {
+    border-bottom-color: #aaa;
+  }
+
+  h3 {
+    border-bottom-color: #bbb;
+  }
+
+  h4 {
+    border-bottom-color: #ccc;
+  }
+
+  h5, h6 {
+    border-bottom-color: #ddd;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: inside disc;
+
+    > li > ul {
+      list-style-type: circle;
+
+      > li > ul {
+        list-style-type: square;
+      }
+    }
+  }
+
+  ol {
+    list-style: inside decimal;
+  }
+
+  ul > li > ul,
+  ul > li > ol,
+  ol > li > ul,
+  ol > li > ol {
+    margin: 0 0 0 2em;
+  }
+}
+
+
+// vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
