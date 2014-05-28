@@ -61,7 +61,7 @@ app.disable 'x-powered-by'
 
 # Sentry
 if process.env.SENTRY_DSN?
-  app.use raven.middleware.express()
+  app.use raven.middleware.express new raven.Client()
 
 
 # 中间件
