@@ -61,7 +61,10 @@ app.disable 'x-powered-by'
 
 # Sentry
 if process.env.SENTRY_DSN?
+  sentryEnabled = true
   app.use raven.middleware.express new raven.Client()
+else
+  sentryEnabled = false
 
 
 # 中间件
@@ -146,6 +149,11 @@ app.get '/p/:vtpid/t/:vtagid/a/:vthid', entryView
 app.get '/p/:vtpid/t/:vtagid/post', entryView
 
 
+# 日志辅助
+onOff = (cond, onVal='on', offVal='off') ->
+  if cond then onVal else offVal
+
+
 # Fire up JNRain!
 server = if sslEnabled then https.createServer sslOptions, app else app
 server.listen port, hostName, () ->
@@ -154,9 +162,8 @@ server.listen port, hostName, () ->
     console.log 'Using SSL certificate: ' + certFile
 
   console.log   '         Bind address: ' + hostName
-  console.log   ' Enable SEO snapshots: ' + (
-    if isSnapshotsEnabled then 'on' else 'off'
-  )
+  console.log   ' Enable SEO snapshots: ' + onOff(isSnapshotsEnabled)
+  console.log   '   Sentry integration: ' + onOff(sentryEnabled)
 
   console.log 'Listening on port ' + port + '.'
 
