@@ -59,14 +59,6 @@ app.use helmet.hsts 31536000, true  # 31536000s = 365d
 app.disable 'x-powered-by'
 
 
-# Sentry
-if process.env.SENTRY_DSN?
-  sentryEnabled = true
-  app.use raven.middleware.express new raven.Client()
-else
-  sentryEnabled = false
-
-
 # 中间件
 app.use morgan()
 app.use '/static', express.static('static') if isDebug
@@ -147,6 +139,15 @@ app.get '/p/:vtpid', entryView
 app.get '/p/:vtpid/t/:vtagid', entryView
 app.get '/p/:vtpid/t/:vtagid/a/:vthid', entryView
 app.get '/p/:vtpid/t/:vtagid/post', entryView
+
+
+# Sentry
+# NOTE: 必须出现在所有视图之后
+if process.env.SENTRY_DSN?
+  sentryEnabled = true
+  app.use raven.middleware.express new raven.Client()
+else
+  sentryEnabled = false
 
 
 # 日志辅助
