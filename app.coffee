@@ -19,6 +19,8 @@ argv = minimist process.argv.slice(2)
 isDebug = argv.debug ? false
 port = argv.p ? 8000
 deployChannelName = argv.channel ? 'localdebug'
+isSnapshotsEnabled = !(argv['disable-snapshots'] ? false)
+
 
 # SSL 参数
 # 非调试环境下由 nginx 等组件负责 SSL, 强制关闭 Node.js 的 SSL 支持
@@ -120,7 +122,7 @@ generateHTMLSnapshot = (req, res) ->
 # 视图
 entryView = (req, res) ->
   # SEO
-  if isSpider req.useragent
+  if isSnapshotsEnabled and isSpider req.useragent
     generateHTMLSnapshot req, res
   else
     res.render 'skel'
@@ -149,6 +151,10 @@ server.listen port, () ->
   if sslEnabled
     console.log 'Using SSL private key: ' + keyFile
     console.log 'Using SSL certificate: ' + certFile
+
+  console.log   ' Enable SEO snapshots: ' + (
+    if isSnapshotsEnabled then 'on' else 'off'
+  )
 
   console.log 'Listening on port ' + port + '.'
 
