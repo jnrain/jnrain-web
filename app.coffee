@@ -157,15 +157,17 @@ onOff = (cond, onVal='on', offVal='off') ->
 # Fire up JNRain!
 server = if sslEnabled then https.createServer sslOptions, app else app
 server.listen port, hostName, () ->
+  console.log   '  Serving over SSL: ' + onOff(sslEnabled)
   if sslEnabled
-    console.log 'Using SSL private key: ' + keyFile
-    console.log 'Using SSL certificate: ' + certFile
+    console.log '   SSL private key: ' + keyFile
+    console.log '   SSL certificate: ' + certFile + '\n'
 
-  console.log   '         Bind address: ' + hostName
-  console.log   ' Enable SEO snapshots: ' + onOff(isSnapshotsEnabled)
-  console.log   '   Sentry integration: ' + onOff(sentryEnabled)
-
-  console.log 'Listening on port ' + port + '.'
+  console.log   '    Deploy channel: ' + deployChannelName
+  console.log   '    Debug settings: ' + onOff(isDebug)
+  console.log   '      Bind address: ' + hostName
+  console.log   '     SEO snapshots: ' + onOff(isSnapshotsEnabled)
+  console.log   'Sentry integration: ' + onOff(sentryEnabled)
+  console.log   'Listening on port ' + port + '.'
 
 
 # vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
