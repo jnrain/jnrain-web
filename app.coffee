@@ -17,6 +17,7 @@ raven = require 'raven'
 # 处理 argv
 argv = minimist process.argv.slice(2)
 isDebug = argv.debug ? false
+hostName = argv.bind ? '::1'  # 你说你系统不支持 IPv6?!
 port = argv.p ? 8000
 deployChannelName = argv.channel ? 'localdebug'
 isSnapshotsEnabled = !(argv['disable-snapshots'] ? false)
@@ -147,11 +148,12 @@ app.get '/p/:vtpid/t/:vtagid/post', entryView
 
 # Fire up JNRain!
 server = if sslEnabled then https.createServer sslOptions, app else app
-server.listen port, () ->
+server.listen port, hostName, () ->
   if sslEnabled
     console.log 'Using SSL private key: ' + keyFile
     console.log 'Using SSL certificate: ' + certFile
 
+  console.log   '         Bind address: ' + hostName
   console.log   ' Enable SEO snapshots: ' + (
     if isSnapshotsEnabled then 'on' else 'off'
   )
