@@ -23,7 +23,11 @@ getGruntConfig = (grunt) ->
     liveReloadOptions.key = grunt.file.read sslKeyFile
     liveReloadOptions.cert = grunt.file.read sslCertFile
 
+  haveProductionInEnv = process.env.JNRAIN_IN_PRODUCTION?.toLowerCase() == 'true'
+
   # 配置
+  PRODUCTION: grunt.option('production') or haveProductionInEnv
+  SASS_OUTPUT_STYLE: '<%= PRODUCTION ? "compressed" : "nested" %>'
   sass:
     dist:
       files:
@@ -33,14 +37,14 @@ getGruntConfig = (grunt) ->
           'bower_components/bootstrap-sass-official/vendor/assets/stylesheets'
           'bower_components/bower-bourbon'
         ]
-        outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
+        outputStyle: '<%= SASS_OUTPUT_STYLE >'
 
     vendored:
       files:
         'static/vendored/vendored.css': 'sass/vendored/vendored.scss'
       options:
         includePaths: ['./bower_components/font-awesome/scss']
-        outputStyle: '<%= grunt.option("production") ? "compressed" : "nested" %>'
+        outputStyle: '<%= SASS_OUTPUT_STYLE %>'
 
   jade:
     ngtemplates:
@@ -103,7 +107,7 @@ getGruntConfig = (grunt) ->
         include: ['entry']
 
         out: 'static/js/bundle.js'
-        optimize: '<%= grunt.option("production") ? "uglify2" : "none" %>'
+        optimize: '<%= PRODUCTION ? "uglify2" : "none" %>'
         wrap: true
         useStrict: true
 
@@ -146,7 +150,7 @@ getGruntConfig = (grunt) ->
       ]
     'vendored-socket.io':
       files: [
-        src: ['./bower_components/socket.io-client/dist/socket.io<%= grunt.option("production") ? ".min" : "" %>.js']
+        src: ['./bower_components/socket.io-client/dist/socket.io<%= PRODUCTION ? ".min" : "" %>.js']
         dest: 'static/vendored/socket.io.js'
         flatten: true
       ]
