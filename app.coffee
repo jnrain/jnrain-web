@@ -11,6 +11,7 @@ fs = require 'fs'
 https = require 'https'
 helmet = require 'helmet'
 phantom = require 'node-phantom'
+raven = require 'raven'
 
 
 # 处理 argv
@@ -53,6 +54,11 @@ gitRev.short (short) ->
 app.use helmet.xframe 'deny'
 app.use helmet.hsts 31536000, true  # 31536000s = 365d
 app.disable 'x-powered-by'
+
+
+# Sentry
+if process.env.SENTRY_DSN?
+  app.error raven.middleware.express()
 
 
 # 中间件
