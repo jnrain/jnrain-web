@@ -144,7 +144,8 @@ app.get '/p/:vtpid/t/:vtagid/post', entryView
 # Sentry
 # NOTE: 必须出现在所有视图之后
 sentryEnabled = process.env.SENTRY_DSN?
-app.use raven.middleware.express new raven.Client() if sentryEnabled
+if sentryEnabled
+  app.use raven.middleware.express new raven.Client()
 
 
 # 日志辅助
