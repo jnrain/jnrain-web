@@ -1,0 +1,13 @@
+# 示例站点配置文件
+
+# API 服务部署位置
+apiDomain: '//127.0.0.1:9090'
+
+# 实时信道部署位置, 需要带上 socket.io 名字空间 (就是这里的 rt)
+rtDomain: '//127.0.0.1:9091/rt'
+
+# 会话刷新时间间隔, 单位: ms
+sessionRefreshInterval: 1800000  # 30min
+
+
+# vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:

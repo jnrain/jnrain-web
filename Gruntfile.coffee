@@ -7,6 +7,7 @@ BUILD_PHASES = [
   'coffeelint'
   'coffee'
   'ngmin'
+  'preprocess'  # 不是笔误, 仅仅是为了在 requirejs 之前对 config 进行处理
 
   'requirejs'
   'copy'
@@ -24,6 +25,10 @@ getGruntConfig = (grunt) ->
     liveReloadOptions.cert = grunt.file.read sslCertFile
 
   haveProductionInEnv = process.env.JNRAIN_IN_PRODUCTION?.toLowerCase() == 'true'
+
+  # 站点配置, 将被注入 jnrain/config 模块
+  siteConfigPath = grunt.option('site-config') ? 'siteconfig.yml'
+  siteConfig = grunt.file.readYAML siteConfigPath
 
   # 配置
   PRODUCTION: grunt.option('production') or haveProductionInEnv
@@ -96,6 +101,13 @@ getGruntConfig = (grunt) ->
       files:
         'build/js/vendored/socket.js': 'bower_components/angular-socket-io/socket.js'
         'build/js/vendored/markdown.js': 'bower_components/angular-markdown-directive/markdown.js'
+
+  preprocess:
+    config:
+      files:
+        'build/js/jnrain/config.js': 'build/js/jnrain/config-in.js'
+      options:
+        context: siteConfig
 
   requirejs:
     compile:
@@ -172,6 +184,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-ngmin'
+  grunt.loadNpmTasks 'grunt-preprocess'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-copy'

@@ -29,3 +29,6 @@ bower_components
 
 # generated assets
 static/
+
+# site config
+siteconfig.yml
