@@ -39,8 +39,8 @@ define [
       $scope.doLogin = () ->
         $scope.submitInProgress = true
 
-        name = $scope.name
-        psw = $scope.psw
+        name = $scope.loginname
+        psw = $scope.loginpsw
         pswHash = new jsSHA(psw, 'TEXT').getHash 'SHA-512', 'HEX'
 
         SessionAPI.authenticate name, pswHash, (retcode, token) ->
