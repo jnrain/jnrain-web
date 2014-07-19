@@ -17,8 +17,8 @@ define [
       $log = $log.getInstance 'VerifyMailPage'
 
       doRedirect = () ->
-        # 首页
-        $state.go 'home'
+        # 登陆页面
+        $state.go 'login'
 
       $scope.inProgress = true
       $scope.retcode = -1
