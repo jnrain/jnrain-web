@@ -133,7 +133,7 @@ getGruntConfig = (grunt) ->
       tasks: ['jade', 'html2js', 'requirejs']
 
     lib:
-      files: ['lib/**/*.coffee']
+      files: ['lib/**/*.coffee', 'siteconfig.yml']
       tasks: ['coffeelint', 'coffee', 'ngmin', 'requirejs']
 
     misc:
