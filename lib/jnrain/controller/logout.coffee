@@ -15,12 +15,13 @@ define [
 
   # 注销
   mod.controller 'LogoutPage',
-    ($scope, $state, $timeout, $log, SessionAPI, Toasts) ->
+    ($scope, $window, $timeout, $log, SessionAPI, Toasts) ->
       $log = $log.getInstance 'LogoutPage'
 
       doLogoutRedirect = () ->
         # 首页
-        $state.go 'home'
+        # 与登录过程同理, 我们需要 full page reload
+        $window.location.href = '/'
 
       $scope.inProgress = true
       $scope.retcode = -1

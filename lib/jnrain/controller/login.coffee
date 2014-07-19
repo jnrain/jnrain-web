@@ -17,12 +17,17 @@ define [
 
   # 登录 (登录 token 请求) 表单
   mod.controller 'LoginPage',
-    ($scope, $state, $timeout, $log, SessionAPI, Toasts) ->
+    ($scope, $window, $timeout, $log, SessionAPI, Toasts) ->
       $log = $log.getInstance 'LoginPage'
 
       doLoginSuccessRedirect = () ->
         # 首页
-        $state.go 'home'
+        # 为了实时信道正常初始化, 我们需要刷新页面 (full page reload).
+        # 这里用个比较 dirty 的办法回到首页
+        # ref: http://stackoverflow.com/a/16003013
+        #
+        # $state.go 'home'
+        $window.location.href = '/'
 
       # 防止重复提交
       $scope.submitInProgress = false
