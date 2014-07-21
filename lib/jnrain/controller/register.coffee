@@ -125,8 +125,8 @@ define [
             $log.info 'submit: OK'
             showModal(
               '提交激活成功',
-              '您很快将收到一封验证邮件，请登录您的注册邮箱查收；'
-              '现在页面将跳转回首页。',
+              '''您很快将收到一封验证邮件，请登录您的注册邮箱查收；\
+              现在页面将跳转回首页。''',
               doSuccessRedirect,
               doSuccessRedirect,
             )
