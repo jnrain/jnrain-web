@@ -19,6 +19,13 @@
   background-color: rgba(#bc1b5b, 0.1);
 }
 
+.ident-type-switch,
+.ident-type-undergrad,
+.ident-type-graduate {
+  display: inline;
+}
+
+
 // 身份信息
 // 提示框标题
 .ident-result-title {
@@ -39,7 +46,6 @@
   margin: 0 8px 0 0;
 }
 
-// 身份信息
 // 学院
 .ident__school {
   color: #666;
