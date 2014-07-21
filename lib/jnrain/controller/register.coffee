@@ -108,9 +108,9 @@ define [
           pass: new jsSHA($scope.psw, 'TEXT').getHash 'SHA-512', 'HEX'
           email: $scope.email
           mobile: $scope.mobile
-          itype: 0
+          itype: $scope.identInfo.type
           inum: $scope.number
-          idtype: 0
+          idtype: 0  # TODO: 允许其他身份信息类型
           idnum: $scope.idnumber
           iinfo:
             dorm_bldg: parseInt($scope.dormBuilding)
