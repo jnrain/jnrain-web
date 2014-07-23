@@ -65,6 +65,11 @@ define [
 
             # 通知刷新会话
             $rootScope.$broadcast 'session:refreshed'
+          else
+            if retcode == 5
+              # login token 不被服务器接受, 清除本地存储
+              removeLoginToken()
+              removeUID()
 
           callback data.r
 
