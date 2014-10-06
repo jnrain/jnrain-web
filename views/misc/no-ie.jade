@@ -112,71 +112,63 @@ html
         })();
       </script>
 
-  body.
-    <!-- 这个页面存在的唯一意义是让 oldIE 用户能知道自己下一步该怎么做, 那么看招! 表格布局! -->
-    <table align="center" width="950" bgcolor="#eeeeee" style="margin: 0 auto; position: relative; min-height: 100%;">
-      <tbody>
-      <tr height="4">
-        <!-- 这是 margin-top -->
-        <td width="950" colspan="2" style="background-color: #2672ec;">
-        </td>
-      </tr>
-      <tr class="header-row">
-        <td width="150">
-          <!-- IE 图标 -->
-          <!-- 这里也需要强制高度... -->
-          <div style="height: 150px;">
-            <div style="width: 150px; height: 150px; background: url('/static/img/ie-tile.png') no-repeat; display: inline-block;">
-            </div>
-          </div>
-        </td>
-        <td>
-          <!-- 图标右侧 -->
-          <!--
-          不用绝对定位强制指定正确位置的话也必须使用一层 div 包装,
-          否则横向布局会崩坏, 详情可自行试验.
-          -->
-          <div class="header-text-container">
-            <div class="header-text-div">
-              <span style="font-family: 'Palatino Linotype', SimSun, sans-serif; font-size: 45px;">您在使用不受支持的IE版本浏览本站。</span>
-              <span style="font-family: 'Ubuntu Light', Ubuntu, 'DejaVu Sans Light', 'DejaVu Sans', 'Segoe UI Light', 'Segoe UI', 'Palatino Linotype', sans-serif; font-weight: 100; font-size: 24px;">You're browsing this site with an unsupported version of IE.</span>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr height="40">
-        <!-- 这其实是个 margin-top -->
-      </tr>
-      <tr>
-        <td colspan="2" style="padding: 0 50px;">
-          <p>江南听雨网的开发采用了许多高级技术。低版本的 IE 浏览器<!-- 支持条件注释的 IE 都算 -->不支持这些技术，使江南听雨网无法在其中正常显示和工作。由于开发人员的精力有限，不能考虑为低版本 IE 提供支持。</p>
+  body
+    //- 这个页面存在的唯一意义是让 oldIE 用户能知道自己下一步该怎么做, 那么看招! 表格布局!
+    table(align="center" width="950" bgcolor="#eeeeee" style="margin: 0 auto; position: relative; min-height: 100%;")
+      tbody
+      tr(height="4")
+        //- 这是 margin-top
+        td(width="950" colspan="2" style="background-color: #2672ec;")
 
-          <!-- TODO: 用 navigator.userAgent 智能判断国内常见双核浏览器, 动态展示对应的操作 -->
-          <p>如您使用的浏览器支持极速模式（或高速模式等类似名称），请切换到相应的模式重新进入本站。</p>
+      tr.header-row
+        td(width="150")
+          //- IE 图标
+          //- 这里也需要强制高度...
+          div(style="height: 150px;")
+            div(style="width: 150px; height: 150px; background: url('/static/img/ie-tile.png') no-repeat; display: inline-block;")
 
-          <p>否则请考虑使用以下浏览器：</p>
-          <table class="recommended-browsers">
-            <tr>
-              <td>
-                <a href="http://www.firefox.com.cn/" class="bwsr">
-                  <h2 class="bwsr__name">Firefox</h2>
-                </a>
-              </td>
-              <td>
-                <a href="https://www.google.com/intl/zh-CN/chrome/browser/" class="bwsr">
-                  <h2 class="bwsr__name">Chrome</h2>
-                </a>
-              </td>
-            </tr>
-          </table>
+        td
+          //- 图标右侧
+          //-
+            不用绝对定位强制指定正确位置的话也必须使用一层 div 包装,
+            否则横向布局会崩坏, 详情可自行试验.
+          .header-text-container
+            .header-text-div
+              span(style="font-family: 'Palatino Linotype', SimSun, sans-serif; font-size: 45px;")
+                | 您在使用不受支持的IE版本浏览本站。
+              span(style="font-family: 'Ubuntu Light', Ubuntu, 'DejaVu Sans Light', 'DejaVu Sans', 'Segoe UI Light', 'Segoe UI', 'Palatino Linotype', sans-serif; font-weight: 100; font-size: 24px;")
+                | You're browsing this site with an unsupported version of IE.
 
-          <p>如因条件限制必须使用 IE 浏览，请升级到 IE 11 或更高的版本。</p>
+      tr(height="40")
+        //- 这其实是个 margin-top
 
-          <p>感谢您对江南听雨网的支持！</p>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+      tr
+        td(colspan="2" style="padding: 0 50px;")
+          p
+            | 江南听雨网的开发采用了许多高级技术。低版本的
+            | IE 浏览器  //- 支持条件注释的 IE 都算
+            | 不支持这些技术，使江南听雨网无法在其中正常显示和工作。
+            | 由于开发人员的精力有限，不能考虑为低版本 IE 提供支持。
+
+          //- TODO: 用 navigator.userAgent 智能判断国内常见双核浏览器, 动态展示对应的操作
+          p
+            | 如您使用的浏览器支持极速模式（或高速模式等类似名称），
+            | 请切换到相应的模式重新进入本站。
+
+          p 否则请考虑使用以下浏览器：
+
+          table.recommended-browsers
+            tr
+              td
+                a.bwsr(href="http://www.firefox.com.cn/")
+                  h2.bwsr__name Firefox
+              td
+                a.bwsr(href="https://www.google.com/intl/zh-CN/chrome/browser/")
+                  h2.bwsr__name Chrome
+
+          p 如因条件限制必须使用 IE 浏览，请升级到 IE 11 或更高的版本。
+
+          p 感谢您对江南听雨网的支持！
 
 
 //- vim:set ai et ts=2 sw=2 sts=2 fenc=utf-8:
